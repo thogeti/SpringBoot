@@ -1,0 +1,16 @@
+node{
+	stages{
+		stage('---CLEAN--'){
+			steps{
+			git 'https://github.com/thogeti/SpringBoot/tree/Develop'
+		//	sh "mvn clean"
+			}
+		}
+		stage('---Packeage--'){
+			steps{
+			sh 'mvn package'
+			}
+		}
+	
+	}
+}
