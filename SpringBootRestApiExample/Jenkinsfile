@@ -3,7 +3,7 @@ node{
 	stages{
 		stage('---CLEAN--'){
 			steps{
-			git 'https://github.com/thogeti/SpringBoot/tree/Develop'
+			git 'https://github.com/thogeti/SpringBoot.git'
 		//	sh "mvn clean"
 			}
 		}
