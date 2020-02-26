@@ -1,6 +1,5 @@
-pipeline{
 
-	agent any
+node{
 	stages{
 		stage('---CLEAN--'){
 			steps{
@@ -10,11 +9,10 @@ pipeline{
 		}
 		stage('---Packeage--'){
 			steps{
-			sh 'mvn package'
+			def mvnHome=tool name: 'Maven', type: 'maven'
+			sh '${mvnHome}/bin/mvn package'
 			}
 		}
 	
 	}
-
-
 }
