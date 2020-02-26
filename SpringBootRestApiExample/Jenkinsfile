@@ -2,7 +2,7 @@
 node{
 	
 		stage('---CLEAN--'){
-			
+			git config --global --unset-all remote.origin.proxy
 			git 'https://github.com/thogeti/SpringBoot.git'
 		//	sh "mvn clean"
 			
