@@ -6,8 +6,9 @@ node{
 			echo "clean TEst"
 			git config --global --unset-all remote.origin.proxy
 			git 'https://github.com/thogeti/SpringBoot.git'
-			def mvnHome=tool name: 'Maven', type: 'maven'
-			echo ${mvnHome}
+			echo " clean TEst 2"
+			//def mvnHome=tool name: 'Maven', type: 'maven'
+			//echo ${mvnHome}
 			//sh '${mvnHome}/bin/mvn clean package'
 		//	sh "mvn clean"
 			
