@@ -1,18 +1,18 @@
 
 node{
-	stages{
+	
 		stage('---CLEAN--'){
-			steps{
+			
 			git 'https://github.com/thogeti/SpringBoot.git'
 		//	sh "mvn clean"
-			}
+			
 		}
 		stage('---Packeage--'){
-			steps{
+			
 			def mvnHome=tool name: 'Maven', type: 'maven'
 			sh '${mvnHome}/bin/mvn package'
-			}
+			
 		}
 	
-	}
+	
 }
