@@ -2,8 +2,8 @@ node{
 	
 		stage('---CLEAN--'){
 			echo "clean TEst"
-			//git config --global --unset-all remote.origin.proxy
-			//git 'https://github.com/thogeti/Groovy.git'
+			git config --global --unset-all remote.origin.proxy
+			git 'https://github.com/thogeti/SpringBoot.git'
 		//	sh "mvn clean"
 			
 		}
