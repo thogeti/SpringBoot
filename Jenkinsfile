@@ -4,7 +4,7 @@ node{
 	
 		stage('---CLEAN--'){
 			echo "clean TEst"
-			bat label: '', script: 'C:\\Users\\011391\\Documents\\GitHub\\Groovy\\Deploy_cdr.bat' 
+			//bat label: '', script: 'C:\\Users\\011391\\Documents\\GitHub\\Groovy\\Deploy_cdr.bat' 
 			echo "Deploy_cdr.bat"
 			bat label: '', script: 'C:\\Program Files\\Git\\cmd\\git --version'
 			echo "git"
