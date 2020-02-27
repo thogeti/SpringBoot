@@ -1,31 +1,27 @@
 import jenkins.model.*
 jenkins = Jenkins.instance
-node{
-	
-		stage('---CLEAN--'){
-			echo "clean TEst"
-			//bat label: '', script: 'C:\\Users\\011391\\Documents\\GitHub\\Groovy\\Deploy_cdr.bat' 
-			//echo "Deploy_cdr.bat"
-			//bat label: '', script: 'C:\\Program Files\\Git\\cmd\\git --version'
-			//echo "git"
-			//def gitHome=tool name: 'Default', type: 'git'
-			//echo ${gitHome}
-			//git config --global --unset-all remote.origin.proxy
-			//git 'https://github.com/thogeti/SpringBoot.git'
-			//echo " clean TEst 12"
-			//def mvnHome=tool name: 'Maven', type: 'maven'
-			//echo ${mvnHome}
-			//sh '${mvnHome}/bin/mvn clean package'
-		//	sh "mvn clean"
-			
-		}
-		stage('---Packeage--'){	
-			echo " Pack TEst"
-			//def mvnHome=tool name: 'Maven', type: 'maven'
-		//	echo ${mvnHome}
-			//sh '${mvnHome}/bin/mvn package'
-			
-		}
-	
-	
+node {
+   def mvnHome
+   stage('Preparation') { // for display purposes
+      // Get some code from a GitHub repository
+      git 'https://github.com/thogeti/SpringBoot.git'
+      // Get the Maven tool.
+      // ** NOTE: This 'M3' Maven tool must be configured
+      // **       in the global configuration.           
+      mvnHome = tool 'Maven'
+   }
+   stage('Build') {
+      // Run the maven build
+      withEnv(["MVN_HOME=$mvnHome"]) {
+         if (isUnix()) {
+            sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
+         } else {
+            bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+         }
+      }
+   }
+   stage('Results') {
+      //junit '**/target/surefire-reports/TEST-*.xml'
+     // archiveArtifacts 'target/*.jar'
+   }
 }
