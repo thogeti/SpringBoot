@@ -1,18 +1,23 @@
-import jenkins.model.*
-jenkins = Jenkins.instance
-node{
-	
-		stage('---CLEAN--'){
-			git config --global --unset-all remote.origin.proxy
-			git 'https://github.com/thogeti/SpringBoot.git'
-		//	sh "mvn clean"
-			
-		}
-		stage('---Packeage--'){			
-			def mvnHome=tool name: 'Maven', type: 'maven'
-			sh '${mvnHome}/bin/mvn package'
-			
-		}
-	
-	
+pipeline {
+    agent any
+
+    stages {
+        stage('---Clean---') {
+            steps {
+                echo 'Cleaning..'
+            }
+        }
+        stage('---Test---') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('---package--') {
+            steps {
+                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                  echo 'Packaging..'
+            }
+        }
+    }
+}
 }
