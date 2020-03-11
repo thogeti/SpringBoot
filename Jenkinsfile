@@ -43,7 +43,7 @@ pipeline {
 	  
         always { 
 		echo 'CLEANING WS..'
-           // cleanWs()
+            cleanWs()
         }
 		
     }
