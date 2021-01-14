@@ -20,8 +20,8 @@ pipeline {
                  //bat "mvn -Dmaven.test.failure.ignore=true clean package"
 		 //bat "mvn -f pom.xml -Dmaven.test.failure.ignore=true clean package"
 		 //bat "mvn -f pom.xml -Dmaven.test.failure.ignore=true clean package"
-		  //  bat "mvn -f SpringBootRestApiExample/pom.xml -Dmaven.test.failure.ignore=true clean package"
-		      bat "mvn -f $SERVICE/pom.xml -Dmaven.test.failure.ignore=true clean package"
+		    bat "mvn -f SpringBootRestApiExample/pom.xml -Dmaven.test.failure.ignore=true clean package"
+		    //  bat "mvn -f $SERVICE/pom.xml -Dmaven.test.failure.ignore=true clean package"
                   echo 'Packaging..'
             }
         }
