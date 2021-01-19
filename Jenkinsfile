@@ -20,7 +20,7 @@ pipeline {
                  //bat "mvn -Dmaven.test.failure.ignore=true clean package"
 		 //bat "mvn -f pom.xml -Dmaven.test.failure.ignore=true clean package"
 		 //bat "mvn -f pom.xml -Dmaven.test.failure.ignore=true clean package"
-		 ///   bat "mvn -f SpringBootRestApiExample/pom.xml -Dmaven.test.failure.ignore=true clean package"
+		    bat "mvn -f SpringBootRestApiExample/pom.xml -Dmaven.test.failure.ignore=true clean package"
 		    //  bat "mvn -f $SERVICE/pom.xml -Dmaven.test.failure.ignore=true clean package"
                   echo 'Packaging..'
             }
@@ -36,7 +36,7 @@ pipeline {
 		    //nexusPublisher nexusInstanceId: 'LocalNexus-3', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '$WORKDIR+GroovyPipelineSpringBoot\\target\\SpringBootRestApiExample-1.0.0.jar']], mavenCoordinate: [artifactId: 'Drop59', groupId: 'CDR_central', packaging: 'jar', version: '$FILENAME+$VERSION']]]
 		    //nexusPublisher nexusInstanceId: 'LocalNexus-3', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '${WORKSPACE}+GroovyPipelineSpringBoot\\target\\SpringBootRestApiExample-1.0.0.jar']], mavenCoordinate: [artifactId: 'Drop59', groupId: 'CDR_central', packaging: 'jar', version: '$FILENAME+$VERSION']]]
 		    //nexusPublisher nexusInstanceId: 'LocalNexus-3', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '$WORKDIR']], mavenCoordinate: [artifactId: 'Drop59', groupId: 'CDR_central', packaging: 'jar', version: '$FILENAME+$VERSION']]]
-		  ///  nexusPublisher nexusInstanceId: 'CDR_Central', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'C:\\Work\\Jenkins\\Jenkinshome\\workspace\\GroovyPipelineSpringBoot\\target\\SpringBootRestApiExample-1.0.0.jar']], mavenCoordinate: [artifactId: 'Drop65', groupId: 'CDR_Central', packaging: 'jar', version: '$FILENAME+$VERSION']]]
+		    nexusPublisher nexusInstanceId: 'CDR_Central', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'C:\\Work\\Jenkins\\Jenkinshome\\workspace\\GroovyPipelineSpringBoot\\target\\SpringBootRestApiExample-1.0.0.jar']], mavenCoordinate: [artifactId: 'Drop65', groupId: 'CDR_Central', packaging: 'jar', version: '$FILENAME+$VERSION']]]
 		    //nexusPublisher nexusInstanceId: 'LocalNexus-3', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '${env.WORK_SPACE}+$WORKFILE']], mavenCoordinate: [artifactId: 'Drop59', groupId: 'CDR_central', packaging: 'jar', version: '$FILENAME+$VERSION']]]
             }
         }
