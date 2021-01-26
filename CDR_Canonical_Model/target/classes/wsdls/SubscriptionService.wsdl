@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2016 rel. 2 (x64) (http://www.altova.com) by Sebastian Darie (SHOPPERS DRUG MART) -->
+<wsdl:definitions xmlns:svcss="http://shoppersdrugmart.ca/RxHB/DRx/SubscriptionServiceServices" xmlns:ss="http://shoppersdrugmart.ca/RxHB/DRx/SubscriptionService" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="SubscriptionServiceServices" targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/SubscriptionServiceServices">
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+			<import namespace="http://shoppersdrugmart.ca/RxHB/DRx/SubscriptionService" schemaLocation="SubscriptionService.xsd"/>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="SubscribeToPatient">
+		<wsdl:part name="SubscribeToPatient" element="ss:SubscribeToPatient"/>
+	</wsdl:message>
+	<wsdl:message name="SubscribeToPatientResponse">
+		<wsdl:part name="SubscribeToPatientResponse" element="ss:SubscribeToPatientResponse"/>
+	</wsdl:message>
+	<wsdl:message name="SubscribeToRx">
+		<wsdl:part name="SubscribeToRx" element="ss:SubscribeToRx"/>
+	</wsdl:message>
+	<wsdl:message name="SubscribeToRxResponse">
+		<wsdl:part name="SubscribeToRxResponse" element="ss:SubscribeToRxResponse"/>
+	</wsdl:message>
+	<wsdl:message name="UnsubscribeToPatient">
+		<wsdl:part name="UnsubscribeToPatient" element="ss:UnsubscribeToPatient"/>
+	</wsdl:message>
+	<wsdl:message name="UnsubscribeToPatientResponse">
+		<wsdl:part name="UnsubscribeToPatientResponse" element="ss:UnsubscribeToPatientResponse"/>
+	</wsdl:message>
+	<wsdl:message name="UnsubscribeToRx">
+		<wsdl:part name="UnsubscribeToRx" element="ss:UnsubscribeToRx"/>
+	</wsdl:message>
+	<wsdl:message name="UnsubscribeToRxResponse">
+		<wsdl:part name="UnsubscribeToRxResponse" element="ss:UnsubscribeToRxResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="SubscriptionService">
+		<wsdl:operation name="subscribeToPatient">
+			<wsdl:input name="SubscribeToPatient" message="svcss:SubscribeToPatient"/>
+			<wsdl:output name="SubscribeToPatientResponse" message="svcss:SubscribeToPatientResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="subscribeToRx">
+			<wsdl:input name="SubscribeToRx" message="svcss:SubscribeToRx"/>
+			<wsdl:output name="SubscribeToRxResponse" message="svcss:SubscribeToRxResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="unSubscribeToPatient">
+			<wsdl:input name="UnsubscribeToPatient" message="svcss:UnsubscribeToPatient"/>
+			<wsdl:output name="UnsubscribeToPatientResponse" message="svcss:UnsubscribeToPatientResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="unSubscribeToRx">
+			<wsdl:input name="UnsubscribeToRx" message="svcss:UnsubscribeToRx"/>
+			<wsdl:output name="UnsubscribeToRxResponse" message="svcss:UnsubscribeToRxResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SubscriptionService" type="svcss:SubscriptionService">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="subscribeToPatient">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/SubscriptionService/subscribeToPatient" style="document"/>
+			<wsdl:input name="SubscribeToPatient">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="SubscribeToPatientResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="subscribeToRx">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/SubscriptionService/subscribeToRx" style="document"/>
+			<wsdl:input name="SubscribeToRx">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="SubscribeToRxResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="unSubscribeToPatient">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/SubscriptionService/unsubscribeToPatient" style="document"/>
+			<wsdl:input name="UnsubscribeToPatient">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="UnsubscribeToPatientResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="unSubscribeToRx">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/SubscriptionService/unsubscribeToRx" style="document"/>
+			<wsdl:input name="UnsubscribeToRx">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="UnsubscribeToRxResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SubscriptionService">
+		<wsdl:port name="SubscriptoinService" binding="svcss:SubscriptionService">
+			<soap:address location="http://shoppersdrugmart.ca/RxHB/DRx/SubscriptionService"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

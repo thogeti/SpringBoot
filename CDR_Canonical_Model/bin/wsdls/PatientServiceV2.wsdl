@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:svcps="http://shoppersdrugmart.ca/RxHB/DRx/PatientService" xmlns:gp="http://shoppersdrugmart.ca/RxHB/DRx/GetPatient" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" name="PatientService" targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/PatientService">
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+			<import namespace="http://shoppersdrugmart.ca/RxHB/DRx/GetPatient" schemaLocation="GetPatient.xsd"/>
+		</schema>
+	</wsdl:types>
+	<!--
+	    *******************************************************************
+        ***************  Request Response messages ************************ 
+        *******************************************************************
+    -->
+	<wsdl:message name="GetPatient">
+		<wsdl:part name="GetPatient" element="gp:GetPatient"/>
+	</wsdl:message>
+	<wsdl:message name="GetPatientResponse">
+		<wsdl:part name="GetPatientResponse" element="gp:GetPatientResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetPatientByPatientId">
+		<wsdl:part name="GetPatientByPatientId" element="gp:GetPatientByPatientId"/>
+	</wsdl:message>
+	<wsdl:message name="GetPatientByPatientIdResponse">
+		<wsdl:part name="GetPatientByPatientIdResponse" element="gp:GetPatientByPatientIdResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetPatientByQueryCriteria">
+		<wsdl:part name="GetPatientByQueryCriteria" element="gp:GetPatientByQueryCriteria"/>
+	</wsdl:message>
+	<wsdl:message name="GetPatientByQueryCriteriaResponse">
+		<wsdl:part name="GetPatientByQueryCriteriaResponse" element="gp:GetPatientByQueryCriteriaResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetPatientByTransactionNumber">
+		<wsdl:part name="GetPatientByTransactionNumber" element="gp:GetPatientByTransactionNumber"/>
+	</wsdl:message>
+	<wsdl:message name="GetPatientByTransactionNumberResponse">
+		<wsdl:part name="GetPatientByTransactionNumberResponse" element="gp:GetPatientByTransactionNumberResponse"/>
+	</wsdl:message>
+	<!--
+	    *******************************************************************
+        *************** portType Web Service operations ******************* 
+        *******************************************************************
+    -->
+	<wsdl:portType name="PatientServiceV2">
+		<wsdl:operation name="getPatient">
+			<wsdl:input name="GetPatient" message="svcps:GetPatient"/>
+			<wsdl:output name="GetPatientResponse" message="svcps:GetPatientResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getPatientByPatientId">
+			<wsdl:input name="GetPatientByPatientId" message="svcps:GetPatientByPatientId"/>
+			<wsdl:output name="GetPatientByPatientIdResponse" message="svcps:GetPatientByPatientIdResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getPatientByTransactionNumber">
+			<wsdl:input name="GetPatientByTransactionNumber" message="svcps:GetPatientByTransactionNumber"/>
+			<wsdl:output name="GetPatientByTransactionNumberResponse" message="svcps:GetPatientByTransactionNumberResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getPatientByQueryCriteria">
+			<wsdl:input name="GetPatientByQueryCriteria" message="svcps:GetPatientByQueryCriteria"/>
+			<wsdl:output name="GetPatientByQueryCriteriaResponse" message="svcps:GetPatientByQueryCriteriaResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<!--
+	    *******************************************************************
+        *************** binding                         ******************* 
+        *******************************************************************
+    -->
+	<wsdl:binding name="PatientServiceV2" type="svcps:PatientServiceV2">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getPatient">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/getPatientService/getPatient" style="document"/>
+			<wsdl:input name="GetPatient">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="GetPatientResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPatientByPatientId">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/getPatientService/getPatientByPatientId" style="document"/>
+			<wsdl:input name="GetPatientByPatientId">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="GetPatientByPatientIdResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPatientByTransactionNumber">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/getPatientService/getPatientByTransactionNumber" style="document"/>
+			<wsdl:input name="GetPatientByTransactionNumber">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="GetPatientByTransactionNumberResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPatientByQueryCriteria">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/getPatientService/getPatientByQueryCriteria" style="document"/>
+			<wsdl:input name="GetPatientByQueryCriteria">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="GetPatientByQueryCriteriaResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<!--
+	    *******************************************************************
+        *************** WebService address              ******************* 
+        *******************************************************************
+    -->
+	<wsdl:service name="PatientServiceV2">
+		<wsdl:port name="PatientService" binding="svcps:PatientServiceV2">
+			<soap:address location="http://wdp26esb21.hosts.shoppersdrugmart.ca:3202/RxHB/DRx/PatientService"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

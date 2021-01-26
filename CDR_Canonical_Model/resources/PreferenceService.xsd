@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/Preference" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pref="http://shoppersdrugmart.ca/RxHB/DRx/Preference" xmlns:CSE="http://shoppersdrugmart.ca/RxHB/DRx/CSE" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes">
+	<xs:import namespace="http://www.shoppersdrugmart.ca/message/SDMDataTypes" schemaLocation="SDMDataTypes.xsd"/>
+	<xs:import namespace="http://shoppersdrugmart.ca/RxHB/DRx/CSE" schemaLocation="ChannelServiceEntities.xsd"/>
+	<xs:complexType name="EntityPreference">
+		<xs:sequence>
+			<xs:element name="EntityPreference" type="CSE:UpdatePreferenceEntityBySourceChannel" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EntityPreferenceResponse">
+		<xs:sequence>
+			<xs:element name="Flag" type="sdm:Flag" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="correlationID" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="EntityPreference" type="pref:EntityPreference"/>
+	<xs:element name="EntityPreferenceResponse" type="pref:EntityPreferenceResponse"/>
+</xs:schema>

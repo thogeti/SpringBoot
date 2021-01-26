@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:rsp="http://shoppersdrugmart.ca/RxHB/eHealth/ResponseEvent" xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" targetNamespace="http://shoppersdrugmart.ca/RxHB/eHealth/ResponseEvent">
+	<xsd:annotation>
+		<xsd:documentation>Version 1.6</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+	<xsd:import namespace="http://www.shoppersdrugmart.ca/message/SDMDataTypes" schemaLocation="SDMDataTypes.xsd"/>
+	
+	<xsd:element name="ResponseEvent" type="rsp:ResponseEvent"/>
+	<xsd:complexType name="ResponseEvent">
+		<xsd:sequence>
+			<xsd:element name="businessClassification" type="ehlth:EventSourceClassification" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="correlationID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="eventName" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="responseEventSource" type="ehlth:EventSource" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="isEventFailure" type="xsd:boolean" default="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="isQuery" type="xsd:boolean" default="false" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Identifies this response as a query response rather than a standard request response.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="responseEventPayload" type="rsp:ResponseEventPayload" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="resubmitFlag" type="xsd:boolean" default="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="serviceLocation" type="ehlth:Location" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="producerSendTimestamp" type="sdm:Timestamp" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="notesPresentFlag" type="xsd:boolean" default="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="tooManyResultsFlag" type="xsd:boolean" default="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="suppressAutoEventGenerationFlag" type="xsd:boolean" default="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="issuesPresentFlag" type="xsd:boolean" default="false" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ResponseEventPayload" type="rsp:ResponseEventPayload"/>
+	<xsd:complexType name="ResponseEventPayload">
+		<xsd:sequence>
+			<xsd:element name="patient" type="ehlth:Patient" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="prescriber" type="ehlth:Prescriber" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="prescription" type="ehlth:Prescription" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="store" type="ehlth:Store" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="allergy" type="ehlth:Allergy" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="dispense" type="ehlth:Dispense" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="note" type="ehlth:Note" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="AdverseDrugReaction" type="ehlth:AdverseDrugReaction" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="correlatedID" type="rsp:CorrelatedId" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="producerRecordId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="professionalRegistration" type="ehlth:ProfessionalRegistration" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="medicalPractitioner" type="ehlth:MedicalPractitioner" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="professionalService" type="ehlth:ProfessionalService" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="serviceLocation" type="ehlth:Location" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="dispenser" type="ehlth:Dispenser" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="profileHistory" type="ehlth:ProfileHistory" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="CorrelatedId" type="rsp:CorrelatedId"/>
+	<xsd:complexType name="CorrelatedId">
+		<xsd:annotation>
+			<xsd:documentation>The correlated consumer &amp; producer ID for a specific runtime Business Entity. Created by the Service Adapter to request bulk correlation on query response events. Filled in in bulk by correlation service. Enriched into BE by {HW, Query Service, Orchestration}. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="producerId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="producerIdPath" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="consumerId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="consumerIdPath" type="xsd:string" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The runtime XPATH to a BE consumer ID instance that the correlationID resolves. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

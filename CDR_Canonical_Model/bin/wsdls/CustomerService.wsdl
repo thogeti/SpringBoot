@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="CustomerService" 
+                  targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/CustomerService" 
+                  xmlns:cs="http://shoppersdrugmart.ca/RxHB/DRx/CustomerService"
+                  xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth"
+                  xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+                  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+    <wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://shoppersdrugmart.ca/RxHB/DRx/CustomerService" schemaLocation="CustomerService.xsd"/>
+		</schema>
+	</wsdl:types>
+
+
+	
+	<wsdl:message name="AssociateCustomer">
+		<wsdl:part name="AssociateCustomer" element="cs:AssociateCustomer"/>
+	</wsdl:message>
+	<wsdl:message name="AssociateCustomerResponse">
+		<wsdl:part name="AssociateCustomerResponse" element="cs:AssociateCustomerResponse"/>
+	</wsdl:message>
+	
+	
+	
+	<wsdl:message name="UpdateCustomer">
+		<wsdl:part name="UpdateCustomer" element="cs:UpdateCustomer"/>
+	</wsdl:message>
+	<wsdl:message name="UpdateCustomerResponse">
+		<wsdl:part name="UpdateCustomerResponse" element="cs:UpdateCustomerResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetCustomer">
+		<wsdl:part name="GetCustomer" element="cs:GetCustomer"/>
+	</wsdl:message>
+	<wsdl:message name="GetCustomerResponse">
+		<wsdl:part name="GetCustomerResponse" element="cs:GetCustomerResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateCustomer">
+		<wsdl:part name="CreateCustomer" element="cs:CreateCustomer"/>
+	</wsdl:message>
+	<wsdl:message name="CreateCustomerResponse">
+		<wsdl:part name="CreateCustomerResponse" element="cs:CreateCustomerResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DissociateCustomer">
+		<wsdl:part name="DissociateCustomer" element="cs:DissociateCustomer"/>
+	</wsdl:message>
+	<wsdl:message name="DissociateCustomerResponse">
+		<wsdl:part name="DissociateCustomerResponse" element="cs:DissociateCustomerResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="CustomerService">
+		<wsdl:documentation>Put attributes and operations</wsdl:documentation>
+		<wsdl:operation name="associateCustomer">
+			<wsdl:input name="AssociateCustomer" message="cs:AssociateCustomer"/>
+			<wsdl:output name="AssociateCustomerResponse" message="cs:AssociateCustomerResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateCustomer">
+			<wsdl:input name="UpdateCustomer" message="cs:UpdateCustomer"/>
+			<wsdl:output name="UpdateCustomerResponse" message="cs:UpdateCustomerResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getCustomer">
+			<wsdl:input name="GetCustomer" message="cs:GetCustomer"/>
+			<wsdl:output name="GetCustomerResponse" message="cs:GetCustomerResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="createCustomer">
+			<wsdl:input name="CreateCustomer" message="cs:CreateCustomer"/>
+			<wsdl:output name="CreateCustomerRespnose" message="cs:CreateCustomerResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="dissociateCustomer">
+			<wsdl:input name="DissociateCustomer" message="cs:DissociateCustomer"/>
+			<wsdl:output name="DissociateCustomerResponse" message="cs:DissociateCustomerResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="CustomerService" type="cs:CustomerService">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="associateCustomer">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/CustomerService/associateCustomer" style="document"/>
+			<wsdl:input name="AssociateCustomer">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="AssociateCustomerResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="updateCustomer">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/CustomerService/updateCustomer" style="document"/>
+			<wsdl:input name="UpdateCustomer">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="UpdateCustomerResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getCustomer">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/CustomerService/getCustomer" style="document"/>
+			<wsdl:input name="GetCustomer">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="GetCustomerResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="createCustomer">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/CustomerService/createCustomer" style="document"/>
+			<wsdl:input name="CreateCustomer">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="CreateCustomerRespnose">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="dissociateCustomer">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/CustomerService/disociateCustomer" style="document"/>
+			<wsdl:input name="DissociateCustomer">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="DissociateCustomerResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="CustomerService">
+		<wsdl:port name="CustomerService" binding="cs:CustomerService">
+			<soap:address location="http://shoppersdrugmart.ca/RxHB/DRx/CustomerService"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

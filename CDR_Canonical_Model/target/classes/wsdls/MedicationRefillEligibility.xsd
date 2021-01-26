@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+    targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/MedicationRefillEligibility"
+    xmlns:cse="http://shoppersdrugmart.ca/RxHB/DRx/CSE"
+    xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth"
+    xmlns:mp="http://shoppersdrugmart.ca/RxHB/DRx/MedicationRefillEligibility"
+    xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="http://shoppersdrugmart.ca/RxHB/DRx/CSE" schemaLocation="ChannelServiceEntities.xsd"/>
+    <xs:import
+        namespace="http://www.shoppersdrugmart.ca/message/SDMDataTypes" schemaLocation="SDMDataTypes.xsd"/>
+    <xs:import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+    <xs:element name="GetPatientAdherenceEligibility" type="mp:GetPatientAdherenceEligibility"/>
+    <xs:complexType name="GetPatientAdherenceEligibility">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="ActiveFlag" type="sdm:Flag"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="StoreNumber" type="sdm:StringValue"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="PatientId" type="sdm:IdentityAlphanumeric"/>
+            <xs:element maxOccurs="1" minOccurs="1"
+                name="PopulationStrategy" type="cse:PopulationStrategyEnum"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetPatientAdherenceEligibilityResponse" type="mp:GetPatientAdherenceEligibilityResponse"/>
+    <xs:complexType name="GetPatientAdherenceEligibilityResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1"
+                name="AdherenceEligibility" type="cse:AdherenceEligibility"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

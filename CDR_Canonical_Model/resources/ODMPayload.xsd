@@ -1,0 +1,1906 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2015 rel. 3 (x64) (http://www.altova.com) by DC (SHOPPERS DRUG MART INC) -->
+<xs:schema xmlns:param="http://www.ibm.com/rules/decisionservice/MedcheckRuleApp/MedcheckDetermination/param" xmlns:tns="http://www.ibm.com/rules/decisionservice/MedcheckRuleApp/MedcheckDetermination" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://www.ibm.com/rules/decisionservice/MedcheckRuleApp/MedcheckDetermination" version="2.9.2">
+	<xs:complexType name="ActiveIngredient">
+		<xs:sequence>
+			<xs:element name="chemicalNameAlternative" type="xs:string" minOccurs="0"/>
+			<xs:element name="chemicalNameEnglish" type="xs:string" minOccurs="0"/>
+			<xs:element name="chemicalNameFrench" type="xs:string" minOccurs="0"/>
+			<xs:element name="name" type="xs:string" minOccurs="0"/>
+			<xs:element name="strength" type="xs:double" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="strengthUOMCode" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Address">
+		<xs:sequence>
+			<xs:element name="addressLineOne" type="xs:string" minOccurs="0"/>
+			<xs:element name="addressLineTwo" type="xs:string" minOccurs="0"/>
+			<xs:element name="cityName" type="xs:string" minOccurs="0"/>
+			<xs:element name="countryCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="postalCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="email" type="xs:string" minOccurs="0"/>
+			<xs:element name="isPrimaryAddressFlag" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="primaryPhoneNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="faxNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="contactPurposeType" type="xs:string" minOccurs="0"/>
+			<xs:element name="provinceCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="alternatePhoneNumber" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="isActiveAddressFlag" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="isMailAddressFlag" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="isReauthEmailFlag" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="isReauthPhoneFlag" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="isReauthFaxFlag" type="xs:string" minOccurs="0"/>
+			<xs:element name="isReauthVisitFlag" type="xs:boolean" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AdverseDrugReaction">
+		<xs:sequence>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="createTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="updateTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="descriptionEnglish" type="xs:string" minOccurs="0"/>
+			<xs:element name="occuranceStartTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="reaction" type="tns:Reaction" minOccurs="0"/>
+			<xs:element name="note" type="tns:Note" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="reporter" type="tns:Reporter" minOccurs="0"/>
+			<xs:element name="recorder" type="tns:Recorder" minOccurs="0"/>
+			<xs:element name="serviceLocation" type="tns:Location" minOccurs="0"/>
+			<xs:element name="updateRecorder" type="tns:Recorder" minOccurs="0"/>
+			<xs:element name="supervisor" type="tns:Supervisor" minOccurs="0"/>
+			<xs:element name="prescriber" type="tns:Prescriber" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Allergy">
+		<xs:sequence>
+			<xs:element name="allergyActiveFlag" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="intoleranceFlag" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="createTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="descriptionEnglish" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="descriptionFrench" type="xs:string" minOccurs="0"/>
+			<xs:element name="allergyType" type="xs:string" minOccurs="0"/>
+			<xs:element name="allergen" type="xs:string" minOccurs="0"/>
+			<xs:element name="allergyStartDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="reportedDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="updateTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="updateReason" type="xs:string" minOccurs="0"/>
+			<xs:element name="allergyTest" type="tns:AllergyTest" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="reaction" type="tns:Reaction" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="linkedAllergy" type="tns:Allergy" minOccurs="0"/>
+			<xs:element name="recorder" type="tns:Recorder" minOccurs="0"/>
+			<xs:element name="allergySeverityCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="allergyConfirmationStatusCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="drug" type="tns:Drug" minOccurs="0"/>
+			<xs:element name="note" type="tns:Note" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="reporter" type="tns:Reporter" minOccurs="0"/>
+			<xs:element name="serviceLocation" type="tns:Location" minOccurs="0"/>
+			<xs:element name="nonDrugAllergen" type="xs:string" minOccurs="0"/>
+			<xs:element name="updateRecorder" type="tns:Recorder" minOccurs="0"/>
+			<xs:element name="supervisor" type="tns:Supervisor" minOccurs="0"/>
+			<xs:element name="statusChangeType" type="xs:string" minOccurs="0"/>
+			<xs:element name="statusChangeReason" type="xs:string" minOccurs="0"/>
+			<xs:element name="dispenser" type="tns:Dispenser" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="AllergySeverityLevel">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="High"/>
+			<xs:enumeration value="Moderate"/>
+			<xs:enumeration value="Low"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AllergyStatus">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Suspected"/>
+			<xs:enumeration value="Confirmed"/>
+			<xs:enumeration value="Resolved-Unconfirmed"/>
+			<xs:enumeration value="Resolved-Confirmed"/>
+			<xs:enumeration value="Refuted-Unconfirmed"/>
+			<xs:enumeration value="Refuted-Confirmed"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="AllergyTest">
+		<xs:sequence>
+			<xs:element name="testType" type="xs:string" minOccurs="0"/>
+			<xs:element name="testResult" type="xs:string" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="testDatetime" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="BenefitsCardholderRelationship">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NOT KNOWN"/>
+			<xs:enumeration value="PRIMARY"/>
+			<xs:enumeration value="SPOUSE"/>
+			<xs:enumeration value="CHILD UNDERAGE"/>
+			<xs:enumeration value="CHILD OVERAGE"/>
+			<xs:enumeration value="DISABLED DEPENDANT"/>
+			<xs:enumeration value="DEPENDANT STUDENT"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ChannelType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DigitalPharmacy"/>
+			<xs:enumeration value="PatientContactCenter"/>
+			<xs:enumeration value="Store"/>
+			<xs:enumeration value="IVR"/>
+			<xs:enumeration value="Prescriber"/>
+			<xs:enumeration value="eHealth"/>
+			<xs:enumeration value="Accuro"/>
+			<xs:enumeration value="CustomerServiceRepresentative"/>
+			<xs:enumeration value="PatientConsent"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ClinicalObservationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="height"/>
+			<xs:enumeration value="weight"/>
+			<xs:enumeration value="respiratoryRate"/>
+			<xs:enumeration value="heartRate"/>
+			<xs:enumeration value="bloodGlucose"/>
+			<xs:enumeration value="bloodPressure"/>
+			<xs:enumeration value="bodyTemperature"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Colour">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="amber"/>
+			<xs:enumeration value="amber-light"/>
+			<xs:enumeration value="aqua"/>
+			<xs:enumeration value="beige"/>
+			<xs:enumeration value="black"/>
+			<xs:enumeration value="blue"/>
+			<xs:enumeration value="blue-grey"/>
+			<xs:enumeration value="blue-light"/>
+			<xs:enumeration value="bluish-green"/>
+			<xs:enumeration value="brown"/>
+			<xs:enumeration value="brown-light"/>
+			<xs:enumeration value="brownish-orange"/>
+			<xs:enumeration value="brownish-pink"/>
+			<xs:enumeration value="brownish-red"/>
+			<xs:enumeration value="brownish-red-lt"/>
+			<xs:enumeration value="brownish-yellow"/>
+			<xs:enumeration value="buff"/>
+			<xs:enumeration value="caramel"/>
+			<xs:enumeration value="clear"/>
+			<xs:enumeration value="coral"/>
+			<xs:enumeration value="coral-light"/>
+			<xs:enumeration value="cream"/>
+			<xs:enumeration value="creamyWhite"/>
+			<xs:enumeration value="darkBrownish-yellow"/>
+			<xs:enumeration value="darkMaroon"/>
+			<xs:enumeration value="darkPink"/>
+			<xs:enumeration value="dark-green"/>
+			<xs:enumeration value="dark-orange"/>
+			<xs:enumeration value="dark-yellow"/>
+			<xs:enumeration value="gold"/>
+			<xs:enumeration value="green"/>
+			<xs:enumeration value="greenOrWhite"/>
+			<xs:enumeration value="green-light"/>
+			<xs:enumeration value="greenish-blue"/>
+			<xs:enumeration value="greenish-white"/>
+			<xs:enumeration value="grey"/>
+			<xs:enumeration value="unknown"/>
+			<xs:enumeration value="grey-light"/>
+			<xs:enumeration value="greyish-beige"/>
+			<xs:enumeration value="greyish-lightGreen"/>
+			<xs:enumeration value="greyish-red"/>
+			<xs:enumeration value="ivory"/>
+			<xs:enumeration value="lavender"/>
+			<xs:enumeration value="lavender-orange"/>
+			<xs:enumeration value="maroon"/>
+			<xs:enumeration value="mauve"/>
+			<xs:enumeration value="multi-coloured"/>
+			<xs:enumeration value="natural"/>
+			<xs:enumeration value="olive"/>
+			<xs:enumeration value="orange"/>
+			<xs:enumeration value="orange-dark"/>
+			<xs:enumeration value="orange-light"/>
+			<xs:enumeration value="orangish-yellow"/>
+			<xs:enumeration value="organge-red"/>
+			<xs:enumeration value="peach"/>
+			<xs:enumeration value="peach-light"/>
+			<xs:enumeration value="pink"/>
+			<xs:enumeration value="pink-light"/>
+			<xs:enumeration value="pinkish-brown"/>
+			<xs:enumeration value="pinkish-orange"/>
+			<xs:enumeration value="purple"/>
+			<xs:enumeration value="purplish-pink"/>
+			<xs:enumeration value="red"/>
+			<xs:enumeration value="reddish-brown"/>
+			<xs:enumeration value="reddish-brown-light"/>
+			<xs:enumeration value="reddish-orange"/>
+			<xs:enumeration value="reddish-yellow"/>
+			<xs:enumeration value="salmon"/>
+			<xs:enumeration value="scarlet"/>
+			<xs:enumeration value="teal(blue-green)"/>
+			<xs:enumeration value="turquiose-light"/>
+			<xs:enumeration value="turquoise-light"/>
+			<xs:enumeration value="white"/>
+			<xs:enumeration value="white(creamyWhite)"/>
+			<xs:enumeration value="white(off-white)"/>
+			<xs:enumeration value="white(off-white)ToYellow"/>
+			<xs:enumeration value="yellow"/>
+			<xs:enumeration value="yellow-cream"/>
+			<xs:enumeration value="yellow-dark"/>
+			<xs:enumeration value="yellow-darkOrBrownish-dark"/>
+			<xs:enumeration value="yellow-light"/>
+			<xs:enumeration value="yellow-to-orange"/>
+			<xs:enumeration value="yellowish-brown"/>
+			<xs:enumeration value="yellowish-ochre"/>
+			<xs:enumeration value="yellowish-pink"/>
+			<xs:enumeration value="yellowish-tan"/>
+			<xs:enumeration value="yellowish-wheat"/>
+			<xs:enumeration value="yellowish-white"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CommunicationModeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SMS"/>
+			<xs:enumeration value="Email"/>
+			<xs:enumeration value="Telephone"/>
+			<xs:enumeration value="WalkIn"/>
+			<xs:enumeration value="Web"/>
+			<xs:enumeration value="Mobile"/>
+			<xs:enumeration value="System"/>
+			<xs:enumeration value="Fax"/>
+			<xs:enumeration value="Batch"/>
+			<xs:enumeration value="Conversion"/>
+			<xs:enumeration value="DriveThru"/>
+			<xs:enumeration value="Accuro"/>
+			<xs:enumeration value="HealthWatch"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Compound">
+		<xs:sequence>
+			<xs:element name="UnitOfMeasure" type="xs:string" minOccurs="0"/>
+			<xs:element name="UofMQuantityConversionFactor" type="xs:integer" minOccurs="0"/>
+			<xs:element name="nameFrench" type="xs:string" minOccurs="0"/>
+			<xs:element name="nameEnglish" type="xs:string" minOccurs="0"/>
+			<xs:element name="preperationdirections" type="xs:string" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="quantity" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="compoundIngredients" type="tns:CompoundIngredient" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="dosageForm" type="tns:DosageForm" minOccurs="0"/>
+			<xs:element name="schedule" type="xs:string" minOccurs="0"/>
+			<xs:element name="administrationRouteCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="totalPackageQuantity" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="totalPackageUnit" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CompoundIngredient">
+		<xs:sequence>
+			<xs:element name="quantityUsed" type="xs:decimal"/>
+			<xs:element name="pack" type="tns:Pack"/>
+			<xs:element name="quantityusedUOM" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Consent">
+		<xs:sequence>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="consentEffectiveTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="consentEndTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="consentOverrideReasonCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="dispenser" type="tns:Dispenser" minOccurs="0"/>
+			<xs:element name="consentType" type="xs:string" minOccurs="0"/>
+			<xs:element name="consentReasonCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="consentProvider" type="xs:string" minOccurs="0"/>
+			<xs:element name="agentFirstName" type="xs:string" minOccurs="0"/>
+			<xs:element name="agentLastName" type="xs:string" minOccurs="0"/>
+			<xs:element name="agentRelationship" type="xs:string" minOccurs="0"/>
+			<xs:element name="notificationMethod" type="xs:string" minOccurs="0"/>
+			<xs:element name="ConsentUserId" type="xs:string" minOccurs="0"/>
+			<xs:element name="consentCreateTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="consentUpdateTimestamp" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ConsentOverrideReason">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Emergency"/>
+			<xs:enumeration value="Professional Judgement"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ConsentReasonCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Accepted"/>
+			<xs:enumeration value="Declined"/>
+			<xs:enumeration value="Declined with Ask Later"/>
+			<xs:enumeration value="Not Recorded"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ContactPurposeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BUSINESS"/>
+			<xs:enumeration value="PRIMARY"/>
+			<xs:enumeration value="GROUP HOME"/>
+			<xs:enumeration value="RETIREMENT HOME"/>
+			<xs:enumeration value="NURSING HOME"/>
+			<xs:enumeration value="OTHER"/>
+			<xs:enumeration value="HOME"/>
+			<xs:enumeration value="VISIT ADDRESS"/>
+			<xs:enumeration value="POSTAL ADDRESS"/>
+			<xs:enumeration value="TEMPORARY ADDRESS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DINType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="opinions"/>
+			<xs:enumeration value="din"/>
+			<xs:enumeration value="npn"/>
+			<xs:enumeration value="pseudoDin"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DiscontinuedReason">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Allergy Intolerance"/>
+			<xs:enumeration value="Revoke-Intolerance"/>
+			<xs:enumeration value="Revoke-New Strength SIG"/>
+			<xs:enumeration value="Revoke-New Therapy"/>
+			<xs:enumeration value="Revoke-No Longer Required"/>
+			<xs:enumeration value="Transferred"/>
+			<xs:enumeration value="Clinical Issue"/>
+			<xs:enumeration value="Discontinued/Recalled"/>
+			<xs:enumeration value="Duplicate Therapy"/>
+			<xs:enumeration value="Ineffective"/>
+			<xs:enumeration value="New SIG"/>
+			<xs:enumeration value="No Insurance"/>
+			<xs:enumeration value="Not Able to Use"/>
+			<xs:enumeration value="Not Appropriate"/>
+			<xs:enumeration value="Not Needed"/>
+			<xs:enumeration value="Patient Refused"/>
+			<xs:enumeration value="Product Recall"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Dispense">
+		<xs:sequence>
+			<xs:element name="additionalDosageInstructionText" type="xs:string" minOccurs="0"/>
+			<xs:element name="administrationPeriodEnd" type="xs:date" minOccurs="0"/>
+			<xs:element name="daysSupply" type="xs:int" minOccurs="0"/>
+			<xs:element name="administrationPeriodStart" type="xs:date" minOccurs="0"/>
+			<xs:element name="createTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="transactionCancellationReasonText" type="xs:string" minOccurs="0"/>
+			<xs:element name="lastUpdate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="pickupTime" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="quantityDispensed" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="totalAmountPaid" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="transactionNumber" type="xs:int" minOccurs="0"/>
+			<xs:element name="dispenseTime" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="daysInterval" type="xs:int" minOccurs="0"/>
+			<xs:element name="dosageInstructionExpiryDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="drugLotNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="drugExpirationDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="sigCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="dispenseType" type="xs:string" minOccurs="0"/>
+			<xs:element name="sigDescriptionPatientLanguage" type="xs:string" minOccurs="0"/>
+			<xs:element name="sequenceNumber" type="xs:int" minOccurs="0"/>
+			<xs:element name="previousDispenseDaysSupply" type="xs:int" minOccurs="0"/>
+			<xs:element name="quantityRemaining" type="xs:int" minOccurs="0"/>
+			<xs:element name="dispenseFulfillmentRefusalReasonCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="discontinuedReasonCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="administrationForm" type="xs:string" minOccurs="0"/>
+			<xs:element name="statusChangeReasonCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="statusChangeType" type="xs:string" minOccurs="0"/>
+			<xs:element name="isHomeDeliveryFlag" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="pharmacyChannel" type="tns:PharmacyChannel" minOccurs="0"/>
+			<xs:element name="compound" type="tns:Compound" minOccurs="0"/>
+			<xs:element name="initiator" type="tns:Initiator" minOccurs="0"/>
+			<xs:element name="serviceLocation" type="tns:Location" minOccurs="0"/>
+			<xs:element name="fillStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="dispenser" type="tns:Dispenser" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="packageForm" type="xs:string" minOccurs="0"/>
+			<xs:element name="pack" type="tns:Pack" minOccurs="0"/>
+			<xs:element name="administrationRouteCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="dosageForm" type="tns:DosageForm" minOccurs="0"/>
+			<xs:element name="note" type="tns:Note" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="transactionSourceCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="supervisor" type="tns:Supervisor" minOccurs="0"/>
+			<xs:element name="recorder" type="tns:Recorder" minOccurs="0"/>
+			<xs:element name="professionalService" type="tns:ProfessionalService" minOccurs="0"/>
+			<xs:element name="holdReasonCode" type="tns:PrescriptionHoldReasonTypeDisplay" minOccurs="0"/>
+			<xs:element name="resumeReasonCode" type="tns:PrescriptionResumeReasonTypeDisplay" minOccurs="0"/>
+			<xs:element name="interchangeability" type="xs:string" minOccurs="0"/>
+			<xs:element name="substitutionReason" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Dispenser">
+		<xs:sequence>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="isActiveFlag" type="xs:boolean" default="false"/>
+			<xs:element name="person" type="tns:Person" minOccurs="0"/>
+			<xs:element name="professionalRegistration" type="tns:ProfessionalRegistration" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DosageForm">
+		<xs:sequence>
+			<xs:element name="fullName" type="xs:string" minOccurs="0"/>
+			<xs:element name="id" type="xs:int" minOccurs="0"/>
+			<xs:element name="shortName" type="xs:string" minOccurs="0"/>
+			<xs:element name="fullNameFrench" type="xs:string" minOccurs="0"/>
+			<xs:element name="shortNameFrench" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Drug">
+		<xs:sequence>
+			<xs:element name="branddrug" type="xs:string" minOccurs="0"/>
+			<xs:element name="din" type="xs:string" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="dosageRange" type="xs:string" minOccurs="0"/>
+			<xs:element name="monograph" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="formvariant" type="xs:int" minOccurs="0"/>
+			<xs:element name="isdevice" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="adultDosageMaximumQuantity" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="childDosageMinimumQuantity" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="adultDosageMinimumQuantity" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="childDosageMaximumQuantity" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="isimmunization" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="isproprietary" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="isreportable" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="iswritten" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="markings" type="xs:string" minOccurs="0"/>
+			<xs:element name="chemicalLabelNameEnglish" type="xs:string" minOccurs="0"/>
+			<xs:element name="chemicalLabelNameFrench" type="xs:string" minOccurs="0"/>
+			<xs:element name="tradeNameEnglish" type="xs:string" minOccurs="0"/>
+			<xs:element name="tradeNameFrench" type="xs:string" minOccurs="0"/>
+			<xs:element name="drugDescription" type="xs:string" minOccurs="0"/>
+			<xs:element name="productGroup" type="xs:string" minOccurs="0"/>
+			<xs:element name="administrationRouteCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="alternativename" type="tns:DrugNameAlternative" minOccurs="0"/>
+			<xs:element name="colour" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="dintype" type="xs:string" minOccurs="0"/>
+			<xs:element name="dosageform" type="tns:DosageForm" minOccurs="0"/>
+			<xs:element name="flavour" type="xs:string" minOccurs="0"/>
+			<xs:element name="manufacturer" type="tns:Manufacturer" minOccurs="0"/>
+			<xs:element name="molecule" type="tns:Molecule" minOccurs="0"/>
+			<xs:element name="program" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="recall" type="tns:ManufacturerRecall" minOccurs="0"/>
+			<xs:element name="schedule" type="xs:string" minOccurs="0"/>
+			<xs:element name="shape" type="xs:string" minOccurs="0"/>
+			<xs:element name="gpi" type="tns:GPI" minOccurs="0"/>
+			<xs:element name="ring" type="tns:FormularyRing" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DrugNameAlternative">
+		<xs:sequence>
+			<xs:element name="equivalentto" type="xs:string" minOccurs="0"/>
+			<xs:element name="tradenamealternative" type="xs:string" minOccurs="0"/>
+			<xs:element name="tradereference" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="EngagementType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Guest"/>
+			<xs:enumeration value="Account"/>
+			<xs:enumeration value="Unknown"/>
+			<xs:enumeration value="Accuro"/>
+			<xs:enumeration value="HWPatient"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Flavour">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="anise-mint"/>
+			<xs:enumeration value="apple"/>
+			<xs:enumeration value="unknown"/>
+			<xs:enumeration value="apricot"/>
+			<xs:enumeration value="banana"/>
+			<xs:enumeration value="bubble-gum"/>
+			<xs:enumeration value="berry"/>
+			<xs:enumeration value="black-currant"/>
+			<xs:enumeration value="blueberry"/>
+			<xs:enumeration value="butterpecan"/>
+			<xs:enumeration value="butterscotch"/>
+			<xs:enumeration value="caféAuLait"/>
+			<xs:enumeration value="caramel"/>
+			<xs:enumeration value="cherry-banana"/>
+			<xs:enumeration value="chocolate-cocoa"/>
+			<xs:enumeration value="chocolate-mint"/>
+			<xs:enumeration value="cherry-frutti"/>
+			<xs:enumeration value="chocolate"/>
+			<xs:enumeration value="cherry-menthol"/>
+			<xs:enumeration value="cherry-mint"/>
+			<xs:enumeration value="cherry"/>
+			<xs:enumeration value="cherry-vanilla"/>
+			<xs:enumeration value="cinnamon"/>
+			<xs:enumeration value="citrus-berry"/>
+			<xs:enumeration value="citrus"/>
+			<xs:enumeration value="citrus-vanilla"/>
+			<xs:enumeration value="coconut"/>
+			<xs:enumeration value="cocoa"/>
+			<xs:enumeration value="cranberry"/>
+			<xs:enumeration value="eggnog"/>
+			<xs:enumeration value="fruit"/>
+			<xs:enumeration value="fruit-mint"/>
+			<xs:enumeration value="grape-banana"/>
+			<xs:enumeration value="grape"/>
+			<xs:enumeration value="honey"/>
+			<xs:enumeration value="honey-lemon"/>
+			<xs:enumeration value="ice-mint"/>
+			<xs:enumeration value="lemon-ginger"/>
+			<xs:enumeration value="lemon-lime"/>
+			<xs:enumeration value="lemon-mint"/>
+			<xs:enumeration value="lemon"/>
+			<xs:enumeration value="licorice"/>
+			<xs:enumeration value="malt"/>
+			<xs:enumeration value="melon"/>
+			<xs:enumeration value="mint"/>
+			<xs:enumeration value="menthol"/>
+			<xs:enumeration value="mochaccino"/>
+			<xs:enumeration value="mint-peach"/>
+			<xs:enumeration value="orange-banana"/>
+			<xs:enumeration value="orangeCream"/>
+			<xs:enumeration value="orange"/>
+			<xs:enumeration value="orange-vanilla"/>
+			<xs:enumeration value="peach"/>
+			<xs:enumeration value="peppermint"/>
+			<xs:enumeration value="pineapple"/>
+			<xs:enumeration value="raspberry-orange"/>
+			<xs:enumeration value="raspberry"/>
+			<xs:enumeration value="spearmint"/>
+			<xs:enumeration value="strawberry-banana"/>
+			<xs:enumeration value="strawberry"/>
+			<xs:enumeration value="strawberry-watermelon"/>
+			<xs:enumeration value="tangerine"/>
+			<xs:enumeration value="tropicalFruit"/>
+			<xs:enumeration value="tutti-frutti"/>
+			<xs:enumeration value="unflavoured"/>
+			<xs:enumeration value="vanilla"/>
+			<xs:enumeration value="vanilla-fruit"/>
+			<xs:enumeration value="vanilla-peppermint"/>
+			<xs:enumeration value="watermelon"/>
+			<xs:enumeration value="wild-berry"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="FormularyRing">
+		<xs:sequence>
+			<xs:element name="ringId" type="xs:int" minOccurs="0"/>
+			<xs:element name="isActive" type="xs:string" minOccurs="0"/>
+			<xs:element name="updateTimestamp" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GPI">
+		<xs:sequence>
+			<xs:element name="GPINumber" type="xs:string"/>
+			<xs:element name="descriptionEnglish" type="xs:string" minOccurs="0"/>
+			<xs:element name="descriptionFrench" type="xs:string" minOccurs="0"/>
+			<xs:element name="isActive" type="xs:boolean" default="true" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="GroupMembership">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="retail"/>
+			<xs:enumeration value="ltc"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="HeaderParam">
+		<xs:sequence>
+			<xs:element name="consumerName" type="xs:string" minOccurs="0"/>
+			<xs:element name="banner" type="xs:string" minOccurs="0"/>
+			<xs:element name="lang" type="xs:string" minOccurs="0"/>
+			<xs:element name="provinceCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="consumerSendTimeStamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="correlationID" type="xs:string" minOccurs="0"/>
+			<xs:element name="reason" type="xs:string" minOccurs="0"/>
+			<xs:element name="storeNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="patientId" type="xs:string" minOccurs="0"/>
+			<xs:element name="hasAutoRefill" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="hasDigitalAcct" type="xs:boolean" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="IdentificationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Nova Scotia - Canada Personal Health Number"/>
+			<xs:enumeration value="New Brunswick - Canada Personal Health Number"/>
+			<xs:enumeration value="Newfoundland and Labrador - Canada Personal Health Number"/>
+			<xs:enumeration value="Prince Edward Island - Canada Personal Health Number Identifier"/>
+			<xs:enumeration value="Quebec - Canada Personal Health Number"/>
+			<xs:enumeration value="Ontario - Canada Personal Health Number"/>
+			<xs:enumeration value="Manitoba - Health Personal Health Identification Number"/>
+			<xs:enumeration value="Saskatchewan - Canada Personal Health Number"/>
+			<xs:enumeration value="Alberta - Canada Unique Lifetime Identifier"/>
+			<xs:enumeration value="British Columbia - Personal Health Number"/>
+			<xs:enumeration value="Nunavut - Canada Personal Health Number"/>
+			<xs:enumeration value="Northwest Territories - Canada Personal Health Number"/>
+			<xs:enumeration value="Yukon - Canada Personal Health Number"/>
+			<xs:enumeration value="RCMP NS Based"/>
+			<xs:enumeration value="Canadian Armed Forces Health Number"/>
+			<xs:enumeration value="Alternate Client ID for Other Jurisdiction"/>
+			<xs:enumeration value="Veterans Affairs Canada Personal Health Number"/>
+			<xs:enumeration value="Correctional Service Canada Personal Health Number"/>
+			<xs:enumeration value="Indian and Northern Affairs Canada Personal Health Number"/>
+			<xs:enumeration value="Shared OPOR Identifiers"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Initiator">
+		<xs:sequence>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="person" type="tns:Person" minOccurs="0"/>
+			<xs:element name="substitutionInitiator" type="xs:string" minOccurs="0"/>
+			<xs:element name="professionalRegistration" type="tns:ProfessionalRegistration" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InputParams">
+		<xs:sequence>
+			<xs:element name="params" type="tns:KeyValue" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InsuranceCoverage">
+		<xs:sequence>
+			<xs:element name="carrierId" type="xs:string" minOccurs="0"/>
+			<xs:element name="groupId" type="xs:string" minOccurs="0"/>
+			<xs:element name="clientId" type="xs:string" minOccurs="0"/>
+			<xs:element name="planNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="benefitsCardholderRelationshipCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="isActive" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="priority" type="xs:int" minOccurs="0"/>
+			<xs:element name="cardIdentifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="insuranceCoverageIdentifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="thirdPartyConsumerIdentifier" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Interchangeability">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Formulary"/>
+			<xs:enumeration value="Generic"/>
+			<xs:enumeration value="Therapeutic"/>
+			<xs:enumeration value="None"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="KeyValue">
+		<xs:sequence>
+			<xs:element name="key" type="xs:string" minOccurs="0"/>
+			<xs:element name="value" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Language">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="English"/>
+			<xs:enumeration value="French"/>
+			<xs:enumeration value="Arabic"/>
+			<xs:enumeration value="Armenian"/>
+			<xs:enumeration value="Chinese"/>
+			<xs:enumeration value="Danish"/>
+			<xs:enumeration value="Dutch"/>
+			<xs:enumeration value="German"/>
+			<xs:enumeration value="Greek"/>
+			<xs:enumeration value="Hebrew"/>
+			<xs:enumeration value="Hindi"/>
+			<xs:enumeration value="Hungarian"/>
+			<xs:enumeration value="Indonesian"/>
+			<xs:enumeration value="Italian"/>
+			<xs:enumeration value="Japanese"/>
+			<xs:enumeration value="Korean"/>
+			<xs:enumeration value="Polish"/>
+			<xs:enumeration value="Portugese"/>
+			<xs:enumeration value="Macedonian"/>
+			<xs:enumeration value="Punjabi"/>
+			<xs:enumeration value="Russian"/>
+			<xs:enumeration value="Spanish"/>
+			<xs:enumeration value="Slovenian"/>
+			<xs:enumeration value="Swahili"/>
+			<xs:enumeration value="Swedish"/>
+			<xs:enumeration value="Thai"/>
+			<xs:enumeration value="Turkish"/>
+			<xs:enumeration value="Vietnamese"/>
+			<xs:enumeration value="Ukrainian"/>
+			<xs:enumeration value="Urdu"/>
+			<xs:enumeration value="Others"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LicenseIssuingBodyType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Physicians And Surgeons"/>
+			<xs:enumeration value="Nurse Practitioners"/>
+			<xs:enumeration value="Pharmacists"/>
+			<xs:enumeration value="Optometrists"/>
+			<xs:enumeration value="Dentists"/>
+			<xs:enumeration value="Midwifery Regulatory Council Of Nova Scotia"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Location">
+		<xs:sequence>
+			<xs:element name="locationType" type="xs:string" minOccurs="0"/>
+			<xs:element name="locationName" type="xs:string" minOccurs="0"/>
+			<xs:element name="locationStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="banner" type="xs:string" minOccurs="0"/>
+			<xs:element name="address" type="tns:Address" minOccurs="0"/>
+			<xs:element name="store" type="tns:Store" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Manufacturer">
+		<xs:sequence>
+			<xs:element name="manufacturerNameEnglish" type="xs:string" minOccurs="0"/>
+			<xs:element name="manufacturerId" type="xs:int" minOccurs="0"/>
+			<xs:element name="prefix" type="xs:string" minOccurs="0"/>
+			<xs:element name="vendorCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="manufacturerNameFrench" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ManufacturerRecall">
+		<xs:sequence>
+			<xs:element name="lotnumber" type="xs:int" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="recalldate" type="xs:date" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MedcheckDeterminationException">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="exception" type="xs:string" nillable="false"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MedcheckDeterminationRequest" type="tns:MedcheckDeterminationRequest"/>
+	<xs:complexType name="MedcheckDeterminationRequest">
+		<xs:sequence>
+			<xs:element name="DecisionID" type="xs:string" form="qualified" minOccurs="0"/>
+			<xs:element ref="tns:MedIn"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MedcheckDeterminationResponse" type="tns:MedcheckDeterminationResponse"/>
+	<xs:complexType name="MedcheckDeterminationResponse">
+		<xs:sequence>
+			<xs:element name="DecisionID" type="xs:string" form="qualified"/>
+			<xs:element ref="tns:MedOut"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="medCheckIn">
+		<xs:sequence>
+			<xs:element name="Header" type="tns:HeaderParam" minOccurs="0"/>
+			<xs:element name="inputParams" type="tns:InputParams" minOccurs="0"/>
+			<xs:element name="prescription" type="tns:Prescription" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="medCheckOut">
+		<xs:sequence>
+			<xs:element name="Header" type="tns:HeaderParam" minOccurs="0"/>
+			<xs:element name="outputParams" type="tns:InputParams" minOccurs="0"/>
+			<xs:element name="prescription" type="tns:Prescription" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MedicalConditionTypeTypeDisplay">
+		<xs:sequence>
+			<xs:element name="displayValue" type="xs:string" minOccurs="0"/>
+			<xs:element name="medicalConditionTypeCode" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MedicalPractitioner">
+		<xs:sequence>
+			<xs:element name="isActive" type="xs:boolean" default="false"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="person" type="tns:Person" minOccurs="0"/>
+			<xs:element name="professionalRegistration" type="tns:ProfessionalRegistration" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MedIn">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="MedIn" type="tns:medCheckIn"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MedOut">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="MedOut" type="tns:medCheckOut"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="MetricsUnitOfMeasure">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Pounds"/>
+			<xs:enumeration value="KG"/>
+			<xs:enumeration value="Meters"/>
+			<xs:enumeration value="CM"/>
+			<xs:enumeration value="Inches"/>
+			<xs:enumeration value="Feet"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Molecule">
+		<xs:sequence>
+			<xs:element name="isRefrigerated" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="moleculeName" type="xs:string" minOccurs="0"/>
+			<xs:element name="strength" type="xs:double" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="additionalIngredient" type="tns:ActiveIngredient" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="strengthUOMCode" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="NonDrugAllergen">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Dust"/>
+			<xs:enumeration value="Dust Mites"/>
+			<xs:enumeration value="Egg"/>
+			<xs:enumeration value="Fish"/>
+			<xs:enumeration value="Isocyanates"/>
+			<xs:enumeration value="Lactose"/>
+			<xs:enumeration value="Latex"/>
+			<xs:enumeration value="Oils"/>
+			<xs:enumeration value="Peanut"/>
+			<xs:enumeration value="Shellfish"/>
+			<xs:enumeration value="Solvents"/>
+			<xs:enumeration value="Soy"/>
+			<xs:enumeration value="Strawberries"/>
+			<xs:enumeration value="Sulfites"/>
+			<xs:enumeration value="Tomotoes"/>
+			<xs:enumeration value="Venoms"/>
+			<xs:enumeration value="Wheat/Gluten"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Note">
+		<xs:sequence>
+			<xs:element name="isPharmacist" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="updateTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="noteEnglish" type="xs:string" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="noteFrench" type="xs:string" minOccurs="0"/>
+			<xs:element name="createTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="createUserId" type="xs:string" minOccurs="0"/>
+			<xs:element name="noteTypeCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="recorder" type="tns:Recorder" minOccurs="0"/>
+			<xs:element name="noteCategory" type="xs:string" minOccurs="0"/>
+			<xs:element name="supervisor" type="tns:Supervisor" minOccurs="0"/>
+			<xs:element name="location" type="tns:Location" minOccurs="0"/>
+			<xs:element name="dispenser" type="tns:Dispenser" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="NoteCategory">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="diagnosticImage"/>
+			<xs:enumeration value="general"/>
+			<xs:enumeration value="immunization"/>
+			<xs:enumeration value="laboratory"/>
+			<xs:enumeration value="medication"/>
+			<xs:enumeration value="patientInstruction"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NoteType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Prescription"/>
+			<xs:enumeration value="Dispense"/>
+			<xs:enumeration value="Allergy"/>
+			<xs:enumeration value="Drug"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ObservationMeasurementModifier">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Stated"/>
+			<xs:enumeration value="Measured"/>
+			<xs:enumeration value="Automatic"/>
+			<xs:enumeration value="Manual"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OptInOptions">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="accept"/>
+			<xs:enumeration value="decline"/>
+			<xs:enumeration value="unspecified"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Pack">
+		<xs:sequence>
+			<xs:element name="alternativepacksize" type="xs:int" minOccurs="0"/>
+			<xs:element name="alternativepacksizeunitofmeasure" type="xs:string" minOccurs="0"/>
+			<xs:element name="strength" type="xs:string" minOccurs="0"/>
+			<xs:element name="GTIN" type="xs:string" minOccurs="0"/>
+			<xs:element name="isActiveFlag" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="isCurrentFlag" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="manufacturerDiscontinuedDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="masterid" type="xs:string" minOccurs="0"/>
+			<xs:element name="packSize" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="strengthUOMCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="drug" type="tns:Drug" minOccurs="0"/>
+			<xs:element name="packSizeUOMCode" type="tns:PackSizeUoMTypeDisplay" minOccurs="0"/>
+			<xs:element name="adheranceCategory" type="xs:string" minOccurs="0"/>
+			<xs:element name="refillReminderFlag" type="xs:string" minOccurs="0"/>
+			<xs:element name="pickupReminderFlag" type="xs:string" minOccurs="0"/>
+			<xs:element name="autoRefillFlag" type="xs:string" minOccurs="0"/>
+			<xs:element name="trrFlag" type="xs:string" minOccurs="0"/>
+			<xs:element name="ring" type="tns:FormularyRing" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PackSizeUoMTypeDisplay">
+		<xs:sequence>
+			<xs:element name="packSizeUoMTypeCode" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Patient">
+		<xs:sequence>
+			<xs:element name="dateOfBirth" type="xs:date" minOccurs="0"/>
+			<xs:element name="deceaseddate" type="xs:date" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="isactive" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="noKnownAllergyFlag" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="createTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="lastUpdateTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="person" type="tns:Person" minOccurs="0"/>
+			<xs:element name="allergy" type="tns:Allergy" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="genderTypeCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="groupmembership" type="xs:string" minOccurs="0"/>
+			<xs:element name="patientrefillreminder" type="xs:string" minOccurs="0"/>
+			<xs:element name="patienttype" type="xs:string" minOccurs="0"/>
+			<xs:element name="consent" type="tns:Consent" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="note" type="tns:Note" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="adverseDrugReaction" type="tns:AdverseDrugReaction" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="patientMetrics" type="tns:PatientMetrics" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="patientIdentification" type="tns:PatientIdentification" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="patientMedicalCondition" type="tns:PatientMedicalCondition" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="patientObservation" type="tns:PatientObservation" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="InsuranceCoverage" type="tns:InsuranceCoverage" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="mobileNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="associationType" type="xs:string" minOccurs="0"/>
+			<xs:element name="preference" type="tns:Preference" minOccurs="0"/>
+			<xs:element name="store" type="tns:Store" minOccurs="0"/>
+			<xs:element name="verificationChannel" type="tns:PharmacyChannel" minOccurs="0"/>
+			<xs:element name="languageCorrespondence" type="xs:string" minOccurs="0"/>
+			<xs:element name="sigLanguage" type="xs:string" minOccurs="0"/>
+			<xs:element name="monographLanguage" type="xs:string" minOccurs="0"/>
+			<xs:element name="primaryPrescriber" type="tns:Prescriber" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="PatientGender">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Female"/>
+			<xs:enumeration value="Male"/>
+			<xs:enumeration value="Undifferentiated"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PatientIdentification">
+		<xs:sequence>
+			<xs:element name="IdentificationNumber" type="xs:string"/>
+			<xs:element name="IssuingAuthorityName" type="xs:string" minOccurs="0"/>
+			<xs:element name="IdentificationTypeCode" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PatientMedicalCondition">
+		<xs:sequence>
+			<xs:element name="conditionDescription" type="xs:string" minOccurs="0"/>
+			<xs:element name="conditionStartDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="conditionEndDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="chronicConditionFlag" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="conditionCreateTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="conditionActiveFlag" type="xs:boolean" default="false"/>
+			<xs:element name="updateReason" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="updateTimeStamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="updateRecorderTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="conditionNote" type="tns:Note" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="conditionTypeDisplay" type="tns:MedicalConditionTypeTypeDisplay" minOccurs="0"/>
+			<xs:element name="serviceLocation" type="tns:Location" minOccurs="0"/>
+			<xs:element name="reporter" type="tns:Reporter" minOccurs="0"/>
+			<xs:element name="recorder" type="tns:Recorder" minOccurs="0"/>
+			<xs:element name="supervisor" type="tns:Supervisor" minOccurs="0"/>
+			<xs:element name="updateReasonType" type="xs:string" minOccurs="0"/>
+			<xs:element name="note" type="tns:Note" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="linkedCondition" type="tns:PatientMedicalCondition" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="reportedDate" type="xs:date" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PatientMetrics">
+		<xs:sequence>
+			<xs:element name="vitalsDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="height" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="weight" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="bloodGlucose" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="heightMeasurementFlag" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="weightMeasurementFlag" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="bloodGlucoseAutomaticMeasurementFlag" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="heartRate" type="xs:integer" minOccurs="0"/>
+			<xs:element name="respiratoryRate" type="xs:integer" minOccurs="0"/>
+			<xs:element name="bodyTemperature" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="systolicBloodPressure" type="xs:integer" minOccurs="0"/>
+			<xs:element name="diastolicBloodPressure" type="xs:integer" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="note" type="tns:Note" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="heightDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="weightDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="patientWeightUOMCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="patientHeightUOMCode" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PatientObservation">
+		<xs:sequence>
+			<xs:element name="createTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="observationValue" type="xs:string" minOccurs="0"/>
+			<xs:element name="observationTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="observationNumerator" type="xs:string" minOccurs="0"/>
+			<xs:element name="observationDenominator" type="xs:string" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="note" type="tns:Note" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="supervisor" type="tns:Supervisor" minOccurs="0"/>
+			<xs:element name="recorder" type="tns:Recorder" minOccurs="0"/>
+			<xs:element name="patientObservationTypeCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="location" type="tns:Location" minOccurs="0"/>
+			<xs:element name="observationMeasurementModifierCode" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="PatientType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="regular"/>
+			<xs:enumeration value="animal"/>
+			<xs:enumeration value="pharmacy"/>
+			<xs:enumeration value="prescriber/OfficeUse"/>
+			<xs:enumeration value="healthCareFacility"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Person">
+		<xs:sequence>
+			<xs:element name="firstName" type="xs:string" minOccurs="0"/>
+			<xs:element name="middleName" type="xs:string" minOccurs="0"/>
+			<xs:element name="lastName" type="xs:string" minOccurs="0"/>
+			<xs:element name="salutation" type="xs:string" minOccurs="0"/>
+			<xs:element name="address" type="tns:Address" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="dateOfBirth" type="xs:date" minOccurs="0"/>
+			<xs:element name="deceaseddate" type="xs:date" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PharmacyChannel">
+		<xs:sequence>
+			<xs:element name="channelType" type="xs:string"/>
+			<xs:element name="communicationMode" type="xs:string"/>
+			<xs:element name="engagment" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Preference">
+		<xs:sequence>
+			<xs:element name="issubscribedtomarketinginfr" type="xs:string" minOccurs="0"/>
+			<xs:element name="issubscribedtomarketinginen" type="xs:string" minOccurs="0"/>
+			<xs:element name="iscommunicationoptionbyemail" type="xs:string" minOccurs="0"/>
+			<xs:element name="iscommunicationoptionbysms" type="xs:string" minOccurs="0"/>
+			<xs:element name="defaultcommunicationmethod" type="xs:string" minOccurs="0"/>
+			<xs:element name="isnotificationdetailshowingdrug" type="xs:string" minOccurs="0"/>
+			<xs:element name="isautoreminderselected" type="xs:string" minOccurs="0"/>
+			<xs:element name="callWhenReadyFlag" type="xs:string" minOccurs="0"/>
+			<xs:element name="emailNotification" type="xs:string" minOccurs="0"/>
+			<xs:element name="emailFillNotification" type="xs:string" minOccurs="0"/>
+			<xs:element name="emailPickupNotification" type="xs:string" minOccurs="0"/>
+			<xs:element name="smsFillNotification" type="xs:string" minOccurs="0"/>
+			<xs:element name="emailMarketing" type="xs:string" minOccurs="0"/>
+			<xs:element name="smsNotification" type="xs:string" minOccurs="0"/>
+			<xs:element name="smsPickupNotification" type="xs:string" minOccurs="0"/>
+			<xs:element name="lastUpdateTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="globalAutoFill" type="xs:int" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Prescriber">
+		<xs:sequence>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="isActiveFlag" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="prescriberTypeCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="person" type="tns:Person" minOccurs="0"/>
+			<xs:element name="professionalRegistration" type="tns:ProfessionalRegistration" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="isPrimaryFlag" type="xs:boolean" default="false" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="PrescriberType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ON Dentist"/>
+			<xs:enumeration value="ON Medical Resident"/>
+			<xs:enumeration value="ON Midwife"/>
+			<xs:enumeration value="ON Optometrist"/>
+			<xs:enumeration value="ON Out-Of-Prov: AB Licensed Prescriber"/>
+			<xs:enumeration value="ON Out-Of-Prov: BC Licensed Prescriber"/>
+			<xs:enumeration value="ON Out-Of-Prov: MB Licensed Prescriber"/>
+			<xs:enumeration value="ON Out-Of-Prov: NB Licensed Prescriber"/>
+			<xs:enumeration value="ON Out-Of-Prov: NF Licensed Prescriber"/>
+			<xs:enumeration value="ON Out-Of-Prov: NS Licensed Prescriber"/>
+			<xs:enumeration value="ON Out-Of-Prov: NT Licensed Prescriber"/>
+			<xs:enumeration value="ON Out-Of-Prov: PE Licensed Prescriber"/>
+			<xs:enumeration value="ON Out-Of-Prov: QC Licensed Prescriber"/>
+			<xs:enumeration value="ON Out-Of-Prov: SK Licensed Prescriber"/>
+			<xs:enumeration value="ON Out-Of-Prov: YT Licensed Prescriber"/>
+			<xs:enumeration value="ON Pharmacist"/>
+			<xs:enumeration value="ON Physician"/>
+			<xs:enumeration value="ON Podiatrist"/>
+			<xs:enumeration value="ON Registered Nurse"/>
+			<xs:enumeration value="ON Speech Language Pathologists"/>
+			<xs:enumeration value="ON Unknown Prescriber Type"/>
+			<xs:enumeration value="ON Veterinarian"/>
+			<xs:enumeration value="PE Audiologists"/>
+			<xs:enumeration value="PE Dentist"/>
+			<xs:enumeration value="PE Medical Resident"/>
+			<xs:enumeration value="PE Nurse Practitioner"/>
+			<xs:enumeration value="PE Optometrist"/>
+			<xs:enumeration value="PE Pharmacist"/>
+			<xs:enumeration value="PE Physician"/>
+			<xs:enumeration value="PE Podiatrist"/>
+			<xs:enumeration value="PE Speech Language Pathologists"/>
+			<xs:enumeration value="PE Unknown Prescriber Nbr"/>
+			<xs:enumeration value="PE Veterinarian"/>
+			<xs:enumeration value="QC Audiologists"/>
+			<xs:enumeration value="QC Dentist"/>
+			<xs:enumeration value="QC Medical Resident"/>
+			<xs:enumeration value="QC Midwife"/>
+			<xs:enumeration value="QC Optometrist"/>
+			<xs:enumeration value="QC Out-Of-Province Dentist Registered With Ramq"/>
+			<xs:enumeration value="QC Out-Of-Province Physician Registered With Ramq"/>
+			<xs:enumeration value="QC Pharmacist"/>
+			<xs:enumeration value="QC Physician"/>
+			<xs:enumeration value="QC Podiatrist"/>
+			<xs:enumeration value="QC Registered Nurse"/>
+			<xs:enumeration value="QC Speech Language Pathologists"/>
+			<xs:enumeration value="QC Veterinarian"/>
+			<xs:enumeration value="SK Audiologists"/>
+			<xs:enumeration value="SK Dentist"/>
+			<xs:enumeration value="SK Locum/ Out-Of-Province Dentist With SK Nbr"/>
+			<xs:enumeration value="SK Locum/Out-Of-Province Physician With SK Nbr"/>
+			<xs:enumeration value="SK Medical Resident"/>
+			<xs:enumeration value="SK Midwife"/>
+			<xs:enumeration value="SK Optometrist"/>
+			<xs:enumeration value="SK Pharmacist"/>
+			<xs:enumeration value="SK Physician"/>
+			<xs:enumeration value="SK Podiatrist"/>
+			<xs:enumeration value="SK Registered Nurse"/>
+			<xs:enumeration value="SK Speech Language Pathologists"/>
+			<xs:enumeration value="SK Unknown Prescriber Nbr"/>
+			<xs:enumeration value="SK Veterinarian"/>
+			<xs:enumeration value="YT Audiologists"/>
+			<xs:enumeration value="YT Dentist"/>
+			<xs:enumeration value="YT Locum/ Out-Of-Province Dentist With YT Nbr"/>
+			<xs:enumeration value="YT Locum/Out-Of-Province Physician With YT Nbr"/>
+			<xs:enumeration value="YT Medical Resident"/>
+			<xs:enumeration value="YT Optometrist"/>
+			<xs:enumeration value="YT Pharmacist"/>
+			<xs:enumeration value="YT Physician"/>
+			<xs:enumeration value="YT Podiatrist"/>
+			<xs:enumeration value="YT Registered Nurse"/>
+			<xs:enumeration value="YT Speech Language Pathologists"/>
+			<xs:enumeration value="YT Veterinarian"/>
+			<xs:enumeration value="YT Yukon Consumer Services - Dentists"/>
+			<xs:enumeration value="YT Yukon Consumer Services - Optometrists"/>
+			<xs:enumeration value="YT Yukon Consumer Services - Pharmacists"/>
+			<xs:enumeration value="AB Audiologists"/>
+			<xs:enumeration value="AB Dental Hygienist"/>
+			<xs:enumeration value="AB Dentist"/>
+			<xs:enumeration value="AB Dietician"/>
+			<xs:enumeration value="AB Locum/ Out-Of-Province Dentist With AB Nbr"/>
+			<xs:enumeration value="AB Locum/Out-Of-Province Physician With AB Nbr"/>
+			<xs:enumeration value="AB Medical Resident"/>
+			<xs:enumeration value="AB Midwife"/>
+			<xs:enumeration value="AB Optometrist"/>
+			<xs:enumeration value="AB Pharmacist"/>
+			<xs:enumeration value="AB Physician"/>
+			<xs:enumeration value="AB Podiatrist"/>
+			<xs:enumeration value="AB Registered Nurse"/>
+			<xs:enumeration value="AB Speech Language Pathologists"/>
+			<xs:enumeration value="AB Unknown Prescriber Nbr"/>
+			<xs:enumeration value="AB Veterinarian"/>
+			<xs:enumeration value="BC Dentist"/>
+			<xs:enumeration value="BC Locum/ Out-Of-Province Dentist With BC Nbr"/>
+			<xs:enumeration value="BC Locum/Out-Of-Province Physician With BC Nbr"/>
+			<xs:enumeration value="BC Medical Resident"/>
+			<xs:enumeration value="BC Midwife"/>
+			<xs:enumeration value="BC Naturopathic Physician"/>
+			<xs:enumeration value="BC Optometrist"/>
+			<xs:enumeration value="BC Pharmacist"/>
+			<xs:enumeration value="BC Physician"/>
+			<xs:enumeration value="BC Podiatrist"/>
+			<xs:enumeration value="BC Registered Nurse"/>
+			<xs:enumeration value="BC Veterinarian"/>
+			<xs:enumeration value="MB Dentist"/>
+			<xs:enumeration value="MB Locum/ Out-Of-Province Dentist With MB Nbr"/>
+			<xs:enumeration value="MB Locum/Out-Of-Province Physician With MB Nbr"/>
+			<xs:enumeration value="MB Medical Resident"/>
+			<xs:enumeration value="MB Midwife"/>
+			<xs:enumeration value="MB Optometrist"/>
+			<xs:enumeration value="MB Pharmacist"/>
+			<xs:enumeration value="MB Physician"/>
+			<xs:enumeration value="MB Podiatrist"/>
+			<xs:enumeration value="MB Registered Nurse"/>
+			<xs:enumeration value="MB Unknown Prescriber Nbr"/>
+			<xs:enumeration value="MB Veterinarian"/>
+			<xs:enumeration value="N/A NOT APPLICABLE"/>
+			<xs:enumeration value="NB Audiologists"/>
+			<xs:enumeration value="NB Dentist"/>
+			<xs:enumeration value="NB Locum/ Out-Of-Province Dentist With NB Nbr"/>
+			<xs:enumeration value="NB Locum/Out-Of-Province Physician With NB Nbr"/>
+			<xs:enumeration value="NB Medical Resident"/>
+			<xs:enumeration value="NB Nurse Practitioner"/>
+			<xs:enumeration value="NB Optometrist"/>
+			<xs:enumeration value="NB Pharmacist"/>
+			<xs:enumeration value="NB Physician"/>
+			<xs:enumeration value="NB Podiatrist"/>
+			<xs:enumeration value="NB Speech Language Pathologists"/>
+			<xs:enumeration value="NB Unknown Prescriber Nbr"/>
+			<xs:enumeration value="NB Veterinarian"/>
+			<xs:enumeration value="NL Audiologists"/>
+			<xs:enumeration value="NL Dentist"/>
+			<xs:enumeration value="NL Locum/ Out-Of-Province Dentist With NF Nbr"/>
+			<xs:enumeration value="NL Locum/Out-Of-Province Physician With NF Nbr"/>
+			<xs:enumeration value="NL Medical Resident"/>
+			<xs:enumeration value="NL Nurse Practitioner"/>
+			<xs:enumeration value="NL Optometrist"/>
+			<xs:enumeration value="NL Pharmacist"/>
+			<xs:enumeration value="NL Physician"/>
+			<xs:enumeration value="NL Podiatrist"/>
+			<xs:enumeration value="NL Registered Nurse"/>
+			<xs:enumeration value="NL Speech Language Pathologists"/>
+			<xs:enumeration value="NL Unknown Prescriber Nbr"/>
+			<xs:enumeration value="NL Veterinarian"/>
+			<xs:enumeration value="NS Audiologists"/>
+			<xs:enumeration value="NS Dentist"/>
+			<xs:enumeration value="NS Locum/ Out-Of-Province Dentist With NS Nbr"/>
+			<xs:enumeration value="NS Locum/Out-Of-Province Physician With NS Nbr"/>
+			<xs:enumeration value="NS Medical Resident"/>
+			<xs:enumeration value="NS Midwife"/>
+			<xs:enumeration value="NS Nurse Practitioner"/>
+			<xs:enumeration value="NS Optometrist"/>
+			<xs:enumeration value="NS Pharmacist"/>
+			<xs:enumeration value="NS Physician"/>
+			<xs:enumeration value="NS Podiatrist"/>
+			<xs:enumeration value="NS Speech Language Pathologists"/>
+			<xs:enumeration value="NS Unknown Prescriber Nbr"/>
+			<xs:enumeration value="NS Veterinarian"/>
+			<xs:enumeration value="NT Audiologists"/>
+			<xs:enumeration value="NT Dentist"/>
+			<xs:enumeration value="NT Locum/Out-Of-Province Physician With NT Nbr"/>
+			<xs:enumeration value="NT Medical Resident"/>
+			<xs:enumeration value="NT Midwife"/>
+			<xs:enumeration value="NT Optometrist"/>
+			<xs:enumeration value="NT Pharmacist"/>
+			<xs:enumeration value="NT Physician"/>
+			<xs:enumeration value="NT Podiatrist"/>
+			<xs:enumeration value="NT Registered Nurse"/>
+			<xs:enumeration value="NT Speech Language Pathologists"/>
+			<xs:enumeration value="NT Veterinarian"/>
+			<xs:enumeration value="NU Audiologists"/>
+			<xs:enumeration value="NU Medical Practitioner"/>
+			<xs:enumeration value="NU Optometrist"/>
+			<xs:enumeration value="NU Registered Nurse"/>
+			<xs:enumeration value="NU Speech Language Pathologists"/>
+			<xs:enumeration value="ON Audiologists"/>
+			<xs:enumeration value="ON NATUROPATHIC PHYSICIAN"/>
+			<xs:enumeration value="MB SPEECH LANGUAGE PATHOLOGISTS"/>
+			<xs:enumeration value="MB AUDIOLOGIST"/>
+			<xs:enumeration value="BC AUDIOLOGIST"/>
+			<xs:enumeration value="BC SPEECH LANGUAGE PATHOLOGISTS"/>
+			<xs:enumeration value="NB DIETITIAN"/>
+			<xs:enumeration value="ON OTHER"/>
+			<xs:enumeration value="NB MIDWIFE"/>
+			<xs:enumeration value="UNK PRESCRIBER"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Prescription">
+		<xs:sequence>
+			<xs:element name="updateTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="isAuthoritative" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="quantityDispensed" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="remainingQuantity" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="prescriptionNumber" type="xs:int" minOccurs="0"/>
+			<xs:element name="refillsRemainingCount" type="xs:int" minOccurs="0"/>
+			<xs:element name="totalQuantityAuthorized" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="drugTotalDaysOfSupplyCount" type="xs:int" minOccurs="0"/>
+			<xs:element name="drugTrialDaysOfSupplyCount" type="xs:int" minOccurs="0"/>
+			<xs:element name="drugTrialFlag" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="drugTrialQuantity" type="xs:int" minOccurs="0"/>
+			<xs:element name="inferredPrescriptionFlag" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="noSubstitutionReason" type="xs:string" minOccurs="0"/>
+			<xs:element name="numberOfRefills" type="xs:int" minOccurs="0"/>
+			<xs:element name="prescriptionDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="prescriptionExpirationDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="renewalReasonCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="SIGAdditionalInformation" type="xs:string" minOccurs="0"/>
+			<xs:element name="SIGCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="SIGDescriptionPatientLanguage" type="xs:string" minOccurs="0"/>
+			<xs:element name="prescriptionDispensableFlag" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="fillStatusEffectiveDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="legacyFlag" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="holdEndDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="transferableCode" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="administrationForm" type="xs:string" minOccurs="0"/>
+			<xs:element name="administrationPeriodStartDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="statusChangeType" type="xs:string" minOccurs="0"/>
+			<xs:element name="statusChangeReasonCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="updateEffectiveStartDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="prescriptionValidFromDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="administrationPeriodEndDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="daysInterval" type="xs:int" minOccurs="0"/>
+			<xs:element name="updateEffectiveEndDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="createTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="daysSupplyPrescribed" type="xs:int" minOccurs="0"/>
+			<xs:element name="quantityPrescribed" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="noMoreDispensesAllowedFlag" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="isBatchFlag" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="serviceLocation" type="tns:Location" minOccurs="0"/>
+			<xs:element name="prescribedPack" type="tns:Pack" minOccurs="0"/>
+			<xs:element name="substitutionInitiator" type="xs:string" minOccurs="0"/>
+			<xs:element name="fillStatusCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="linkedrx" type="tns:Prescription" minOccurs="0"/>
+			<xs:element name="patient" type="tns:Patient" minOccurs="0"/>
+			<xs:element name="prescriber" type="tns:Prescriber" minOccurs="0"/>
+			<xs:element name="treatmentType" type="xs:string" minOccurs="0"/>
+			<xs:element name="dispense" type="tns:Dispense" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Source" type="xs:string" minOccurs="0"/>
+			<xs:element name="note" type="tns:Note" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="prescribedDrug" type="tns:Drug" minOccurs="0"/>
+			<xs:element name="prescribedCompound" type="tns:Compound" minOccurs="0"/>
+			<xs:element name="discontinuedReasonCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="resumeReasonCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="recorder" type="tns:Recorder" minOccurs="0"/>
+			<xs:element name="holdReasonCode" type="tns:PrescriptionHoldReasonTypeDisplay" minOccurs="0"/>
+			<xs:element name="responsiblePerson" type="tns:ResponsiblePerson" minOccurs="0"/>
+			<xs:element name="supervisor" type="tns:Supervisor" minOccurs="0"/>
+			<xs:element name="firstSummaryDispense" type="tns:Dispense" minOccurs="0"/>
+			<xs:element name="lastSummaryDispense" type="tns:Dispense" minOccurs="0"/>
+			<xs:element name="firstDispenseInstruction" type="tns:Dispense" minOccurs="0"/>
+			<xs:element name="fillStatusSubCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="forwardRx" type="tns:Prescription" minOccurs="0"/>
+			<xs:element name="rxParams" type="tns:RxParams" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="PrescriptionHoldReason">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Admitted to Hospital"/>
+			<xs:enumeration value="Allergy to Product"/>
+			<xs:enumeration value="Intolerance to Product"/>
+			<xs:enumeration value="Product Interferes with Test"/>
+			<xs:enumeration value="Duplicate Therapy"/>
+			<xs:enumeration value="Prescription Clarification Required"/>
+			<xs:enumeration value="Drug Interaction"/>
+			<xs:enumeration value="Use Alternative First"/>
+			<xs:enumeration value="Pregnancy and or Breast Feeding"/>
+			<xs:enumeration value="Awaiting Wash Out"/>
+			<xs:enumeration value="Patient Not Available"/>
+			<xs:enumeration value="Patient Chemical Level Too High"/>
+			<xs:enumeration value="Surgery Scheduled"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PrescriptionHoldReasonTypeDisplay">
+		<xs:sequence>
+			<xs:element name="displayValue" type="xs:string" minOccurs="0"/>
+			<xs:element name="PrescriptionHoldReasonTypeCode" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="PrescriptionResumeReason">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Suspend Reason No Longer Applies"/>
+			<xs:enumeration value="Suspend Reason Inappropriate"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PrescriptionResumeReasonTypeDisplay">
+		<xs:sequence>
+			<xs:element name="displayValue" type="xs:string" minOccurs="0"/>
+			<xs:element name="PrescriptionResumeReasonTypeCode" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProfessionalCategoryTypeDisplay">
+		<xs:sequence>
+			<xs:element name="displayValue" type="xs:string" minOccurs="0"/>
+			<xs:element name="providerRoleTypeCode" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProfessionalRegistration">
+		<xs:sequence>
+			<xs:element name="licenseNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="licensedProvince" type="xs:string" minOccurs="0"/>
+			<xs:element name="professionalCategoryCode" type="tns:ProfessionalCategoryTypeDisplay" minOccurs="0"/>
+			<xs:element name="issuingBodyCode" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProfessionalService">
+		<xs:sequence>
+			<xs:element name="consultationTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="consultationLength" type="xs:integer" minOccurs="0"/>
+			<xs:element name="requester" type="xs:integer" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="serviceLocation" type="tns:Location" minOccurs="0"/>
+			<xs:element name="serviceProvider" type="tns:MedicalPractitioner" minOccurs="0"/>
+			<xs:element name="supervisor" type="tns:Supervisor" minOccurs="0"/>
+			<xs:element name="observationTypeCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="note" type="tns:Note" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ProviderRoleType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Cashier"/>
+			<xs:enumeration value="Pharmacy Assistant"/>
+			<xs:enumeration value="Regulated Technician"/>
+			<xs:enumeration value="Central Support"/>
+			<xs:enumeration value="Pharmacy Student"/>
+			<xs:enumeration value="Pharmacy Intern"/>
+			<xs:enumeration value="Store Administrator"/>
+			<xs:enumeration value="Acupuncturist"/>
+			<xs:enumeration value="AdvancedCareParamedic"/>
+			<xs:enumeration value="AssociateMedicalOfficerofHealth"/>
+			<xs:enumeration value="Audiologist"/>
+			<xs:enumeration value="CertifiedGraduateNurse"/>
+			<xs:enumeration value="Chiropractic"/>
+			<xs:enumeration value="CommunicableDiseaseCaseInvestigator"/>
+			<xs:enumeration value="CriticalCareParamedic"/>
+			<xs:enumeration value="DentalAssistant"/>
+			<xs:enumeration value="DentalHygienist"/>
+			<xs:enumeration value="Dentist"/>
+			<xs:enumeration value="Denturist"/>
+			<xs:enumeration value="DoctorofOsteopathy"/>
+			<xs:enumeration value="EmergencyMedicalResponder"/>
+			<xs:enumeration value="Epidemiologist"/>
+			<xs:enumeration value="HospitalInfectionControlPractitioner"/>
+			<xs:enumeration value="InfectionControlPractitioner"/>
+			<xs:enumeration value="LabTechnician"/>
+			<xs:enumeration value="LicensedPracticalNurse"/>
+			<xs:enumeration value="MedicalDoctor"/>
+			<xs:enumeration value="MedicalLaboratoryTechnologist"/>
+			<xs:enumeration value="MedicalOfficeAssistant"/>
+			<xs:enumeration value="MedicalOfficerofHealth"/>
+			<xs:enumeration value="NuclearMedicineTechnologist"/>
+			<xs:enumeration value="Nurse'sAide"/>
+			<xs:enumeration value="OccupationalTherapist"/>
+			<xs:enumeration value="Optometrist"/>
+			<xs:enumeration value="ParamedicPractitioner"/>
+			<xs:enumeration value="Pharmacist"/>
+			<xs:enumeration value="Physiotherapist"/>
+			<xs:enumeration value="Podiatrist"/>
+			<xs:enumeration value="PrimaryCareParamedic"/>
+			<xs:enumeration value="ProvincialMedicalHealthOfficer"/>
+			<xs:enumeration value="Psychologist"/>
+			<xs:enumeration value="PublicHealthInspector"/>
+			<xs:enumeration value="PublicHealthInvestigator"/>
+			<xs:enumeration value="PublicHealthManager/Supervisor"/>
+			<xs:enumeration value="PublicHealthNurseManager"/>
+			<xs:enumeration value="RadiationTechnologistinMagneticResonance"/>
+			<xs:enumeration value="RadiationTechnologistinRadiation"/>
+			<xs:enumeration value="RadiationTechnologistinTherapy"/>
+			<xs:enumeration value="RegisteredAcupuncturist"/>
+			<xs:enumeration value="RegisteredDietitian"/>
+			<xs:enumeration value="RegisteredElectroencephalographyTechnologist"/>
+			<xs:enumeration value="RegisteredElectromyographyTechnologist"/>
+			<xs:enumeration value="RegisteredEvokedPotentialTechnologist"/>
+			<xs:enumeration value="RegisteredMidwife"/>
+			<xs:enumeration value="RegisteredNurse"/>
+			<xs:enumeration value="RegisteredNursePractitioner"/>
+			<xs:enumeration value="RegisteredPsychiatricNurse"/>
+			<xs:enumeration value="SocialWorker"/>
+			<xs:enumeration value="SpeechLanguagePathologist"/>
+			<xs:enumeration value="SpeechTherapist"/>
+			<xs:enumeration value="Veterinarian"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Province">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Not Specified"/>
+			<xs:enumeration value="Alaska"/>
+			<xs:enumeration value="Alabama"/>
+			<xs:enumeration value="Arkansas"/>
+			<xs:enumeration value="Arizona"/>
+			<xs:enumeration value="California"/>
+			<xs:enumeration value="Colorado"/>
+			<xs:enumeration value="Connecticut"/>
+			<xs:enumeration value="District Of Columbia"/>
+			<xs:enumeration value="Delaware"/>
+			<xs:enumeration value="Florida"/>
+			<xs:enumeration value="Georgia"/>
+			<xs:enumeration value="Hawaii"/>
+			<xs:enumeration value="Iowa"/>
+			<xs:enumeration value="Idaho"/>
+			<xs:enumeration value="Illinois"/>
+			<xs:enumeration value="Indiana"/>
+			<xs:enumeration value="Kansas"/>
+			<xs:enumeration value="Kentucky"/>
+			<xs:enumeration value="Louisiana"/>
+			<xs:enumeration value="Massachusetts"/>
+			<xs:enumeration value="Maryland"/>
+			<xs:enumeration value="Maine"/>
+			<xs:enumeration value="Michigan"/>
+			<xs:enumeration value="Minnesota"/>
+			<xs:enumeration value="Missouri"/>
+			<xs:enumeration value="Mississippi"/>
+			<xs:enumeration value="Montana"/>
+			<xs:enumeration value="North Carolina"/>
+			<xs:enumeration value="North Dakota"/>
+			<xs:enumeration value="Nebraska"/>
+			<xs:enumeration value="Vermont"/>
+			<xs:enumeration value="New Hampshire"/>
+			<xs:enumeration value="New Jersey"/>
+			<xs:enumeration value="New Mexico"/>
+			<xs:enumeration value="Nevada"/>
+			<xs:enumeration value="New York"/>
+			<xs:enumeration value="Ohio"/>
+			<xs:enumeration value="Oklahoma"/>
+			<xs:enumeration value="Oregon"/>
+			<xs:enumeration value="Pennsylvania"/>
+			<xs:enumeration value="Rhode Island"/>
+			<xs:enumeration value="South Carolina"/>
+			<xs:enumeration value="South Dakota"/>
+			<xs:enumeration value="Tennessee"/>
+			<xs:enumeration value="Texas"/>
+			<xs:enumeration value="Utah"/>
+			<xs:enumeration value="Virginia"/>
+			<xs:enumeration value="Washington"/>
+			<xs:enumeration value="Wisconsin"/>
+			<xs:enumeration value="West Virginia"/>
+			<xs:enumeration value="Wyoming"/>
+			<xs:enumeration value="alberta"/>
+			<xs:enumeration value="quebec"/>
+			<xs:enumeration value="ontario"/>
+			<xs:enumeration value="manitoba"/>
+			<xs:enumeration value="newBrunswick"/>
+			<xs:enumeration value="newfoundlandAndLabrador"/>
+			<xs:enumeration value="novaScotia"/>
+			<xs:enumeration value="northwestTerritories"/>
+			<xs:enumeration value="nunavut"/>
+			<xs:enumeration value="princeEdwardIsland"/>
+			<xs:enumeration value="saskatchewan"/>
+			<xs:enumeration value="yukon"/>
+			<xs:enumeration value="britishColumbia"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Reaction">
+		<xs:sequence>
+			<xs:element name="producerid" type="xs:string" minOccurs="0"/>
+			<xs:element name="exposureMethod" type="xs:string" minOccurs="0"/>
+			<xs:element name="reactionStartTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="reactionDescriptionEnglish" type="xs:string" minOccurs="0"/>
+			<xs:element name="exposedMaterialName" type="xs:string" minOccurs="0"/>
+			<xs:element name="reactionCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="reactionSeverityCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="exposedMaterial" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="note" type="tns:Note" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="drug" type="tns:Drug" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="causativeRx" type="tns:Prescription" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ReactionSeverityLevel">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="High"/>
+			<xs:enumeration value="Moderate"/>
+			<xs:enumeration value="Low"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ReauthFaxFlag">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="false"/>
+			<xs:enumeration value="Not Specified"/>
+			<xs:enumeration value="true"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Recorder">
+		<xs:sequence>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="isActiveFlag" type="xs:boolean" default="false"/>
+			<xs:element name="person" type="tns:Person"/>
+			<xs:element name="professionalRegistration" type="tns:ProfessionalRegistration" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Reporter">
+		<xs:sequence>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="reporterRoleCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="person" type="tns:Person"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResponsiblePerson">
+		<xs:sequence>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="person" type="tns:Person"/>
+			<xs:element name="professionalRegistration" type="tns:ProfessionalRegistration" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="RouteOfAdmin">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Buccal"/>
+			<xs:enumeration value="Combination"/>
+			<xs:enumeration value="Dental"/>
+			<xs:enumeration value="Does Not Apply"/>
+			<xs:enumeration value="Epidural"/>
+			<xs:enumeration value="External"/>
+			<xs:enumeration value="Hemodialysis"/>
+			<xs:enumeration value="Implant"/>
+			<xs:enumeration value="In Vitro"/>
+			<xs:enumeration value="Inhalation"/>
+			<xs:enumeration value="Injection"/>
+			<xs:enumeration value="Intra-Arterial"/>
+			<xs:enumeration value="Intra-Articular"/>
+			<xs:enumeration value="Intracavernosal"/>
+			<xs:enumeration value="Intradermal"/>
+			<xs:enumeration value="Intraintestinal"/>
+			<xs:enumeration value="Intramuscular"/>
+			<xs:enumeration value="Intraocular"/>
+			<xs:enumeration value="Intraperitoneal"/>
+			<xs:enumeration value="Intrapleural"/>
+			<xs:enumeration value="Intrathecal"/>
+			<xs:enumeration value="Intrauterine"/>
+			<xs:enumeration value="Intravenous"/>
+			<xs:enumeration value="Intravesical"/>
+			<xs:enumeration value="Intravitreal"/>
+			<xs:enumeration value="Irrigation"/>
+			<xs:enumeration value="Mouth/Throat"/>
+			<xs:enumeration value="Mucous Membrane"/>
+			<xs:enumeration value="Nasal"/>
+			<xs:enumeration value="Not Applicable"/>
+			<xs:enumeration value="Opthalmic"/>
+			<xs:enumeration value="Oral"/>
+			<xs:enumeration value="Otic"/>
+			<xs:enumeration value="Perfusion"/>
+			<xs:enumeration value="Rectal"/>
+			<xs:enumeration value="Subcutaneous"/>
+			<xs:enumeration value="Sublingual"/>
+			<xs:enumeration value="Topical"/>
+			<xs:enumeration value="Transdermal"/>
+			<xs:enumeration value="Translingual"/>
+			<xs:enumeration value="Urethral"/>
+			<xs:enumeration value="Vaginal"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RxFillStatus">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Cancelled"/>
+			<xs:enumeration value="Log Pending"/>
+			<xs:enumeration value="Discontinued"/>
+			<xs:enumeration value="Expired"/>
+			<xs:enumeration value="Held"/>
+			<xs:enumeration value="No Refills Remain"/>
+			<xs:enumeration value="Not Dispensed"/>
+			<xs:enumeration value="Other Medication"/>
+			<xs:enumeration value="Refills Remain"/>
+			<xs:enumeration value="Revoked"/>
+			<xs:enumeration value="Unknown"/>
+			<xs:enumeration value="Transfer"/>
+			<xs:enumeration value="Transferred"/>
+			<xs:enumeration value="Waiting for data entry"/>
+			<xs:enumeration value="Refused to Fill"/>
+			<xs:enumeration value="Adapt"/>
+			<xs:enumeration value="ePrescription"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="RxParams">
+		<xs:sequence>
+			<xs:element name="params" type="tns:KeyValue" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="salutationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Doctor"/>
+			<xs:enumeration value="Fr"/>
+			<xs:enumeration value="Miss"/>
+			<xs:enumeration value="Mister"/>
+			<xs:enumeration value="Mrs."/>
+			<xs:enumeration value="MW."/>
+			<xs:enumeration value="NP"/>
+			<xs:enumeration value="Registered Pharmacist"/>
+			<xs:enumeration value="Reverant"/>
+			<xs:enumeration value="Senior"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Schedule">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Narcotics"/>
+			<xs:enumeration value="Targeted Substance"/>
+			<xs:enumeration value="Schedule 1"/>
+			<xs:enumeration value="Controlled 1"/>
+			<xs:enumeration value="Controlled 2"/>
+			<xs:enumeration value="Controlled 3"/>
+			<xs:enumeration value="Rx Not Required"/>
+			<xs:enumeration value="Schedule 2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Shape">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="unknown"/>
+			<xs:enumeration value="airplane-shaped"/>
+			<xs:enumeration value="almond-shaped"/>
+			<xs:enumeration value="apple-shaped"/>
+			<xs:enumeration value="barrel-shaped"/>
+			<xs:enumeration value="blazon"/>
+			<xs:enumeration value="capsule-like"/>
+			<xs:enumeration value="car-shaped"/>
+			<xs:enumeration value="character"/>
+			<xs:enumeration value="cream/ovule"/>
+			<xs:enumeration value="cream"/>
+			<xs:enumeration value="cylindrical"/>
+			<xs:enumeration value="diamond-shaped"/>
+			<xs:enumeration value="d-shaped"/>
+			<xs:enumeration value="elliptical"/>
+			<xs:enumeration value="foam"/>
+			<xs:enumeration value="gel"/>
+			<xs:enumeration value="granule"/>
+			<xs:enumeration value="hexagon"/>
+			<xs:enumeration value="lotion"/>
+			<xs:enumeration value="oblong"/>
+			<xs:enumeration value="octagonal"/>
+			<xs:enumeration value="ointment"/>
+			<xs:enumeration value="oval"/>
+			<xs:enumeration value="ovule-like"/>
+			<xs:enumeration value="pellet"/>
+			<xs:enumeration value="pentagonal"/>
+			<xs:enumeration value="peanut-shaped"/>
+			<xs:enumeration value="powder"/>
+			<xs:enumeration value="rectangle"/>
+			<xs:enumeration value="round"/>
+			<xs:enumeration value="rod-shaped"/>
+			<xs:enumeration value="roundRectangular"/>
+			<xs:enumeration value="roundedSquare"/>
+			<xs:enumeration value="roundedTriangle"/>
+			<xs:enumeration value="squaredCapsule-like"/>
+			<xs:enumeration value="shield"/>
+			<xs:enumeration value="square"/>
+			<xs:enumeration value="squarePyramid"/>
+			<xs:enumeration value="tear-drop"/>
+			<xs:enumeration value="torpedo-shaped"/>
+			<xs:enumeration value="train-shaped"/>
+			<xs:enumeration value="trapezoid"/>
+			<xs:enumeration value="triangle"/>
+			<xs:enumeration value="tub-shaped"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Source">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Paper"/>
+			<xs:enumeration value="ePrescription"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SpecialDrugProgram">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="unknown"/>
+			<xs:enumeration value="arthritis"/>
+			<xs:enumeration value="depression"/>
+			<xs:enumeration value="asthma"/>
+			<xs:enumeration value="hypertension"/>
+			<xs:enumeration value="cholesterol"/>
+			<xs:enumeration value="diabetes"/>
+			<xs:enumeration value="osteoporosis&amp;Menopause"/>
+			<xs:enumeration value="healthInform"/>
+			<xs:enumeration value="medrvDesc"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StatusChangeReason">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="error correction"/>
+			<xs:enumeration value="information change"/>
+			<xs:enumeration value="new information"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StatusChangeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Add Allergy"/>
+			<xs:enumeration value="Add Note"/>
+			<xs:enumeration value="Cancel Prescription"/>
+			<xs:enumeration value="Create Prescription"/>
+			<xs:enumeration value="Discontinue Prescription"/>
+			<xs:enumeration value="Fill Prescription"/>
+			<xs:enumeration value="Patient Picked Up Prescription"/>
+			<xs:enumeration value="Post to Profile"/>
+			<xs:enumeration value="Record Consent"/>
+			<xs:enumeration value="Refusal to Fill"/>
+			<xs:enumeration value="Stop Prescription"/>
+			<xs:enumeration value="Transfer Prescription"/>
+			<xs:enumeration value="Update Allergy"/>
+			<xs:enumeration value="Update Post to Profile"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Store">
+		<xs:sequence>
+			<xs:element name="storenumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="storeName" type="xs:string" minOccurs="0"/>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="address" type="tns:Address" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="SubjectReaction">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="No Reaction"/>
+			<xs:enumeration value="Headache"/>
+			<xs:enumeration value="Dizziness"/>
+			<xs:enumeration value="Skin Redness"/>
+			<xs:enumeration value="Itchy Skin"/>
+			<xs:enumeration value="Rash"/>
+			<xs:enumeration value="Hives"/>
+			<xs:enumeration value="Swelling"/>
+			<xs:enumeration value="Abdominal Discomfort"/>
+			<xs:enumeration value="Nausea"/>
+			<xs:enumeration value="Vomiting"/>
+			<xs:enumeration value="Difficulty Breathing"/>
+			<xs:enumeration value="Impaired Vision"/>
+			<xs:enumeration value="Heart Palpitations"/>
+			<xs:enumeration value="Seizure"/>
+			<xs:enumeration value="Paralysis"/>
+			<xs:enumeration value="Unconsciousness"/>
+			<xs:enumeration value="Other"/>
+			<xs:enumeration value="Not Applicable"/>
+			<xs:enumeration value="Fatal"/>
+			<xs:enumeration value="Insomnia"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SubstitutionInitiator">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Prescriber"/>
+			<xs:enumeration value="Patient"/>
+			<xs:enumeration value="Pharmacist"/>
+			<xs:enumeration value="Exist"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SubstitutionReason">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Continuing Therapy"/>
+			<xs:enumeration value="Formulary Policy"/>
+			<xs:enumeration value="Out of Stock"/>
+			<xs:enumeration value="Regulatory Requirement"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Supervisor">
+		<xs:sequence>
+			<xs:element name="consumerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="producerId" type="xs:string" minOccurs="0"/>
+			<xs:element name="isActiveFlag" type="xs:boolean" default="false"/>
+			<xs:element name="person" type="tns:Person"/>
+			<xs:element name="professionalRegistration" type="tns:ProfessionalRegistration" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="TransactionSourceChannel">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AutomaticRefill"/>
+			<xs:enumeration value="Batch"/>
+			<xs:enumeration value="Converted"/>
+			<xs:enumeration value="DisasterRecovery"/>
+			<xs:enumeration value="DriveThru"/>
+			<xs:enumeration value="EhrModuleTransferIn"/>
+			<xs:enumeration value="ERefill"/>
+			<xs:enumeration value="Fax"/>
+			<xs:enumeration value="Internet"/>
+			<xs:enumeration value="Ivr"/>
+			<xs:enumeration value="Phone"/>
+			<xs:enumeration value="PrescriberPhone"/>
+			<xs:enumeration value="RefillReminder"/>
+			<xs:enumeration value="TransferInCompetitor"/>
+			<xs:enumeration value="TransferInCompetitorOutOfProvince"/>
+			<xs:enumeration value="TransferInSdm"/>
+			<xs:enumeration value="TransferInSdmOutOfProvince"/>
+			<xs:enumeration value="WalkIn"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TreatmentType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Continuous/Chronic"/>
+			<xs:enumeration value="Short Term/ Acute"/>
+			<xs:enumeration value="One Time"/>
+			<xs:enumeration value="As Needed"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TxFillStatus">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Cancelled"/>
+			<xs:enumeration value="Complete"/>
+			<xs:enumeration value="Data entry comple and blocked"/>
+			<xs:enumeration value="Deferred"/>
+			<xs:enumeration value="Waiting for clinical verification"/>
+			<xs:enumeration value="Waiting for data entry"/>
+			<xs:enumeration value="Waiting for data verification"/>
+			<xs:enumeration value="Waiting for pickup"/>
+			<xs:enumeration value="Waiting for product check"/>
+			<xs:enumeration value="Cancel Pending"/>
+			<xs:enumeration value="Waiting to be filled"/>
+			<xs:enumeration value="Adapt"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

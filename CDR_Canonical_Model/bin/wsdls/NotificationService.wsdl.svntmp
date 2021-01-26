@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://shoppersdrugmart.ca/cdr/notificationService/NotificationService"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	name="NotificationService"
+	targetNamespace="http://shoppersdrugmart.ca/cdr/notificationService/NotificationService">
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified"
+			targetNamespace="http://shoppersdrugmart.ca/cdr/notificationService/NotificationService">
+			<xsd:element name="NotificationProcess">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="BusinessProcess"
+							type="tns:PharmacyBusinessEventProcessEnum" />
+						<xsd:element name="RequestTimestamp" type="xsd:dateTime" />
+						<xsd:element name="ObjectType" type="tns:ObjectType" />
+						<xsd:element name="MaxEntityCount" type="xsd:int" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="NotificationResponseDetail">
+				<xsd:sequence>
+					<xsd:element name="StoreNumber" type="xsd:string"
+						maxOccurs="1" minOccurs="1" />
+					<xsd:element name="PrescriptionNumber" type="xsd:int"
+						maxOccurs="1" minOccurs="1" />
+					<xsd:element name="DispenseNumber" type="xsd:int"
+						maxOccurs="1" minOccurs="1" />
+					<xsd:element name="Subscription" type="tns:SourceSystem"
+						maxOccurs="unbounded" minOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:simpleType name="ObjectType">
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="Drug" />
+					<xsd:enumeration value="Rx" />
+					<xsd:enumeration value="Tx" />
+					<xsd:enumeration value="Patient" />
+					<xsd:enumeration value="Purge" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="SourceSystem">
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="DigitalRx" />
+					<xsd:enumeration value="DigitalPharmacy" />
+					<xsd:enumeration value="PatientContactCenter" />
+					<xsd:enumeration value="Store" />
+					<xsd:enumeration value="IVR" />
+					<xsd:enumeration value="Prescriber" />
+					<xsd:enumeration value="eHealth" />
+					<xsd:enumeration value="Accuro" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="PharmacyBusinessEventProcessEnum">
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="RxIntake" />
+					<xsd:enumeration value="DataVerification" />
+					<xsd:enumeration value="ClinicalVerification" />
+					<xsd:enumeration value="Fax" />
+					<xsd:enumeration value="Refill" />
+					<xsd:enumeration value="Patient" />
+					<xsd:enumeration value="Reauth" />
+					<xsd:enumeration value="Prescriber" />
+					<xsd:enumeration value="AdaptRx" />
+					<xsd:enumeration value="AutoPostpone" />
+					<xsd:enumeration value="CMPT" />
+					<xsd:enumeration value="Compound" />
+					<xsd:enumeration value="Contact" />
+					<xsd:enumeration value="DataEntry" />
+					<xsd:enumeration value="Defer" />
+					<xsd:enumeration value="Drug" />
+					<xsd:enumeration value="Event-Framework" />
+					<xsd:enumeration value="Filling" />
+					<xsd:enumeration value="PatientCounselling" />
+					<xsd:enumeration value="PharmacistRenewal" />
+					<xsd:enumeration value="PickUpAssist" />
+					<xsd:enumeration value="PostponeTx" />
+					<xsd:enumeration value="ProductVerification" />
+					<xsd:enumeration value="RebillClaims" />
+					<xsd:enumeration value="RxTransfer" />
+					<xsd:enumeration value="Store" />
+					<xsd:enumeration value="Opioid" />
+					<xsd:enumeration value="PurgeProcess" />
+					<xsd:enumeration value="NotificationProcess" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:element name="NotificationResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="NotificationResponseDetail" type="tns:NotificationResponseDetail"
+							maxOccurs="unbounded" minOccurs="1" />
+						<xsd:element name="RowCount" type="xsd:int" minOccurs="1"
+							maxOccurs="1"/>
+						
+						<xsd:element name="TotalPrescriptionCount" type="xsd:int"
+							minOccurs="1" maxOccurs="1"/>
+					
+						<xsd:element name="TotalDispenseCount" type="xsd:int"
+							minOccurs="1" maxOccurs="1"/>
+						
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="NotificationRequest">
+		<wsdl:part name="NotificationProcess" element="tns:NotificationProcess" />
+	</wsdl:message>
+	<wsdl:message name="NotificationResponse">
+		<wsdl:part name="NotificationResponse" element="tns:NotificationResponse" />
+	</wsdl:message>
+	<wsdl:portType name="NotificationService">
+		<wsdl:operation name="notificationProcess">
+			<wsdl:input message="tns:NotificationRequest" />
+			<wsdl:output message="tns:NotificationResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="NotificationService" type="tns:NotificationService">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="notificationProcess">
+			<soap:operation
+				soapAction="http://shoppersdrugmart.ca/cdr/notificationService/NotificationService/notificationProcess" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="NotificationService">
+		<wsdl:port binding="tns:NotificationService" name="NotificationService">
+			<soap:address
+				location="http://shoppersdrugmart.ca/cdr/notificationService/NotificationService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

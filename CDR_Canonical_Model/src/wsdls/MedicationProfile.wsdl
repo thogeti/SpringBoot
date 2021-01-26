@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="MedicationProfileService" targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/MedicationProfileService" xmlns:svcmp="http://shoppersdrugmart.ca/RxHB/DRx/MedicationProfileService" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" xmlns:mp="http://shoppersdrugmart.ca/RxHB/DRx/MedicationProfile" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+			<import namespace="http://shoppersdrugmart.ca/RxHB/DRx/MedicationProfile" schemaLocation="MedicationProfile.xsd"/>
+		</schema>
+	</wsdl:types>
+
+	<wsdl:message name="GetPrescription">
+		<wsdl:part name="GetPrescription" element="mp:GetPrescription"/>
+	</wsdl:message>
+	<wsdl:message name="GetPrescriptionResponse">
+		<wsdl:part name="GetPrescriptionResponse" element="mp:GetPrescriptionResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetDispense">
+		<wsdl:part name="GetDispense" element="mp:GetDispense"/>
+	</wsdl:message>
+	<wsdl:message name="GetDispenseResponse">
+		<wsdl:part name="GetDispenseResponse" element="mp:GetDispenseResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetPrescriptionAdherenceCalendar">
+		<wsdl:part name="GetPrescriptionAdherenceCalendar" element="mp:GetPrescriptionAdherenceCalendar"/>
+	</wsdl:message>
+	<wsdl:message name="GetPrescriptionAdherenceCalendarResponse">
+		<wsdl:part name="GetPrescriptionAdherenceCalendarResponse" element="mp:GetPrescriptionAdherenceCalendarResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetDispenseAdherenceCalendar">
+		<wsdl:part name="GetDispenseAdherenceCalendar" element="mp:GetDispenseAdherenceCalendar"/>
+	</wsdl:message>
+	<wsdl:message name="GetDispenseAdherenceCalendarResponse">
+		<wsdl:part name="GetDispenseAdherenceCalendarResponse" element="mp:GetDispenseAdherenceCalendarResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetPatientAdherenceCalendar">
+		<wsdl:part name="GetPatientAdherenceCalendar" element="mp:GetPatientAdherenceCalendar"/>
+	</wsdl:message>
+	<wsdl:message name="GetPatientAdherenceCalendarResponse">
+		<wsdl:part name="GetPatientAdherenceCalendarResponse" element="mp:GetPatientAdherenceCalendarResponse"/>
+	</wsdl:message>	
+	<wsdl:portType name="MedicationProfile">
+		<wsdl:operation name="getPrescription">
+			<wsdl:input name="GetPrescription" message="svcmp:GetPrescription"/>
+			<wsdl:output name="GetPrescriptionResponse" message="svcmp:GetPrescriptionResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getDispense">
+			<wsdl:input name="GetDispense" message="svcmp:GetDispense"/>
+			<wsdl:output name="GetDispenseResponse" message="svcmp:GetDispenseResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getPrescriptionAdherenceCalendar">
+			<wsdl:input name="GetPrescriptionAdherenceCalendar" message="svcmp:GetPrescriptionAdherenceCalendar"/>
+			<wsdl:output name="GetPrescriptionAdherenceCalendarResponse" message="svcmp:GetPrescriptionAdherenceCalendarResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getDispenseAdherenceCalendar">
+			<wsdl:input name="GetDispenseAdherenceCalendar" message="svcmp:GetDispenseAdherenceCalendar"/>
+			<wsdl:output name="GetDispenseAdherenceCalendarResponse" message="svcmp:GetDispenseAdherenceCalendarResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getPatientAdherenceCalendar">
+			<wsdl:input name="GetPatientAdherenceCalendar" message="svcmp:GetPatientAdherenceCalendar"/>
+			<wsdl:output name="GetPatientAdherenceCalendarResponse" message="svcmp:GetPatientAdherenceCalendarResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="MedicationProfile" type="svcmp:MedicationProfile">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getPrescription">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/MedicationProfile/getPrescription" style="document"/>
+			<wsdl:input name="GetPrescription">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="GetPrescriptionResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getDispense">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/MedicationProfile/getDispense" style="document"/>
+			<wsdl:input name="GetDispense">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="GetDispenseResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPrescriptionAdherenceCalendar">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/MedicationProfile/getPrescriptionAdherenceCalendar" style="document"/>
+			<wsdl:input name="GetPrescriptionAdherenceCalendar">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="GetPrescriptionAdherenceCalendarResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getDispenseAdherenceCalendar">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/MedicationProfile/getDispenseAdherenceCalendar" style="document"/>
+			<wsdl:input name="GetDispenseAdherenceCalendar">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="GetDispenseAdherenceCalendarResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPatientAdherenceCalendar">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/MedicationProfile/getPatientAdherenceCalendar" style="document"/>
+			<wsdl:input name="GetPatientAdherenceCalendar">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="GetPatientAdherenceCalendarResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="MedicationProfileService">
+		<wsdl:port name="MedicationProfile" binding="svcmp:MedicationProfile">
+			<soap:address location="http://wdp26esb21.hosts.shoppersdrugmart.ca:3202/RxHB/DRx/MedicationProfile"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

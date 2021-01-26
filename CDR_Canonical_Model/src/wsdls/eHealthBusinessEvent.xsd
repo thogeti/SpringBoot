@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:be="http://shoppersdrugmart.ca/RxHB/eHealth/BusinessEvent" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes" xmlns:rsp="http://shoppersdrugmart.ca/RxHB/eHealth/ResponseEvent" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" targetNamespace="http://shoppersdrugmart.ca/RxHB/eHealth/BusinessEvent">
+	<xs:annotation>
+		<xs:documentation>V1.1</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+	<xs:element name="BusinessEvent" type="be:BusinessEvent"/>
+	<xs:complexType name="BusinessEvent">
+		<xs:sequence>
+			<xs:element name="correlationID" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="consumerSendTimestamp" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="eventName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="requestedStartDate" type="xs:dateTime" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="reason" type="ehlth:QueryReason" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="producerRecordId" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="causedByEventName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="originalEventTimestamp" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessEventPayload" type="be:BusinessEventPayload" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="BusinessEventPayload" type="be:BusinessEventPayload"/>
+	<xs:complexType name="BusinessEventPayload">
+		<xs:sequence>
+			<xs:element name="queryCriteria" type="ehlth:QueryCriteria" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="allergy" type="ehlth:Allergy" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="compound" type="ehlth:Compound" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="consent" type="ehlth:Consent" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dispense" type="ehlth:Dispense" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dispenser" type="ehlth:Dispenser" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="drug" type="ehlth:Drug" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="mitigatedBy" type="ehlth:MitigatedBy" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="note" type="ehlth:Note" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="pack" type="ehlth:Pack" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="patient" type="ehlth:Patient" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="prescriber" type="ehlth:Prescriber" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="prescription" type="ehlth:Prescription" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="store" type="ehlth:Store" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="adverseDrugReaction" type="ehlth:AdverseDrugReaction" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="recorder" type="ehlth:Recorder" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="hw4bEvent" type="ehlth:HW4BEvent" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

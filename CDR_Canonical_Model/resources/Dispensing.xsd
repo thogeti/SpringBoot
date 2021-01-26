@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/Dispensing" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:disp="http://shoppersdrugmart.ca/RxHB/DRx/Dispensing" xmlns:CSE="http://shoppersdrugmart.ca/RxHB/DRx/CSE" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes">
+	<xs:import namespace="http://www.shoppersdrugmart.ca/message/SDMDataTypes" schemaLocation="SDMDataTypes.xsd"/>
+	<xs:import namespace="http://shoppersdrugmart.ca/RxHB/DRx/CSE" schemaLocation="ChannelServiceEntities.xsd"/>
+	<xs:import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+	<xs:element name="Refill" type="disp:Refill"/>
+	<xs:complexType name="Refill">
+		<xs:sequence>
+			<xs:element name="Prescription" type="ehlth:Prescription" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="RequestedPickupTime" type="sdm:Timestamp" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="sourceChannel" type="ehlth:PharmacyChannel" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="RefillRequest" type="CSE:RefillRequest" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="persistStrategyFlag" type="sdm:Flag" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="RefillResponse" type="disp:RefillResponse"/>
+	<xs:complexType name="RefillResponse">
+		<xs:sequence>
+			<xs:element name="Flag" type="sdm:Flag" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="correlationID" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Renew" type="disp:Renew"/>
+	<xs:complexType name="Renew">
+		<xs:sequence>
+			<xs:element name="Prescription" type="ehlth:Prescription" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="sourceChannel" type="ehlth:PharmacyChannel" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="RenewResponse" type="disp:RenewResponse"/>
+	<xs:complexType name="RenewResponse">
+		<xs:sequence>
+			<xs:element name="Flag" type="sdm:Flag" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="correlationID" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

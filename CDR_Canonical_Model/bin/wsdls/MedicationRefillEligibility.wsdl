@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<WL5G3N0:definitions name="MedicationProfileService" targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/MedicationRefillEligibilityService" xmlns="" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="http://shoppersdrugmart.ca/RxHB/DRx/MedicationRefillEligibility" xmlns:WL5G3N2="http://shoppersdrugmart.ca/RxHB/DRx/MedicationRefillEligibilityService" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/">
+  <WL5G3N0:types>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:mp="http://shoppersdrugmart.ca/RxHB/DRx/MedicationRefillEligibility" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:svcmp="http://shoppersdrugmart.ca/RxHB/DRx/MedicationRefillEligibilityService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+      <xs:import namespace="http://shoppersdrugmart.ca/RxHB/DRx/MedicationRefillEligibility" schemaLocation="MedicationRefillEligibility.xsd"/>
+    </xs:schema>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="GetPatientAdherenceEligibility">
+    <WL5G3N0:part element="WL5G3N1:GetPatientAdherenceEligibility" name="GetPatientAdherenceEligibility"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="GetPatientAdherenceEligibilityResponse">
+    <WL5G3N0:part element="WL5G3N1:GetPatientAdherenceEligibilityResponse" name="GetPatientAdherenceEligibilityResponse"/>
+  </WL5G3N0:message>
+  <WL5G3N0:portType name="MedicationRefillEligibility">
+    <WL5G3N0:operation name="getPatientAdherenceEligibility">
+      <WL5G3N0:input message="WL5G3N2:GetPatientAdherenceEligibility" name="GetPatientAdherenceEligibility"/>
+      <WL5G3N0:output message="WL5G3N2:GetPatientAdherenceEligibilityResponse" name="GetPatientAdherenceEligibilityResponse"/>
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="MedicationRefillEligibility" type="WL5G3N2:MedicationRefillEligibility">
+    <WL5G3N3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N0:operation name="getPatientAdherenceEligibility">
+      <WL5G3N3:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/MedicationProfile/getPatientAdherenceCalendar" style="document"/>
+      <WL5G3N0:input name="GetPatientAdherenceEligibility">
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output name="GetPatientAdherenceEligibilityResponse">
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="MedicationRefillEligibilityService">
+    <WL5G3N0:port binding="WL5G3N2:MedicationRefillEligibility" name="MedicationRefillEligibility">
+      <WL5G3N3:address location="http://wdp26esb21.hosts.shoppersdrugmart.ca:3202/RxHB/DRx/MedicationRefillEligibility"/>
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>

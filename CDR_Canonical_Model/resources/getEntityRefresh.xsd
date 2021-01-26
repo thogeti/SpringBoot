@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="windows-1253"?>
+<!-- edited with XMLSpy v2016 (x64) (http://www.altova.com) by Shantanu Raje (SHOPPERS DRUG MART INC) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gers="http://shoppersdrugmart.ca/RxHB/DRx/getEntityRefresh" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes" targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/getEntityRefresh">
+	<xs:import namespace="http://www.shoppersdrugmart.ca/message/SDMDataTypes" schemaLocation="SDMDataTypes.xsd"/>
+	<xs:import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+	<xs:element name="getEntityRefreshRequest" type="gers:getEntityRefreshRequest"/>
+	<xs:complexType name="getEntityRefreshRequest">
+		<xs:sequence>
+			<xs:element name="storeNumber" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="entityType" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="entityIdentifier" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="numberOfMonths" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="refreshLevel" type="ehlth:PopulationStrategyEnum" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="getEntityRefreshResponse" type="gers:getEntityRefreshResponse"/>
+	<xs:complexType name="getEntityRefreshResponse">
+		<xs:sequence>
+			<xs:element name="flag" type="sdm:Flag" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="correlationID" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

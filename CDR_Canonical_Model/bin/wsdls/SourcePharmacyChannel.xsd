@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://shoppersdrugmart.ca/RxHB/eHealth/SourcePharmacyChannel"
+	xmlns:tns="http://shoppersdrugmart.ca/RxHB/eHealth/SourcePharmacyChannel"
+	elementFormDefault="qualified" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth">
+	<import schemaLocation="eHealth.xsd" namespace="http://shoppersdrugmart.ca/RxHB/eHealth"></import>
+
+	<element name="SourcePharmacyChannel">
+		<complexType >
+			<sequence>
+				<element name="sourcePharmacyChannels" type="tns:SourcePharmacyChannelMap" minOccurs="1" maxOccurs="unbounded"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+
+	<complexType name="SourcePharmacyChannelMap">
+		<sequence>
+			<element name="transactionSourceChannel"
+				type="ehlth:TransactionSourceChannel">
+			</element>
+			<element name="pharmacyChannel"
+				type="ehlth:PharmacyChannel">
+			</element>
+		</sequence>
+	</complexType>
+</schema>

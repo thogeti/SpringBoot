@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="DispensingService" targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/DispensingService" xmlns:ds="http://shoppersdrugmart.ca/RxHB/DRx/DispensingService" xmlns:disp="http://shoppersdrugmart.ca/RxHB/DRx/Dispensing" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth">
+
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://shoppersdrugmart.ca/RxHB/DRx/Dispensing" schemaLocation="Dispensing.xsd"/>
+		</schema>
+	</wsdl:types>
+	
+	<wsdl:message name="Refill">
+		<wsdl:part name="Refill" element="disp:Refill"/>
+	</wsdl:message>
+	<wsdl:message name="RefillResponse">
+		<wsdl:part name="RefillResponse" element="disp:RefillResponse"/>
+	</wsdl:message>
+	<wsdl:message name="Renew">
+		<wsdl:part name="Renew" element="disp:Renew"/>
+	</wsdl:message>
+	<wsdl:message name="RenewResponse">
+		<wsdl:part name="RenewResponse" element="disp:RenewResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="Dispensing">
+		<wsdl:operation name="refill">
+			<wsdl:input name="Refill" message="ds:Refill"/>
+			<wsdl:output name="RefillResponse" message="ds:RefillResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="renew">
+			<wsdl:input name="Renew" message="ds:Renew"/>
+			<wsdl:output name="RenewResponse" message="ds:RenewResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="Dispensing" type="ds:Dispensing">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="refill">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/dispensing/refill" style="document"/>
+			<wsdl:input name="Refill">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="RefillResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="renew">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/dispensing/renew" style="document"/>
+			<wsdl:input name="Renew">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="RenewResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="DispensingService">
+		<wsdl:port name="Dispensing" binding="ds:Dispensing">
+			<soap:address location="http://shoppersdrugmart.ca/RxHB/DRx/DispensingService"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

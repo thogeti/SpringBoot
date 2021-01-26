@@ -1,0 +1,94 @@
+
+
+
+
+
+select Ptnt.PtntKey,
+       PtntMtrcs.PtntMtrcsKey,
+       PtntMtrcsNt.PtntMtrcsNtKey,
+       PtntVtlTyp.PtntVtlTypKey,
+       -----------------------
+
+       ptntMTNtR1S.*,
+       ptntMTNtSuper.*,
+       ptntMTNtSuperCntctMthd.*,
+       ptntMTNtSuperEmail.*,
+       ptntMTNtSuperAddr.*,
+       ptntMTNtSuperTelecom.*,
+
+       ptntMTNtR1R.*,
+       ptntMTNtRec.*,
+       ptntMTNtRecCntctMthd.*,
+       ptntMTNtRecEmail.*,
+       ptntMTNtRecAddr.*,
+       ptntMTNtRecTelecom.*
+       -----------------------
+
+
+	 from Ptnt Ptnt  
+                 left outer join PtntMtrcs PtntMtrcs 
+			 on Ptnt.PtntKey = PtntMtrcs.PtntKey 
+
+                        -- ==================================================
+                        --          Patient Metrics Note block
+                        -- ==================================================
+  		        left outer join PtntMtrcsNt PtntMtrcsNt 
+		                on PtntMtrcs.PtntMtrcsKey = PtntMtrcsNt.PtntMtrcsKey 
+			
+                                  left outer join PrsnRl  ptntMTNtR1S
+                                               on PtntMtrcsNt.SprvsrKey = ptntMTNtR1S.PrsnRlKey
+
+                                       join prsn ptntMTNtSuper    ---> Supervisor
+                                         on ptntMTNtR1S.PrsnRlKey = ptntMTNtSuper.PrsnKey
+					       
+ 		                       left outer join CntctMthd ptntMTNtSuperCntctMthd  
+		  		                    on ptntMTNtSuper.PrsnKey = ptntMTNtSuperCntctMthd.PrsnKey  
+						   
+                                       left outer join Email ptntMTNtSuperEmail  
+	 			                    on ptntMTNtSuperCntctMthd.CntctMthdKey = ptntMTNtSuperEmail.EmailKey  
+						   
+                                       left outer join Addr ptntMTNtSuperAddr  
+                                                    on ptntMTNtSuperCntctMthd.CntctMthdKey = ptntMTNtSuperAddr.AddrKey  
+						   
+                                       left outer join Telecom ptntMTNtSuperTelecom  
+	 		                            on ptntMTNtSuperCntctMthd.CntctMthdKey = ptntMTNtSuperTelecom.TelecomKey  
+                       ----------------------------------------------------- 
+
+
+                                  left outer join PrsnRl ptntMTNtR1R
+                                               on PtntMtrcsNt.RcrdrKey = ptntMTNtR1R.PrsnRlKey
+
+                                       join prsn ptntMTNtRec    ---> Recorder
+                                              on ptntMTNtR1R.PrsnRlKey = ptntMTNtRec.PrsnKey
+					       
+ 		                       left outer join CntctMthd ptntMTNtRecCntctMthd  
+		  		               on ptntMTNtRec.PrsnKey = ptntMTNtRecCntctMthd.PrsnKey  
+						   
+                                       left outer join Email ptntMTNtRecEmail  
+				               on ptntMTNtRecCntctMthd.CntctMthdKey = ptntMTNtRecEmail.EmailKey  
+						   
+                                       left outer join Addr ptntMTNtRecAddr  
+                                               on ptntMTNtRecCntctMthd.CntctMthdKey = ptntMTNtRecAddr.AddrKey  
+						   
+                                       left outer join Telecom ptntMTNtRecTelecom  
+			                       on ptntMTNtRecCntctMthd.CntctMthdKey = ptntMTNtRecTelecom.TelecomKey  
+                        -- ==================================================
+
+
+ 		        join PtntVtlTyp PtntVtlTyp                             
+			  on PtntMtrcs.PtntVtlTypKey = PtntVtlTyp.PtntVtlTypKey 
+				  
+				  
+	 where Ptnt.ptntKey = 1 -- ?  
+				  
+         order by Ptnt.PtntKey,
+		  PtntMtrcs.PtntMtrcsKey,
+		  PtntMtrcsNt.PtntMtrcsNtKey,
+		  PtntVtlTyp.PtntVtlTypKey,
+
+                  ptntMTNtSuper.PrsnKey,
+                  ptntMTNtRec.PrsnKey
+
+
+
+

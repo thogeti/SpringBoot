@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="RxActiveReminderDeterminationDecisionService" 
+                  targetNamespace="http://www.ibm.com/rules/decisionservice/DigitalRxRuleService/RxActiveReminderDetermination" 
+                  xmlns:dstns="http://www.ibm.com/rules/decisionservice/DigitalRxRuleService/RxActiveReminderDetermination"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.ibm.com/rules/decisionservice/DigitalRxRuleService/RxActiveReminderDetermination/param" 
+                xmlns:xom1="http://www.ibm.com/rules/decisionservice/DigitalRxRuleService/RxActiveReminderDetermination">
+      <xsd:import namespace="http://www.ibm.com/rules/decisionservice/DigitalRxRuleService/RxActiveReminderDetermination"/>
+      <xsd:element name="calendar">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="calendar" type="xom1:adherenceCalendar"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xs:schema targetNamespace="http://www.ibm.com/rules/decisionservice/DigitalRxRuleService/RxActiveReminderDetermination" version="1.0"
+                   xmlns:param="http://www.ibm.com/rules/decisionservice/DigitalRxRuleService/RxActiveReminderDetermination/param"
+                   xmlns:tns="http://www.ibm.com/rules/decisionservice/DigitalRxRuleService/RxActiveReminderDetermination"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <xsd:import namespace="http://www.ibm.com/rules/decisionservice/DigitalRxRuleService/RxActiveReminderDetermination/param"/>
+
+  <xs:complexType name="adherenceCalendar">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="calendarReminders" nillable="true" type="tns:calendarReminder"/>
+      <xs:element minOccurs="0" name="calendarType" type="xs:string"/>
+      <xs:element minOccurs="0" name="patientId" type="xs:string"/>
+      <xs:element minOccurs="0" name="storeNumber" type="xs:string"/>
+      <xs:element name="accountEligible" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="dateofBirth" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="deceasedDate" type="xs:dateTime"/>
+      <xs:element name="isPatientActiveFlag" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="patientCountry" type="xs:string"/>
+      <xs:element minOccurs="0" name="patientProvince" type="xs:string"/>
+      <xs:element minOccurs="0" name="storeProvince" type="xs:string"/>
+      <xs:element minOccurs="0" name="Division" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="calendarReminder">
+    <xs:sequence>
+      <xs:element name="active" type="xs:boolean"/>
+      <xs:element name="autoRefillable" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="dispense" type="tns:dispense"/>
+      <xs:element name="pickupReminderEligible" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="prescription" type="tns:prescription"/>
+      <xs:element name="refillReminderEligible" type="xs:boolean"/>
+      <xs:element name="refillable" type="xs:boolean"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="reminderDates" nillable="true" type="tns:reminderDate"/>
+      <xs:element name="renewable" type="xs:boolean"/>
+      <xs:element name="portalAutoRefillFlag" type="xs:boolean"/>
+      <xs:element name="portalRefillReminderFlag" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="dispense">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="administrationForm" type="xs:string"/>
+      <xs:element minOccurs="0" name="administrationPeriodEnd" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="administrationPeriodStart" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="administrationRouteCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="compound" type="tns:compound"/>
+      <xs:element minOccurs="0" name="consumerId" type="xs:string"/>
+      <xs:element minOccurs="0" name="createTimestamp" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="daysInterval" type="xs:int"/>
+      <xs:element minOccurs="0" name="daysSupply" type="xs:int"/>
+      <xs:element minOccurs="0" name="discontinuedReasonCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="dispenseFulfillmentRefusalReasonCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="dispenseTime" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="dispenseType" type="xs:string"/>
+      <xs:element minOccurs="0" name="dosageInstructionExpiryDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="drugExpirationDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="drugLotNumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="fillStatus" type="xs:string"/>
+      <xs:element minOccurs="0" name="holdReasonCode" type="xs:string"/>
+      <xs:element name="homeDelivery" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="lastUpdate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="packageForm" type="xs:string"/>
+      <xs:element minOccurs="0" name="pickupTime" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="pickupTime2" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="previousDispenseDaysSupply" type="xs:int"/>
+      <xs:element minOccurs="0" name="producerId" type="xs:string"/>
+      <xs:element minOccurs="0" name="professionalService" type="tns:professionalService"/>
+      <xs:element minOccurs="0" name="quantityDispensed" type="xs:double"/>
+      <xs:element minOccurs="0" name="quantityRemaining" type="xs:int"/>
+      <xs:element minOccurs="0" name="resumeReasonCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="sequenceNumber" type="xs:int"/>
+      <xs:element minOccurs="0" name="sigCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="sigDescriptionPatientLanguage" type="xs:string"/>
+      <xs:element minOccurs="0" name="statusChangeReasonCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="statusChangeType" type="xs:string"/>
+      <xs:element minOccurs="0" name="substitutionReason" type="xs:string"/>
+      <xs:element minOccurs="0" name="totalAmountPaid" type="xs:double"/>
+      <xs:element minOccurs="0" name="transactionCancellationReasonText" type="xs:string"/>
+      <xs:element minOccurs="0" name="transactionNumber" type="xs:int"/>
+      <xs:element minOccurs="0" name="transactionSourceCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="pharmacyChannel" type="tns:pharmacyChannel"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="compound">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="consumerId" type="xs:string"/>
+      <xs:element minOccurs="0" name="nameEnglish" type="xs:string"/>
+      <xs:element minOccurs="0" name="nameFrench" type="xs:string"/>
+      <xs:element minOccurs="0" name="preperationdirections" type="xs:string"/>
+      <xs:element minOccurs="0" name="producerId" type="xs:string"/>
+      <xs:element minOccurs="0" name="quantity" type="xs:double"/>
+      <xs:element minOccurs="0" name="schedule" type="xs:string"/>
+      <xs:element minOccurs="0" name="unitOfMeasure" type="xs:string"/>
+      <xs:element minOccurs="0" name="uofMQuantityConversionFactor" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="professionalService">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="consultationLength" type="xs:int"/>
+      <xs:element minOccurs="0" name="consultationTimestamp" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="consumerId" type="xs:string"/>
+      <xs:element minOccurs="0" name="observationTypeCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="producerId" type="xs:string"/>
+      <xs:element minOccurs="0" name="requester" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="pharmacyChannel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="channelType" type="xs:string"/>
+      <xs:element minOccurs="0" name="communicationMode" type="xs:string"/>
+      <xs:element minOccurs="0" name="engagement" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="prescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="administrationForm" type="xs:string"/>
+      <xs:element minOccurs="0" name="administrationPeriodEndDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="administrationPeriodStartDate" type="xs:dateTime"/>
+      <xs:element name="batchFlag" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="consumerId" type="xs:string"/>
+      <xs:element minOccurs="0" name="createTimestamp" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="daysSupplyPrescribed" type="xs:int"/>
+      <xs:element minOccurs="0" name="discontinuedReasonCode" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="dispenses" nillable="true" type="tns:dispense"/>
+      <xs:element minOccurs="0" name="drugTotalDaysOfSupplyCount" type="xs:int"/>
+      <xs:element minOccurs="0" name="drugTrialDaysOfSupplyCount" type="xs:int"/>
+      <xs:element name="drugTrialFlag" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="drugTrialQuantity" type="xs:int"/>
+      <xs:element minOccurs="0" name="fillStatusCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="fillStatusEffectiveDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="fillStatusSubCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="firstDispenseInstruction" type="tns:dispense"/>
+      <xs:element minOccurs="0" name="firstSummaryDispense" type="tns:dispense"/>
+      <xs:element minOccurs="0" name="holdEndDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="holdReasonCode" type="xs:string"/>
+      <xs:element name="inferredPrescriptionFlag" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="lastSummaryDispense" type="tns:dispense"/>
+      <xs:element name="legacyFlag" type="xs:boolean"/>
+      <xs:element name="noMoreDispensesAllowedFlag" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="noSubstitutionReason" type="xs:string"/>
+      <xs:element minOccurs="0" name="numberOfRefills" type="xs:int"/>
+      <xs:element minOccurs="0" name="prescribedCompound" type="tns:compound"/>
+      <xs:element minOccurs="0" name="prescribedDrug" type="tns:drug"/>
+      <xs:element minOccurs="0" name="prescribedPack" type="tns:pack"/>
+      <xs:element minOccurs="0" name="prescriber" type="tns:prescriber"/>
+      <xs:element minOccurs="0" name="prescriptionDate" type="xs:dateTime"/>
+      <xs:element name="prescriptionDispensableFlag" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="prescriptionExpirationDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="prescriptionNumber" type="xs:int"/>
+      <xs:element minOccurs="0" name="prescriptionValidFromDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="producerId" type="xs:string"/>
+      <xs:element minOccurs="0" name="quantityDispensed" type="xs:double"/>
+      <xs:element minOccurs="0" name="quantityPrescribed" type="xs:double"/>
+      <xs:element minOccurs="0" name="refillsRemainingCount" type="xs:int"/>
+      <xs:element minOccurs="0" name="remainingQuantity" type="xs:double"/>
+      <xs:element minOccurs="0" name="renewalReasonCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="responsiblePerson" type="xs:string"/>
+      <xs:element minOccurs="0" name="resumeReasonCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="SIGAdditionalInformation" type="xs:string"/>
+      <xs:element minOccurs="0" name="SIGCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="SIGDescriptionPatientLanguage" type="xs:string"/>
+      <xs:element minOccurs="0" name="statusChangeReasonCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="statusChangeType" type="xs:string"/>
+      <xs:element minOccurs="0" name="substitutionInitiator" type="xs:string"/>
+      <xs:element minOccurs="0" name="totalQuantityAuthorized" type="xs:double"/>
+      <xs:element name="transferableCode" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="treatmentType" type="xs:string"/>
+      <xs:element minOccurs="0" name="updateEffectiveEndDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="updateEffectiveStartDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="updateTimestamp" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="forwardRx" type="tns:forwardRx"/>
+      <xs:element name="isAuthoritative" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="linkedrx" type="tns:linkedRx"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="drug">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="administrationRouteCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="adultDosageMaximumQuantity" type="xs:double"/>
+      <xs:element minOccurs="0" name="adultDosageMinimumQuantity" type="xs:double"/>
+      <xs:element minOccurs="0" name="branddrug" type="xs:string"/>
+      <xs:element minOccurs="0" name="chemicalLabelNameEnglish" type="xs:string"/>
+      <xs:element minOccurs="0" name="chemicalLabelNameFrench" type="xs:string"/>
+      <xs:element minOccurs="0" name="childDosageMaximumQuantity" type="xs:double"/>
+      <xs:element minOccurs="0" name="childDosageMinimumQuantity" type="xs:double"/>
+      <xs:element minOccurs="0" name="colour" type="xs:string"/>
+      <xs:element minOccurs="0" name="consumerId" type="xs:string"/>
+      <xs:element minOccurs="0" name="din" type="xs:string"/>
+      <xs:element minOccurs="0" name="dintype" type="xs:string"/>
+      <xs:element minOccurs="0" name="dosageRange" type="xs:string"/>
+      <xs:element minOccurs="0" name="drugDescription" type="xs:string"/>
+      <xs:element minOccurs="0" name="formvariant" type="xs:int"/>
+      <xs:element name="isdevice" type="xs:boolean"/>
+      <xs:element name="isimmunization" type="xs:boolean"/>
+      <xs:element name="isproprietary" type="xs:boolean"/>
+      <xs:element name="isreportable" type="xs:boolean"/>
+      <xs:element name="iswritten" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="markings" type="xs:string"/>
+      <xs:element minOccurs="0" name="monograph" type="xs:string"/>
+      <xs:element minOccurs="0" name="producerId" type="xs:string"/>
+      <xs:element minOccurs="0" name="productGroup" type="xs:string"/>
+      <xs:element minOccurs="0" name="schedule" type="xs:string"/>
+      <xs:element minOccurs="0" name="shape" type="xs:string"/>
+      <xs:element minOccurs="0" name="tradeNameEnglish" type="xs:string"/>
+      <xs:element minOccurs="0" name="tradeNameFrench" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="pack">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GTIN" type="xs:string"/>
+      <xs:element minOccurs="0" name="autoRefillReminderFlag" type="xs:string"/>
+      <xs:element minOccurs="0" name="pickupReminderFlag" type="xs:string"/>
+      <xs:element minOccurs="0" name="refillReminderFlag" type="xs:string"/>
+      <xs:element minOccurs="0" name="strength" type="xs:string"/>
+      <xs:element minOccurs="0" name="strengthUOMCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="trrFlag" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="prescriber">
+    <xs:sequence>
+      <xs:element name="isMailAddressFlag" type="xs:boolean"/>
+      <xs:element name="isPrimaryAddressFlag" type="xs:boolean"/>
+      <xs:element name="isReauthEmailFlag" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="isReauthFaxFlag" type="xs:string"/>
+      <xs:element name="isReauthPhoneFlag" type="xs:boolean"/>
+      <xs:element name="isReauthVisitFlag" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="forwardRx">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fillStatusCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="prescriptionNumber" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="linkedRx">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="administrationForm" type="xs:string"/>
+      <xs:element minOccurs="0" name="administrationPeriodEndDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="administrationPeriodStartDate" type="xs:dateTime"/>
+      <xs:element name="batchFlag" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="consumerId" type="xs:string"/>
+      <xs:element minOccurs="0" name="createTimestamp" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="daysSupplyPrescribed" type="xs:int"/>
+      <xs:element minOccurs="0" name="discontinuedReasonCode" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="dispenses" nillable="true" type="tns:dispense"/>
+      <xs:element minOccurs="0" name="drugTotalDaysOfSupplyCount" type="xs:int"/>
+      <xs:element minOccurs="0" name="drugTrialDaysOfSupplyCount" type="xs:int"/>
+      <xs:element name="drugTrialFlag" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="drugTrialQuantity" type="xs:int"/>
+      <xs:element minOccurs="0" name="fillStatusCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="fillStatusEffectiveDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="fillStatusSubCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="firstDispenseInstruction" type="tns:dispense"/>
+      <xs:element minOccurs="0" name="firstSummaryDispense" type="tns:dispense"/>
+      <xs:element minOccurs="0" name="holdEndDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="holdReasonCode" type="xs:string"/>
+      <xs:element name="inferredPrescriptionFlag" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="lastSummaryDispense" type="tns:dispense"/>
+      <xs:element name="legacyFlag" type="xs:boolean"/>
+      <xs:element name="noMoreDispensesAllowedFlag" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="noSubstitutionReason" type="xs:string"/>
+      <xs:element minOccurs="0" name="numberOfRefills" type="xs:int"/>
+      <xs:element minOccurs="0" name="prescribedCompound" type="tns:compound"/>
+      <xs:element minOccurs="0" name="prescribedDrug" type="tns:drug"/>
+      <xs:element minOccurs="0" name="prescribedPack" type="tns:pack"/>
+      <xs:element minOccurs="0" name="prescriber" type="tns:prescriber"/>
+      <xs:element minOccurs="0" name="prescriptionDate" type="xs:dateTime"/>
+      <xs:element name="prescriptionDispensableFlag" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="prescriptionExpirationDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="prescriptionNumber" type="xs:int"/>
+      <xs:element minOccurs="0" name="prescriptionValidFromDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="producerId" type="xs:string"/>
+      <xs:element minOccurs="0" name="quantityDispensed" type="xs:double"/>
+      <xs:element minOccurs="0" name="quantityPrescribed" type="xs:double"/>
+      <xs:element minOccurs="0" name="refillsRemainingCount" type="xs:int"/>
+      <xs:element minOccurs="0" name="remainingQuantity" type="xs:double"/>
+      <xs:element minOccurs="0" name="renewalReasonCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="responsiblePerson" type="xs:string"/>
+      <xs:element minOccurs="0" name="resumeReasonCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="SIGAdditionalInformation" type="xs:string"/>
+      <xs:element minOccurs="0" name="SIGCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="SIGDescriptionPatientLanguage" type="xs:string"/>
+      <xs:element minOccurs="0" name="statusChangeReasonCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="statusChangeType" type="xs:string"/>
+      <xs:element minOccurs="0" name="substitutionInitiator" type="xs:string"/>
+      <xs:element minOccurs="0" name="totalQuantityAuthorized" type="xs:double"/>
+      <xs:element name="transferableCode" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="treatmentType" type="xs:string"/>
+      <xs:element minOccurs="0" name="updateEffectiveEndDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="updateEffectiveStartDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="updateTimestamp" type="xs:dateTime"/>
+      <xs:element name="isAuthoritative" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reminderDate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="date" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="reminder" type="xs:string"/>
+      <xs:element name="sequenceNum" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xsd:element name="RxActiveReminderDeterminationRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element form="qualified" maxOccurs="1" minOccurs="0" name="DecisionID" type="xsd:string"/>
+            <xsd:element ref="param:calendar"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="RxActiveReminderDeterminationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element form="qualified" name="DecisionID" type="xsd:string"/>
+            <xsd:element ref="param:calendar"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="RxActiveReminderDeterminationException">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="exception" nillable="false" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="RxActiveReminderDeterminationResponse">
+    <wsdl:part element="dstns:RxActiveReminderDeterminationResponse" name="RxActiveReminderDeterminationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RxActiveReminderDeterminationSoapFault">
+    <wsdl:part element="dstns:RxActiveReminderDeterminationException" name="fault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RxActiveReminderDeterminationRequest">
+    <wsdl:part element="dstns:RxActiveReminderDeterminationRequest" name="RxActiveReminderDeterminationRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="RxActiveReminderDeterminationDecisionService">
+    <wsdl:operation name="RxActiveReminderDetermination">
+      <wsdl:input message="dstns:RxActiveReminderDeterminationRequest" name="RxActiveReminderDeterminationRequest">
+    </wsdl:input>
+      <wsdl:output message="dstns:RxActiveReminderDeterminationResponse" name="RxActiveReminderDeterminationResponse">
+    </wsdl:output>
+      <wsdl:fault message="dstns:RxActiveReminderDeterminationSoapFault" name="RxActiveReminderDeterminationSoapFault">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DigitalRxRuleServiceRxActiveReminderDeterminationBinding" type="dstns:RxActiveReminderDeterminationDecisionService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="RxActiveReminderDetermination">
+      <soap:operation soapAction="RxActiveReminderDetermination" style="document"/>
+      <wsdl:input name="RxActiveReminderDeterminationRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="RxActiveReminderDeterminationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RxActiveReminderDeterminationSoapFault">
+        <soap:fault name="RxActiveReminderDeterminationSoapFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RxActiveReminderDeterminationDecisionService">
+    <wsdl:port binding="dstns:DigitalRxRuleServiceRxActiveReminderDeterminationBinding" name="DigitalRxRuleServiceRxActiveReminderDeterminationPort">
+      <soap:address location="http://10.108.76.44:0095/DecisionService/ws/DigitalRxRuleService/RxActiveReminderDetermination/v75"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:cs="http://shoppersdrugmart.ca/RxHB/DRx/CustomerService" 
+           xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" 
+           xmlns:cse="http://shoppersdrugmart.ca/RxHB/DRx/CSE"
+           xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes" 
+           targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/CustomerService">
+           
+	<xs:import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+	<xs:import namespace="http://www.shoppersdrugmart.ca/message/SDMDataTypes" schemaLocation="SDMDataTypes.xsd"/>
+	<xs:import namespace="http://shoppersdrugmart.ca/RxHB/DRx/CSE" schemaLocation="ChannelServiceEntities.xsd"/>
+	
+	<xs:complexType name="AssociateCustomer">
+		<xs:sequence>
+			<xs:element name="Customer" type="cse:Customer" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Patient" type="ehlth:Patient" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CareRecipient" type="cse:Customer" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AssociateCustomerResponse">
+		<xs:sequence>
+			<xs:element name="Flag" type="sdm:Flag" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Fault" type="cse:Fault" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UpdateCustomer">
+		<xs:sequence>
+			<xs:element name="Customer" type="cse:Customer" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UpdateCustomerResponse">
+		<xs:sequence>
+			<xs:element name="Flag" type="sdm:Flag" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Fault" type="cse:Fault" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GetCustomer">
+		<xs:sequence>
+			<xs:element name="storeNumber" type="sdm:StringValue" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="patientId" type="sdm:IdentityAlphanumeric" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="userId" type="sdm:StringValue" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="userType" type="cse:UserTypeEnum" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GetCustomerResponse">
+		<xs:sequence>
+			<xs:element name="Customer" type="cse:Customer" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Fault" type="cse:Fault" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CreateCustomer">
+		<xs:sequence>
+			<xs:element name="Customer" type="cse:Customer" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Patient" type="ehlth:Patient" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CreateCustomerResponse">
+		<xs:sequence>
+			<xs:element name="Flag" type="sdm:Flag" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Fault" type="cse:Fault" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DissociateCustomer">
+		<xs:sequence>
+			<xs:element name="Customer" type="cse:Customer" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Patient" type="ehlth:Patient" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CareRecipient" type="cse:Customer" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DissociateCustomerResponse">
+		<xs:sequence>
+			<xs:element name="Flag" type="sdm:Flag" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Fault" type="cse:Fault" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="CreateCustomer" type="cs:CreateCustomer"/>
+	<xs:element name="CreateCustomerResponse" type="cs:CreateCustomerResponse"/>
+	<xs:element name="UpdateCustomer" type="cs:UpdateCustomer"/>
+	<xs:element name="UpdateCustomerResponse" type="cs:UpdateCustomerResponse"/>
+	<xs:element name="GetCustomer" type="cs:GetCustomer"/>
+	<xs:element name="GetCustomerResponse" type="cs:GetCustomerResponse"/>
+	<xs:element name="AssociateCustomer" type="cs:AssociateCustomer"/>
+	<xs:element name="AssociateCustomerResponse" type="cs:AssociateCustomerResponse"/>
+	<xs:element name="DissociateCustomer" type="cs:DissociateCustomer"/>
+	<xs:element name="DissociateCustomerResponse" type="cs:DissociateCustomerResponse"/>
+</xs:schema>

@@ -1,0 +1,262 @@
+****************************************************************************************************
+                                 AdverseDrugReaction
+****************************************************************************************************
+
+	ADR 
+         |
+	 |----> ADR_Reaction  ----> ADR_Reaction_Note   
+	 |				    |
+         |				    ----> ADR_Reaction_Drug		
+         |
+         |----> ADR_Note
+                 |   |   |
+                 |   |   |--------> recorder    ---> {Addr, Email, Telecom}
+                 |   |
+                 |   -------------> Supervisor  ---> {Addr, Email, Telecom}
+                 |
+                 |----------------> ?? Dispenser---> {Addr, Email, Telecom}
+
+
+
+         |---> Location    ---> {Addr, Email, Telecom}
+         | 
+         |---> Recorder    ---> {Addr, Email, Telecom}
+         |
+         |---> Supervisor  ---> {Addr, Email, Telecom}
+         |
+         |---> ?? Dispenser---> {Addr, Email, Telecom}
+
+
+
+select distinct   selectString
+
+16 secs]  [Error Code: 904, SQL State: 42000]  ORA-00904: "PTNTADVRSDRGRCTN"."LOCKEY": invalid identifier
+... 1 statement(s) executed, 0 row(s) affected, exec/fetch time: 0.016/0.000 sec  [0 successful, 0 warnings, 1 errors]
+
+
+
+
+select distinct PtntAdvrsDrgRctn.PtntAdvrsDrgRctnKey, 
+	        PtntAdvrsDrgRctnNt.PtntAdvrsDrgRctnNtKey, 
+	        ADRRctn.RctnKey,       
+	        ADRRctnNt.RctnNtKey,     
+ 	        RctnDrug.DrgKey,   
+	        RctnDrugMfctr.MfctrKey, 
+	        RctnDrugMfctrDrgRecall.MfctrDrgRecallKey,
+
+
+
+       ptntAdvrsNtR1S.*,
+       ptntAdvrsNtSuper.*,
+       ptntAdvrsNtSuperCntctMthd.*,
+       ptntAdvrsNtSuperEmail.*,
+       ptntAdvrsNtSuperAddr.*,
+       ptntAdvrsNtSuperTelecom.*,
+
+       ptntAdvrsNtR1R.*,
+       ptntAdvrsNtRec.*,
+       ptntAdvrsNtRecCntctMthd.*,
+       ptntAdvrsNtRecEmail.*,
+       ptntAdvrsNtRecAddr.*,
+       ptntAdvrsNtRecTelecom.*,
+       -----------------------
+
+
+       AdvrsLoc.*,
+       AdvrsLocCntctMthd.*, 
+       AdvrsLocAddr.*,
+       AdvrsLocEmail.*,
+       AdvrsLocTelecom.*, 
+
+       Super.*,
+       SuperCntctMthd.*, 
+       SuperRl.*,
+       SuperAddr.*,
+       SuperEmail.*,
+       SuperTelecom.*, 
+
+       Recorder.*,
+       RcrdrCntctMthd.*,
+       RcrdrRl.*,
+       RcrdrAddr.*,
+       RcrdrEmail.*,
+       RcrdrTelecom.*
+
+
+  from PtntAdvrsDrgRctn PtntAdvrsDrgRctn  
+
+           --=============================================
+           ------------ ptntAdvrsNt BLOCK ----------------   + curr 
+           --=============================================
+	  left outer join PtntAdvrsDrgRctnNt PtntAdvrsDrgRctnNt 
+		       on PtntAdvrsDrgRctn.PtntAdvrsDrgRctnKey = PtntAdvrsDrgRctnNt.PtntAdvrsDrgRctnKey 
+
+
+                left outer join PrsnRl  ptntAdvrsNtR1S
+                             on PtntAdvrsDrgRctnNt.SprvsrKey = ptntAdvrsNtR1S.PrsnRlKey
+
+                      join prsn ptntAdvrsNtSuper    ---> Supervisor
+                        on ptntAdvrsNtR1S.PrsnRlKey = ptntAdvrsNtSuper.PrsnKey
+					       
+ 		             left outer join CntctMthd ptntAdvrsNtSuperCntctMthd  
+		  		          on ptntAdvrsNtSuper.PrsnKey = ptntAdvrsNtSuperCntctMthd.PrsnKey  
+						   
+                             left outer join Email ptntAdvrsNtSuperEmail  
+				          on ptntAdvrsNtSuperCntctMthd.CntctMthdKey = ptntAdvrsNtSuperEmail.EmailKey  
+						   
+                             left outer join Addr ptntAdvrsNtSuperAddr  
+                                          on ptntAdvrsNtSuperCntctMthd.CntctMthdKey = ptntAdvrsNtSuperAddr.AddrKey  
+						   
+                             left outer join Telecom ptntAdvrsNtSuperTelecom  
+			                  on ptntAdvrsNtSuperCntctMthd.CntctMthdKey = ptntAdvrsNtSuperTelecom.TelecomKey  
+               ----------------------------------------------------- 
+
+                left outer join PrsnRl  ptntAdvrsNtR1R
+                             on PtntAdvrsDrgRctnNt.RcrdrKey = ptntAdvrsNtR1R.PrsnRlKey
+
+                      join prsn ptntAdvrsNtRec    ---> Recorder
+                        on ptntAdvrsNtR1R.PrsnRlKey = ptntAdvrsNtRec.PrsnKey
+					       
+ 		             left outer join CntctMthd ptntAdvrsNtRecCntctMthd  
+		  		          on ptntAdvrsNtRec.PrsnKey = ptntAdvrsNtRecCntctMthd.PrsnKey  
+						   
+                             left outer join Email ptntAdvrsNtRecEmail  
+				          on ptntAdvrsNtRecCntctMthd.CntctMthdKey = ptntAdvrsNtRecEmail.EmailKey  
+						   
+                             left outer join Addr ptntAdvrsNtRecAddr  
+                                          on ptntAdvrsNtRecCntctMthd.CntctMthdKey = ptntAdvrsNtRecAddr.AddrKey  
+						   
+                             left outer join Telecom ptntAdvrsNtRecTelecom  
+			                  on ptntAdvrsNtRecCntctMthd.CntctMthdKey = ptntAdvrsNtRecTelecom.TelecomKey  
+               -----------------------------------------------------    
+
+
+
+  	  left outer join Rctn ADRRctn 
+	   	       on PtntAdvrsDrgRctn.PtntAdvrsDrgRctnKey = ADRRctn.PtntAdvrsDrgRctnKey 
+			  
+                     left outer join RctnNt ADRRctnNt                             
+                                  on ADRRctn.RctnKey = ADRRctnNt.RctnKey          
+			            
+	             left outer join DrgRctn DrgRctn                             
+	                          on ADRRctn.RctnKey = DrgRctn.RctnKey          
+			            
+	                        join Drg RctnDrug                           
+	                          on DrgRctn.DrgKey = RctnDrug.DrgKey 
+			            
+	                        join Mfctr RctnDrugMfctr                                 
+           	                  on RctnDrug.MfctrKey = RctnDrugMfctr.MfctrKey 
+			            
+	                           left outer join MfctrDrgRecall RctnDrugMfctrDrgRecall                                 
+	                                        on RctnDrugMfctr.MfctrKey = RctnDrugMfctrDrgRecall.MfctrKey and
+                                                   DrgRctn.DrgKey = RctnDrugMfctrDrgRecall.DrgKey 
+
+         
+          ------------ Advrs Location BLOCK ------------------
+           join Loc AdvrsLoc
+	     on PtntAdvrsDrgRctn.SvcLocKey = AdvrsLoc.LocKey
+
+                left outer join CntctMthd AdvrsLocCntctMthd  
+		             on AdvrsLoc.LocKey = AdvrsLocCntctMthd.LocKey 
+
+
+                left outer join Email AdvrsLocEmail  
+			        on AdvrsLocCntctMthd.CntctMthdKey = AdvrsLocEmail.EmailKey  
+						   
+                left outer join Addr AdvrsLocAddr  
+  		                on AdvrsLocCntctMthd.CntctMthdKey = AdvrsLocAddr.AddrKey  
+						   
+                left outer join Telecom AdvrsLocTelecom  
+			        on AdvrsLocCntctMthd.CntctMthdKey = AdvrsLocTelecom.TelecomKey  
+
+
+           -- curr
+           ------------ Advrs Supervisor BLOCK ----------------
+           join PrsnRl  SuperRl
+             on PtntAdvrsDrgRctn.Sprvsr = SuperRl.PrsnRlKey
+
+           join prsn Super
+             on SuperRl.PrsnRlKey = Super.PrsnKey
+					       
+ 		             left outer join CntctMthd SuperCntctMthd  
+		  		          on Super.PrsnKey = SuperCntctMthd.PrsnKey  
+						   
+                             left outer join Email SuperEmail  
+				          on SuperCntctMthd.CntctMthdKey = SuperEmail.EmailKey  
+						   
+                             left outer join Addr SuperAddr  
+	   		                  on SuperCntctMthd.CntctMthdKey = SuperAddr.AddrKey  
+						   
+                             left outer join Telecom SuperTelecom  
+			                  on SuperCntctMthd.CntctMthdKey = SuperTelecom.TelecomKey  
+
+
+           ------------ Advrs Recorder BLOCK ------------------
+           join PrsnRl  RcrdrRl
+             on PtntAdvrsDrgRctn.Rcrdr = RcrdrRl.PrsnRlKey
+
+           join prsn Recorder
+             on RcrdrRl.PrsnRlKey = Recorder.PrsnKey
+					       
+ 		             left outer join CntctMthd RcrdrCntctMthd  
+		  		          on Recorder.PrsnKey = RcrdrCntctMthd.PrsnKey  
+						   
+                             left outer join Email RcrdrEmail  
+				          on RcrdrCntctMthd.CntctMthdKey = RcrdrEmail.EmailKey  
+						   
+                             left outer join Addr RcrdrAddr  
+	   		                  on RcrdrCntctMthd.CntctMthdKey = RcrdrAddr.AddrKey  
+						   
+                             left outer join Telecom RcrdrTelecom  
+			                  on RcrdrCntctMthd.CntctMthdKey = RcrdrTelecom.TelecomKey  
+
+
+
+  where PtntAdvrsDrgRctn.ptntKey = 1 -- ?  
+  order by PtntAdvrsDrgRctn.PtntAdvrsDrgRctnKey, 
+	   PtntAdvrsDrgRctnNt.PtntAdvrsDrgRctnNtKey, 
+	   ADRRctn.RctnKey,       
+	   ADRRctnNt.RctnNtKey,     
+ 	   RctnDrug.DrgKey,   
+	   RctnDrugMfctr.MfctrKey, 
+	   RctnDrugMfctrDrgRecall.MfctrDrgRecallKey,
+
+           ptntAdvrsNtSuper.PrsnKey,
+           ptntAdvrsNtRec.PrsnKey,
+
+           AdvrsLoc.LocKey,
+           Super.PrsnKey,
+           Recorder.PrsnKey
+
+
+
+
+
+
+*****************************************************************************
+*****************************************************************************
+*****************************************************************************
+
+private final String ptntAdvrsDrgRctnAlias  = "PtntAdvrsDrgRctn" ;
+private final String ptntAdvrsDrgRctnNtAlias   = "PtntAdvrsDrgRctnNt" ;
+private final String adrRctnAlias = "ADRRctn";
+private final String adrRctnNtAlias = "ADRRctnNt" ;
+private final String RctnDrugAlias = "RctnDrug";  	
+private final String rctnDrugMfctrAlias = "RctnDrugMfctr";  	
+private final String rctnDrugMfctrDrgRecallAlias = "RctnDrugMfctrDrgRecall";
+
+String tableAliasList[][] = {
+       {"PtntAdvrsDrgRctn",   "PtntAdvrsDrgRctn"}, 
+       {"PtntAdvrsDrgRctnNt", "PtntAdvrsDrgRctnNt"} ,
+       {"Rctn",               "ADRRctn"} ,
+       {"RctnNt",             "ADRRctnNt"} ,
+       {"Drg",                "RctnDrug"} ,
+       {"Mfctr",              "RctnDrugMfctr"} ,
+       {"MfctrDrgRecall",     "RctnDrugMfctrDrgRecall"} ,
+};
+String selectString = TableColumnSingleton.createSQLSelectFromColumns(tableAliasList);
+
+
+PtntAdvrs seleString : 
+ptnt_Allergy.PTNTKEY as ptnt_Allergy_PTNTKEY , ptnt_Allergy.LOCKEY as ptnt_Allergy_LOCKEY , ptnt_Allergy.DRGKEY as ptnt_Allergy_DRGKEY , ptnt_Allergy.AdvrsTYPKEY as ptnt_Allergy_AdvrsTYPKEY , ptnt_Allergy.AdvrsSVRTYLVLTYPKEY as ptnt_Allergy_AdvrsSVRTYLVLTYPKEY , ptnt_Allergy.AdvrsCONFSTATTYPKEY as ptnt_Allergy_AdvrsCONFSTATTYPKEY , ptnt_Allergy.ALLRGNTYPKEY as ptnt_Allergy_ALLRGNTYPKEY , ptnt_Allergy.PTNTAdvrsKEY as ptnt_Allergy_PTNTAdvrsKEY , ptnt_Allergy.SPRVSRKEY as ptnt_Allergy_SPRVSRKEY , ptnt_Allergy.UPDTRCRDR as ptnt_Allergy_UPDTRCRDR , ptnt_Allergy.RPTRKEY as ptnt_Allergy_RPTRKEY , ptnt_Allergy.RCRDRKEY as ptnt_Allergy_RCRDRKEY , ptnt_Allergy.RXID as ptnt_Allergy_RXID , ptnt_Allergy.NONDRGALLRGN as ptnt_Allergy_NONDRGALLRGN , ptnt_Allergy.SVCLOC as ptnt_Allergy_SVCLOC , ptnt_Allergy.UPDTRSN as ptnt_Allergy_UPDTRSN , ptnt_Allergy.UPDTTIMESTAMP as ptnt_Allergy_UPDTTIMESTAMP , ptnt_Allergy.RPTDT as ptnt_Allergy_RPTDT , ptnt_Allergy.AdvrsSTRTDT as ptnt_Allergy_AdvrsSTRTDT , ptnt_Allergy.DESCRFR as ptnt_Allergy_DESCRFR , ptnt_Allergy.PRDCRID as ptnt_Allergy_PRDCRID , ptnt_Allergy.DESCRENG as ptnt_Allergy_DESCRENG , ptnt_Allergy.CRTTIMESTAMP as ptnt_Allergy_CRTTIMESTAMP , ptnt_Allergy.CNSMRID as ptnt_Allergy_CNSMRID , ptnt_Allergy.INTOLERANCEFLG as ptnt_Allergy_INTOLERANCEFLG , ptnt_Allergy.AdvrsACTFLG as ptnt_Allergy_AdvrsACTFLG
+

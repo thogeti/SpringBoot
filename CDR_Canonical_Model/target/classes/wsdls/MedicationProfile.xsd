@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+    targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/MedicationProfile"
+    xmlns:cse="http://shoppersdrugmart.ca/RxHB/DRx/CSE"
+    xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth"
+    xmlns:mp="http://shoppersdrugmart.ca/RxHB/DRx/MedicationProfile"
+    xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="http://shoppersdrugmart.ca/RxHB/DRx/CSE" schemaLocation="ChannelServiceEntities.xsd"/>
+    <xs:import
+        namespace="http://www.shoppersdrugmart.ca/message/SDMDataTypes" schemaLocation="SDMDataTypes.xsd"/>
+    <xs:import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+    <xs:element name="GetPrescription" type="mp:GetPrescription"/>
+    <xs:complexType name="GetPrescription">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="StoreNumber" type="sdm:StringValue"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="RxNumber" type="sdm:Number"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetPrescriptionResponse" type="mp:GetPrescriptionResponse"/>
+    <xs:complexType name="GetPrescriptionResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="Prescription" type="ehlth:Prescription"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetDispense" type="mp:GetDispense"/>
+    <xs:complexType name="GetDispense">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="StoreNumber" type="sdm:StringValue"/>
+            <xs:element maxOccurs="1" minOccurs="1"
+                name="DispenseNumber" type="sdm:Number"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetDispenseResponse" type="mp:GetDispenseResponse"/>
+    <xs:complexType name="GetDispenseResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="Dispense" type="ehlth:Dispense"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetPrescriptionAdherenceCalendar" type="mp:GetPrescriptionAdherenceCalendar"/>
+    <xs:complexType name="GetPrescriptionAdherenceCalendar">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="StoreNumber" type="sdm:StringValue"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="RxNumber" type="sdm:Number"/>
+            <xs:element maxOccurs="1" minOccurs="1"
+                name="PopulationStrategy" type="cse:PopulationStrategyEnum"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetPrescriptionAdherenceCalendarResponse" type="mp:GetPrescriptionAdherenceCalendarResponse"/>
+    <xs:complexType name="GetPrescriptionAdherenceCalendarResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1"
+                name="AdherenceCalendar" type="cse:adherenceCalendar"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetDispenseAdherenceCalendar" type="mp:GetDispenseAdherenceCalendar"/>
+    <xs:complexType name="GetDispenseAdherenceCalendar">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="StoreNumber" type="sdm:StringValue"/>
+            <xs:element maxOccurs="1" minOccurs="1"
+                name="DispenseNumber" type="sdm:Number"/>
+            <xs:element maxOccurs="1" minOccurs="1"
+                name="PopulationStrategy" type="cse:PopulationStrategyEnum"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetDispenseAdherenceCalendarResponse" type="mp:GetDispenseAdherenceCalendarResponse"/>
+    <xs:complexType name="GetDispenseAdherenceCalendarResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1"
+                name="AdherenceCalendar" type="cse:adherenceCalendar"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetPatientAdherenceCalendar" type="mp:GetPatientAdherenceCalendar"/>
+    <xs:complexType name="GetPatientAdherenceCalendar">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="ActiveFlag" type="sdm:Flag"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="StoreNumber" type="sdm:StringValue"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="PatientId" type="sdm:IdentityAlphanumeric"/>
+            <xs:element maxOccurs="1" minOccurs="1"
+                name="PopulationStrategy" type="cse:PopulationStrategyEnum"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetPatientAdherenceCalendarResponse" type="mp:GetPatientAdherenceCalendarResponse"/>
+    <xs:complexType name="GetPatientAdherenceCalendarResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1"
+                name="AdherenceCalendar" type="cse:adherenceCalendar"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

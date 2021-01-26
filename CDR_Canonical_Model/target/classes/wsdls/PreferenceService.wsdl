@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="PreferenceServiceComponent" targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/PreferenceService" xmlns:pref="http://shoppersdrugmart.ca/RxHB/DRx/Preference" xmlns:tns="http://shoppersdrugmart.ca/RxHB/DRx/PreferenceService" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://shoppersdrugmart.ca/RxHB/DRx/Preference" schemaLocation="PreferenceService.xsd"/>
+		</schema>
+	</wsdl:types>
+	
+	<wsdl:message name="EntityPreferenceRequest">
+		<wsdl:part name="EntityPreferenceRequest" element="pref:EntityPreference"/>
+	</wsdl:message>
+	<wsdl:message name="EntityPreferenceResponse">
+		<wsdl:part name="EntityPreferenceResponse" element="pref:EntityPreferenceResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="PreferencePortType">
+		<wsdl:operation name="setEntityPreference">
+			<wsdl:input name="EntityPreferenceRequest" message="tns:EntityPreferenceRequest"/>
+			<wsdl:output name="EntityPreferenceResponse" message="tns:EntityPreferenceResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="PreferenceBinding" type="tns:PreferencePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="setEntityPreference">
+			<soap:operation soapAction="http://www.sampleAction.com" style="document"/>
+			<wsdl:input name="EntityPreferenceRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="EntityPreferenceResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="PreferenceService">
+		<wsdl:port name="PreferencePortType" binding="tns:PreferenceBinding">
+			<soap:address location="http://shoppersdrugmart.ca/RxHB/DRx/PreferenceService"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

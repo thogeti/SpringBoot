@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2016 rel. 2 (x64) (http://www.altova.com) by Sebastian Darie (SHOPPERS DRUG MART) -->
+<wsdl:definitions xmlns:gers="http://shoppersdrugmart.ca/RxHB/DRx/getEntityRefreshService" xmlns:ger="http://shoppersdrugmart.ca/RxHB/DRx/getEntityRefresh" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/getEntityRefreshService"> 
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+			<import namespace="http://shoppersdrugmart.ca/RxHB/DRx/getEntityRefresh" schemaLocation="getEntityRefresh.xsd"/>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="getEntityRefresh">
+		<wsdl:part name="getEntityRefreshRequest" element="ger:getEntityRefreshRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getEntityRefreshResponse">
+		<wsdl:part name="getEntityRefreshResponse" element="ger:getEntityRefreshResponse"/>
+	</wsdl:message>	
+	<wsdl:portType name="getEntityRefresh">
+		<wsdl:operation name="getEntityRefresh">
+			<wsdl:input name="getEntityRefresh" message="gers:getEntityRefresh"/>
+			<wsdl:output name="getEntityRefreshResponse" message="gers:getEntityRefreshResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="getEntityRefresh" type="gers:getEntityRefresh">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getEntityRefresh">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/getEntityRefresh/getEntityRefresh" style="document"/>
+			<wsdl:input name="getEntityRefresh">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getEntityRefreshResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="getEntityRefresh">
+		<wsdl:port name="getEntityRefresh" binding="gers:getEntityRefresh">
+			<soap:address location="http://shoppersdrugmart.ca/RxHB/DRx/getEntityRefresh"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

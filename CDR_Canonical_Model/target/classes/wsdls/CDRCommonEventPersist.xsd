@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pr="http://shoppersdrugmart.ca/cdr/CDRCommonEventPersist" xmlns:PCE="http://shoppersdrugmart.ca/RxHB/PharmacyCentralEvent" xmlns:be="http://shoppersdrugmart.ca/RxHB/eHealth/BusinessEvent" targetNamespace="http://shoppersdrugmart.ca/cdr/CDRCommonEventPersist" elementFormDefault="qualified">
+	<xs:import namespace="http://shoppersdrugmart.ca/RxHB/PharmacyCentralEvent" schemaLocation="PharmacyCentralEvent.xsd"/>
+	<xs:import schemaLocation="RxHBChannelEvent.xsd"/>
+	<xs:element name="PatientUpsert" type="pr:PatientUpsert"/>
+	<xs:complexType name="PatientUpsert">
+		<xs:sequence>
+			<xs:element name="pharmacyBusinessEvent" type="PCE:PharmacyCentralBusinessEvent" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PrescriptionUpsert" type="pr:PrescriptionUpsert"/>
+	<xs:complexType name="PrescriptionUpsert">
+		<xs:sequence>
+			<xs:element name="pharmacyBusinessEvent" type="PCE:PharmacyCentralBusinessEvent" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DispenseUpsert">
+		<xs:sequence>
+			<xs:element name="pharmacyBusinessEvent" type="PCE:PharmacyCentralBusinessEvent" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PrescriberUpsert" type="pr:PrescriberUpsert"/>
+	<xs:complexType name="PrescriberUpsert">
+		<xs:sequence>
+			<xs:element name="pharmacyBusinessEvent" type="PCE:PharmacyCentralBusinessEvent" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="StoreUpsert" type="pr:StoreUpsert"/>
+	<xs:complexType name="StoreUpsert">
+		<xs:sequence>
+			<xs:element name="pharmacyBusinessEvent" type="PCE:PharmacyCentralBusinessEvent" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="SourceSystem">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DigitalRx"/>
+			<xs:enumeration value="DigitalPharmacyValueAddedService"/>
+			<xs:enumeration value="DigitalPharmacy"/>
+			<xs:enumeration value="PatientContactCenter"/>
+			<xs:enumeration value="Store"/>
+			<xs:enumeration value="IVR"/>
+			<xs:enumeration value="Prescriber"/>
+			<xs:enumeration value="eHealth"/>
+			<xs:enumeration value="Accuro"/>
+			<xs:enumeration value="PatientConsent"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="StoreUpsertResponse" type="pr:StoreUpsertResponse"/>
+	<xs:complexType name="StoreUpsertResponse">
+		<xs:sequence>
+			<xs:element name="response" type="pr:CDRPersistResponse" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PatientUpsertResponse" type="pr:PatientUpsertResponse"/>
+	<xs:complexType name="PatientUpsertResponse">
+		<xs:sequence>
+			<xs:element name="response" type="pr:CDRPersistResponse" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PrescriptionUpsertResponse" type="pr:PrescriptionUpsertResponse"/>
+	<xs:complexType name="PrescriptionUpsertResponse">
+		<xs:sequence>
+			<xs:element name="response" type="pr:CDRPersistResponse" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DispenseUpsertResponse" type="pr:DispenseUpsertResponse"/>
+	<xs:complexType name="DispenseUpsertResponse">
+		<xs:sequence>
+			<xs:element name="response" type="pr:CDRPersistResponse" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PrescriberUpsertResponse" type="pr:PrescriberUpsertResponse"/>
+	<xs:complexType name="PrescriberUpsertResponse">
+		<xs:sequence>
+			<xs:element name="response" type="pr:CDRPersistResponse" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CDRPersistResponse">
+		<xs:sequence>
+			<xs:element name="action" type="RxHBBusinessEventActionEnum" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="subscriptions" type="pr:Subscription" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Subscription">
+		<xs:sequence>
+			<xs:element name="SourceSystem" type="pr:SourceSystem" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="linkedRxNumber" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HW4BEventUpsert">
+		<xs:sequence>
+			<xs:element name="pharmacyBusinessEvent" type="PCE:PharmacyCentralBusinessEvent" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HW4BEventUpsertResponse">
+		<xs:sequence>
+			<xs:element name="response" type="pr:CDRPersistResponse" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="HW4BEventUpsert" type="pr:HW4BEventUpsert"/>
+	<xs:element name="HW4BEventUpsertResponse" type="pr:HW4BEventUpsertResponse"/>
+</xs:schema>

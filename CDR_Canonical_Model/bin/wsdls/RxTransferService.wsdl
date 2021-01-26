@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="RxTransferComponent" 
+                  targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/RxTransferService" 
+                  xmlns:rxt="http://shoppersdrugmart.ca/RxHB/DRx/RxTransfer" 
+                  xmlns:rxts="http://shoppersdrugmart.ca/RxHB/DRx/RxTransferService" 
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+                  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://shoppersdrugmart.ca/RxHB/DRx/RxTransfer" schemaLocation="RxTransferService.xsd"/>
+		</schema>
+	</wsdl:types>
+
+	
+	
+	<wsdl:message name="RxTransferRequest">
+		<wsdl:part name="RxTransferRequest" element="rxt:RxTransfer"/>
+	</wsdl:message>
+	<wsdl:message name="RxTransferResponse">
+		<wsdl:part name="RxTransferResponse" element="rxt:RxTransferResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="RxTransferPortType">
+		<wsdl:operation name="transfer">
+			<wsdl:input name="RxTransferRequest" message="rxts:RxTransferRequest"/>
+			<wsdl:output name="RxTransferResponse" message="rxts:RxTransferResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="RxTransferBinding" type="rxts:RxTransferPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="transfer">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/RxTransferService/transfer" style="document"/>
+			<wsdl:input name="RxTransferRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="RxTransferResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="RxTransferService">
+		<wsdl:port name="RxTransferPortType" binding="rxts:RxTransferBinding">
+			<soap:address location="http://shoppersdrugmart.ca/RxHB/DRx/RxTransferService"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

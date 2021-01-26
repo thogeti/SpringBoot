@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://shoppersdrugmart.ca/RX/TRR/BusinessEventMessageType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:evf="http://shoppersdrugmart.ca/RX/TRR/BusinessEventMessageType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<xsd:element name="QueueNames" type="evf:QueueNames"/>
+	<xsd:complexType name="QueueNames">
+		<xsd:sequence>
+			<xsd:element name="FirstQueue" type="evf:TargetSystemGroup" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="SecondQueue" type="evf:TargetSystemGroup" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="EventEnum">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="AbortCancel"/>
+			<xsd:enumeration value="Data Entry Modify"/>
+			<xsd:enumeration value="Cancel and Log"/>
+			<xsd:enumeration value="AdaptRxLogged"/>
+			<xsd:enumeration value="AdjudicatePostponeTx"/>
+			<xsd:enumeration value="ADR Added"/>
+			<xsd:enumeration value="ADR Deleted"/>
+			<xsd:enumeration value="ADR Note Added"/>
+			<xsd:enumeration value="ADR Note Deleted"/>
+			<xsd:enumeration value="ADR Updated"/>
+			<xsd:enumeration value="Allergy Intolerance Note Added"/>
+			<xsd:enumeration value="Allergy Intolerance Note Deleted"/>
+			<xsd:enumeration value="AutoPostpone"/>
+			<xsd:enumeration value="ClaimAdjusted"/>
+			<xsd:enumeration value="Clinical Profile Allergy Intolerance Added"/>
+			<xsd:enumeration value="Clinical Profile Allergy Intolerance Deleted"/>
+			<xsd:enumeration value="Clinical Profile Allergy Intolerance Updated"/>
+			<xsd:enumeration value="Clinical Profile Medical Condition Added"/>
+			<xsd:enumeration value="Clinical Profile Medical Condition Updated"/>
+			<xsd:enumeration value="Clinical Verification Complete"/>
+			<xsd:enumeration value="CMPT"/>
+			<xsd:enumeration value="CompleteCounselling"/>
+			<xsd:enumeration value="CompoundDataChanged"/>
+			<xsd:enumeration value="Consent Managed"/>
+			<xsd:enumeration value="ContactCreated"/>
+			<xsd:enumeration value="CVAccepted"/>
+			<xsd:enumeration value="CVDeclined"/>
+			<xsd:enumeration value="Data Entry Complete Log"/>
+			<xsd:enumeration value="Data Entry Complete New"/>
+			<xsd:enumeration value="Data Entry Complete Post"/>
+			<xsd:enumeration value="Data Entry Complete Refill"/>
+			<xsd:enumeration value="DataEntrySubmitted"/>
+			<xsd:enumeration value="Defer"/>
+			<xsd:enumeration value="Discontinue Rx Post"/>
+			<xsd:enumeration value="DiscontinueRx"/>
+			<xsd:enumeration value="Display Linkable Prescription Profile"/>
+			<xsd:enumeration value="Display Linked Prescription Details"/>
+			<xsd:enumeration value="Display Medical Condition History"/>
+			<xsd:enumeration value="Display Medical Condition List"/>
+			<xsd:enumeration value="Display Medication Profile"/>
+			<xsd:enumeration value="Display Patient Observation"/>
+			<xsd:enumeration value="Display Patient Reactions"/>
+			<xsd:enumeration value="Display Prescription Details"/>
+			<xsd:enumeration value="Display Provincial Patient"/>
+			<xsd:enumeration value="Display Provincial Patient List"/>
+			<xsd:enumeration value="Display Provincial Prescriber List"/>
+			<xsd:enumeration value="Display Provincial Provider List"/>
+			<xsd:enumeration value="DrugDataChanged"/>
+			<xsd:enumeration value="DUR Management Completed"/>
+			<xsd:enumeration value="DURExecuted"/>
+			<xsd:enumeration value="DVAccepted"/>
+			<xsd:enumeration value="DVDeclined"/>
+			<xsd:enumeration value="Electronic Import"/>
+			<xsd:enumeration value="Get Allergy Intolerance Profile"/>
+			<xsd:enumeration value="Get Allergy Intolerance Record History"/>
+			<xsd:enumeration value="Get Patient Comprehensive Profile"/>
+			<xsd:enumeration value="Link Patient"/>
+			<xsd:enumeration value="Medical Condition Note Added"/>
+			<xsd:enumeration value="Medical Condition Note Deleted"/>
+			<xsd:enumeration value="Patient Added"/>
+			<xsd:enumeration value="Patient Deleted"/>
+			<xsd:enumeration value="Patient Linked"/>
+			<xsd:enumeration value="Patient Merged"/>
+			<xsd:enumeration value="Patient Note Added"/>
+			<xsd:enumeration value="Patient Note Deleted"/>
+			<xsd:enumeration value="Patient Observation Added"/>
+			<xsd:enumeration value="Patient Observation Deleted"/>
+			<xsd:enumeration value="Patient Observation Note Added"/>
+			<xsd:enumeration value="Patient Order Complete"/>
+			<xsd:enumeration value="Patient Order Complete Delete"/>
+			<xsd:enumeration value="Patient Updated"/>
+			<xsd:enumeration value="PatientCounsellingCompleted"/>
+			<xsd:enumeration value="PatientDataChanged"/>
+			<xsd:enumeration value="PCAccepted"/>
+			<xsd:enumeration value="PCDeclined"/>
+			<xsd:enumeration value="PharmacistRenewable"/>
+			<xsd:enumeration value="PostponeTx"/>
+			<xsd:enumeration value="PrescriberDataChanged"/>
+			<xsd:enumeration value="Provincial Patient Added"/>
+			<xsd:enumeration value="RebillClaims"/>
+			<xsd:enumeration value="RefillCreated"/>
+			<xsd:enumeration value="Refusal to Fill"/>
+			<xsd:enumeration value="Refusal To Fill Deleted"/>
+			<xsd:enumeration value="Rx Cancel Complete Delete"/>
+			<xsd:enumeration value="Rx Discontinue"/>
+			<xsd:enumeration value="Rx Log Modified"/>
+			<xsd:enumeration value="Rx Modified Complete Delete"/>
+			<xsd:enumeration value="Rx Note Added"/>
+			<xsd:enumeration value="Rx Note Deleted"/>
+			<xsd:enumeration value="Rx Resumed"/>
+			<xsd:enumeration value="Rx Transferred"/>
+			<xsd:enumeration value="RxAdapted"/>
+			<xsd:enumeration value="RxDataChanged"/>
+			<xsd:enumeration value="RxIntakeSubmitted"/>
+			<xsd:enumeration value="RxLogged"/>
+			<xsd:enumeration value="RxPickUpCompleted"/>
+			<xsd:enumeration value="RxPosted"/>
+			<xsd:enumeration value="RxTransfer"/>
+			<xsd:enumeration value="Search Location"/>
+			<xsd:enumeration value="Search Patient"/>
+			<xsd:enumeration value="Search Pharmacy"/>
+			<xsd:enumeration value="SSF"/>
+			<xsd:enumeration value="StoreDataChanged"/>
+			<xsd:enumeration value="SubmitFilling"/>
+			<xsd:enumeration value="Tx Cancel Complete"/>
+			<xsd:enumeration value="Tx Cancel Complete Delete"/>
+			<xsd:enumeration value="Tx Cancel Complete Post"/>
+			<xsd:enumeration value="Tx Modify Complete Post"/>
+			<xsd:enumeration value="Tx Note Added"/>
+			<xsd:enumeration value="Tx Note Deleted"/>
+			<xsd:enumeration value="TxCancelled"/>
+			<xsd:enumeration value="TxDataChanged"/>
+			<xsd:enumeration value="TxModifyCompleted"/>
+			<xsd:enumeration value="Unauth"/>
+			<xsd:enumeration value="UnauthProcessCreated"/>
+			<xsd:enumeration value="VarianceAdjusted"/>
+			<xsd:enumeration value="HW4B Event Added"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ProcessEnum">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="RxIntake"/>
+			<xsd:enumeration value="DataVerification"/>
+			<xsd:enumeration value="ClinicalVerification"/>
+			<xsd:enumeration value="Fax"/>
+			<xsd:enumeration value="Refill"/>
+			<xsd:enumeration value="Patient"/>
+			<xsd:enumeration value="Reauth"/>
+			<xsd:enumeration value="Prescriber"/>
+			<xsd:enumeration value="AdaptRx"/>
+			<xsd:enumeration value="AutoPostpone"/>
+			<xsd:enumeration value="CMPT"/>
+			<xsd:enumeration value="Compound"/>
+			<xsd:enumeration value="Contact"/>
+			<xsd:enumeration value="DataEntry"/>
+			<xsd:enumeration value="Defer"/>
+			<xsd:enumeration value="Drug"/>
+			<xsd:enumeration value="Event-Framework"/>
+			<xsd:enumeration value="Filling"/>
+			<xsd:enumeration value="PatientCounselling"/>
+			<xsd:enumeration value="PharmacistRenewal"/>
+			<xsd:enumeration value="PickUpAssist"/>
+			<xsd:enumeration value="PostponeTx"/>
+			<xsd:enumeration value="ProductVerification"/>
+			<xsd:enumeration value="RebillClaims"/>
+			<xsd:enumeration value="RxTransfer"/>
+			<xsd:enumeration value="Store"/>
+			<xsd:enumeration value="Opioid"/>
+			<xsd:enumeration value="HW4BEvent"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="StringEntityReference" type="evf:StringEntityReference"/>
+	<xsd:complexType name="StringEntityReference">
+		<xsd:sequence>
+			<xsd:element name="entityId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="entityType" type="evf:EntityTypeEnum" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="entityAction" type="evf:ActionEnum" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="EntityTypeEnum">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Consent"/>
+			<xsd:enumeration value="Patient"/>
+			<xsd:enumeration value="Prescriber"/>
+			<xsd:enumeration value="Store"/>
+			<xsd:enumeration value="Address"/>
+			<xsd:enumeration value="Rx"/>
+			<xsd:enumeration value="Tx"/>
+			<xsd:enumeration value="Drug"/>
+			<xsd:enumeration value="Compound"/>
+			<xsd:enumeration value="Note"/>
+			<xsd:enumeration value="Allergy"/>
+			<xsd:enumeration value="Patient_Coverage"/>
+			<xsd:enumeration value="Drug_Upc"/>
+			<xsd:enumeration value="User"/>
+			<xsd:enumeration value="HW4BEvent"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ActionEnum">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Create"/>
+			<xsd:enumeration value="Update"/>
+			<xsd:enumeration value="Delete"/>
+			<xsd:enumeration value="Query"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="BusinessEventMessage" type="evf:BusinessEventMessage"/>
+	<xsd:complexType name="BusinessEventMessage">
+		<xsd:sequence>
+			<xsd:element name="sourceSystemID" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="sequence" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="sourceSystem" type="evf:SourceSystemEnum" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="targetSystemGroup" type="evf:QueueNames" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="businessEvent" type="evf:BusinessEvent" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="EntityReference" type="evf:EntityReference"/>
+	<xsd:complexType name="EntityReference">
+		<xsd:sequence>
+			<xsd:element name="entityId" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="entityType" type="evf:EntityTypeEnum" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="entityAction" type="evf:ActionEnum" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="SourceSystemEnum">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="HW"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="ParameterKeyValue" type="evf:ParameterKeyValue"/>
+	<xsd:complexType name="ParameterKeyValue">
+		<xsd:sequence>
+			<xsd:element name="key" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="value" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="BusinessEvent" type="evf:BusinessEvent"/>
+	<xsd:complexType name="BusinessEvent">
+		<xsd:sequence>
+			<xsd:element name="previousCorrelationID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="businessProcess" type="evf:ProcessEnum" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="correlationEntity" type="evf:EntityReference" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="entity" type="evf:EntityReference" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="eventName" type="evf:EventEnum" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="parameters" type="evf:ParameterKeyValue" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="userReference" type="evf:StringEntityReference" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="causedByEvent" type="evf:EventEnum" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="TargetSystemGroup">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ODSLogicalQueue"/>
+			<xsd:enumeration value="EHealthLogicalQueue"/>
+			<xsd:enumeration value="ErrorMessageLogicalQueue"/>
+			<xsd:enumeration value="FileSystem"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

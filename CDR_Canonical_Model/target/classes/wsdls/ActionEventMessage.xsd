@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2016 (x64) (http://www.altova.com) by Shantanu Raje (SHOPPERS DRUG MART INC) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:svcmp="http://shoppersdrugmart.ca/RxHB/DRx/svcmp" 
+           xmlns:svcds="http://shoppersdrugmart.ca/RxHB/DRx/svcds" 
+           xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes"
+           xmlns:cse="http://shoppersdrugmart.ca/RxHB/DRx/CSE" 
+           xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+           xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+           xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+           xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+           xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth">
+	<xs:import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+	<xs:import namespace="http://www.shoppersdrugmart.ca/message/SDMDataTypes" schemaLocation="SDMDataTypes.xsd"/>
+	<xs:element name="ActionEventMessage" type="ActionEventMessage"/>
+	<xs:complexType name="ActionEventMessage">
+		<xs:annotation>
+			<xs:documentation>The Message structure passed from CDR/Digital Rx to the Store</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="messageId" type="sdm:StringValue" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The unique identifier for the message</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="storeNumber" type="sdm:StringValue" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="banner" type="sdm:StringValue" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The banner that the pharmacy operates under ie: Shoppers Drug Mart, Loblaw etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="createTimestamp" type="sdm:Timestamp" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The timestamp when the message was created.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="actionEvent" type="ActionEvent" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The Action Event that is being communicated.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sourceChannel" type="ehlth:PharmacyChannel" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The Channel that initiated the message ie: Digital Pharmacy, Patient Contact Centre, Store, IVR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="RxHBBusinessEventEntityType">
+		<xs:annotation>
+			<xs:documentation>RxHB Business Event Entity Type Enum - Defined for various event entity type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Allergy"/>
+			<xs:enumeration value="Compound"/>
+			<xs:enumeration value="Consent"/>
+			<xs:enumeration value="Dispense"/>
+			<xs:enumeration value="Dispenser"/>
+			<xs:enumeration value="Drug"/>
+			<xs:enumeration value="Note"/>
+			<xs:enumeration value="Pack"/>
+			<xs:enumeration value="Patient"/>
+			<xs:enumeration value="Prescriber"/>
+			<xs:enumeration value="Prescription"/>
+			<xs:enumeration value="Store"/>
+			<xs:enumeration value="AdverseDrugReaction"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="ActionEvent" type="ActionEvent"/>
+	<xs:complexType name="ActionEvent">
+		<xs:annotation>
+			<xs:documentation>The Action that is being communicated.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="actionEventType" type="ActionEventType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The type of action. ie: Refill, Renew</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="actionBusinessEntity" type="actionBusinessEntity" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ActionEventType">
+		<xs:annotation>
+			<xs:documentation>The Enum used to describe the Action Event Type ie: Refill or Renew</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Refill"/>
+			<xs:enumeration value="Renew"/>
+			<xs:enumeration value="EntityRefresh"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="actionBusinessEntity" type="actionBusinessEntity"/>
+	<xs:complexType name="actionBusinessEntity">
+		<xs:sequence>
+			<xs:element name="businessEntityId" type="sdm:IdentityAlphanumeric" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="businessEntityType" type="RxHBBusinessEventEntityType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="numberOfMonths" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="refreshLevel" type="ehlth:PopulationStrategyEnum" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

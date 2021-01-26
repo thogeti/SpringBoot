@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:err="http://www.shoppersdrugmart.ca/message/ErrorXML" xmlns:eg="http://www.shoppersdrugmart.ca/message/EnterpriseGlossary" xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes" targetNamespace="http://www.shoppersdrugmart.ca/message/ErrorXML">
+	<xs:annotation>
+		<xs:documentation>Version 2.3</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.shoppersdrugmart.ca/message/EnterpriseGlossary" schemaLocation="EnterpriseGlossary.xsd"/>
+	<xs:element name="ErrorHeader" type="err:ErrorHeader"/>
+	<xs:complexType name="ErrorHeader">
+		<xs:annotation>
+			<xs:documentation>This is the header information for the error which is applicable to all error messages thrown.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DestinationApp" type="eg:DestinationApp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is the name of the system which would have been the recipient of the message if an exception was not thrown.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DirectionType" type="eg:DirectionType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>If this error message was part of a web service then this attribute defines the direction of the error. For example "Request".</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Encoding" type="eg:Encoding" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is the encoding of the text in the error message, for example UTF-8 or UTF-16.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Identifier" type="eg:Identifier" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The system generated unique identifier for the message. This should be populated using a type 4 UUID generating algorithm.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InputFileName" type="eg:InputFileName" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>If the error was thrown due to a file, this element will capture the relevant file name.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MediaType" type="eg:MediaType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This the attribute previously known as "MIME-TYPE". It is an industry standard way of identifying the content type of the message. For example "application/xml".</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MessageProcessor" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is the identification of the platform that processed the message. This would be the "Host Name" for Web Message Broker and "Serial Number and Domain Name" for Data Power.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MessageType" type="eg:MessageType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is the type of message that was thrown. This may become an enumeration in later versions of this schema. For example:
+MQ, SOAP, REST</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProcessingComponent" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is header of the Error Message that contains information that is specific to the Error. This includes an identifier, a description, the source of the error and the type of error.  Associated to the Error Message will be one or more error message details.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RelatedErrorID" type="eg:RelatedErrorID" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>This is a UUID which can be used to reference any other message. For example if two messages are related, each of the messages can be related to one another.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ServiceName" type="eg:ServiceName" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is the SOA service name that threw the exception.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Severity" type="eg:Severity" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is the severity of the exception from 0-3, 3 being most severe.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SourceApp" type="eg:SourceApp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is the name of the application that threw the exception.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="State" type="eg:State" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is the "state" of the error message which defines in which part of the process lifecycle the error has reached. For example "New" or "Assigned".</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TimeStamp" type="eg:ErrorHeaderTimeStamp" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is the W3C Standard datetime which defines when the error message was created. An example of a datetime is "2014-10-08T14:28:35-4:00".</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ErrorDetail" type="err:ErrorDetail"/>
+	<xs:complexType name="ErrorDetail">
+		<xs:annotation>
+			<xs:documentation>This is the granular detail of the message which contains all of the information related to the specifics of the error.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Category" type="eg:Category" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is the category of the error message.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CompleteException" type="eg:CompleteException" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is the detailed stack trace that was thrown by the exception.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ErrorMessageSummary" type="eg:ErrorMessageSummary" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is the summary of the error message. Usually the first section of the stack trace.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ErrorNumber" type="eg:ErrorNumber" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is the error number that was generated with the exception.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ErrorSourceComponent" type="eg:ErrorSourceComponent" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is the component of the system that threw the exception.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NameValuePair" type="eg:NameValuePair" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SequenceID" type="eg:SequenceID" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is a sequential number starting from 1 to enable identification of the sort order of the ErrorDetail records within the ErorrMessage.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xPath" type="eg:XPath" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>If the error is identifiable via an xpath expression, that expression should be populated here. For example if the xml does not validate against the schema.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ErrorMessage" type="err:ErrorMessage"/>
+	<xs:complexType name="ErrorMessage">
+		<xs:annotation>
+			<xs:documentation>This is the root node of the Error Message Schema</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ErrorHeader" type="err:ErrorHeader" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ErrorDetail" type="err:ErrorDetail" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ErrorCategory">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Security"/>
+			<xs:enumeration value="Service"/>
+			<xs:enumeration value="Application"/>
+			<xs:enumeration value="UnexpectedServiceInterruption"/>
+			<xs:enumeration value="ApplicationIntegrity"/>
+			<xs:enumeration value="BusinessRule"/>
+			<xs:enumeration value="BusinessPermission"/>
+			<xs:enumeration value="BusinessRuleComposite"/>
+			<xs:enumeration value="InputViolation"/>
+			<xs:enumeration value="Validation"/>
+			<xs:enumeration value="System"/>
+			<xs:enumeration value="ApplicationDisabled"/>
+			<xs:enumeration value="DataSourceAccess"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TransportMechanism">
+		<xs:annotation>
+			<xs:documentation>The type of message that was generated.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="REST"/>
+			<xs:enumeration value="SFTP"/>
+			<xs:enumeration value="FTP"/>
+			<xs:enumeration value="ODBC"/>
+			<xs:enumeration value="JDBC"/>
+			<xs:enumeration value="JMS"/>
+			<xs:enumeration value="SOAP"/>
+			<xs:enumeration value="MQ"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ErrorSeverity">
+		<xs:annotation>
+			<xs:documentation>The Severity of the Error.  Rated on a scale of 1 - 4 where 1 is the most severe and 4 is the least severe.
+1 - Fatal
+2 - Critical
+3 - Minor
+4 - Info</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Fatal">
+				<xs:annotation>
+					<xs:documentation>Most Severe - Fatal</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Critical">
+				<xs:annotation>
+					<xs:documentation>Quite Severe - Critical</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Minor">
+				<xs:annotation>
+					<xs:documentation>Moderately Severe - Minor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Informational">
+				<xs:annotation>
+					<xs:documentation>Least Severe - Informational</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="State">
+		<xs:annotation>
+			<xs:documentation>New,
+Assigned,
+In Progress,
+Pending,
+Resolved,
+Closed,
+Cancelled</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="New"/>
+			<xs:enumeration value="Assigned"/>
+			<xs:enumeration value="In Progress"/>
+			<xs:enumeration value="Pending"/>
+			<xs:enumeration value="Resolved"/>
+			<xs:enumeration value="Closed"/>
+			<xs:enumeration value="Cancelled"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Direction">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Request"/>
+			<xs:enumeration value="Response"/>
+			<xs:enumeration value="Event"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

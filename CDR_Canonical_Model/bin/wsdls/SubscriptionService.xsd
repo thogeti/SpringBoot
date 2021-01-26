@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+    targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/SubscriptionService"
+    xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes"
+    xmlns:ss="http://shoppersdrugmart.ca/RxHB/DRx/SubscriptionService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import
+        namespace="http://www.shoppersdrugmart.ca/message/SDMDataTypes" schemaLocation="SDMDataTypes.xsd"/>
+    <xs:element name="SubscribeToPatient" type="ss:SubscribeToPatient"/>
+    <xs:complexType name="SubscribeToPatient">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="StoreNumber" type="sdm:StringValue"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="PatientId" type="sdm:IdentityAlphanumeric"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="SubscribeToPatientResponse" type="ss:SubscribeToPatientResponse"/>
+    <xs:complexType name="SubscribeToPatientResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="Flag" type="sdm:Flag"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="SubscribeToRx" type="ss:SubscribeToRx"/>
+    <xs:complexType name="SubscribeToRx">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="StoreNumber" type="sdm:StringValue"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="RxNumber" type="sdm:Number"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="SubscribeToRxResponse" type="ss:SubscribeToRxResponse"/>
+    <xs:complexType name="SubscribeToRxResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="Flag" type="sdm:Flag"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="UnsubscribeToPatient" type="ss:UnsubscribeToPatient"/>
+    <xs:complexType name="UnsubscribeToPatient">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="StoreNumber" type="sdm:StringValue"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="PatientId" type="sdm:IdentityAlphanumeric"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="UnsubscribeToPatientResponse" type="ss:UnsubscribeToPatientResponse"/>
+    <xs:complexType name="UnsubscribeToPatientResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="Flag" type="sdm:Flag"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="UnsubscribeToRx" type="ss:UnsubscribeToRx"/>
+    <xs:complexType name="UnsubscribeToRx">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="StoreNumber" type="sdm:StringValue"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="RxNumber" type="sdm:Number"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="UnsubscribeToRxResponse" type="ss:UnsubscribeToRxResponse"/>
+    <xs:complexType name="UnsubscribeToRxResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="Flag" type="sdm:Flag"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:CSE="http://shoppersdrugmart.ca/RxHB/DRx/CSE" xmlns:BE="http://shoppersdrugmart.ca/RxHB/eHealthBusinessEvent" xmlns:cse="http://shoppersdrugmart.ca/RxHB/DRx/CSE" xmlns:eHBE="http://shoppersdrugmart.ca/RxHB/eHealthBException" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" xmlns:err="http://www.shoppersdrugmart.ca/message/ErrorXML" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/CSE">
+	<xs:import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+	<xs:import namespace="http://www.shoppersdrugmart.ca/message/SDMDataTypes" schemaLocation="SDMDataTypes.xsd"/>
+	<xs:import namespace="http://www.shoppersdrugmart.ca/message/ErrorXML" schemaLocation="CanonicalError.xsd"/>
+	<xs:simpleType name="AccountStatusEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Active"/>
+			<xs:enumeration value="Locked"/>
+			<xs:enumeration value="Pasive"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="adherenceCalendar" type="CSE:adherenceCalendar"/>
+	<xs:complexType name="adherenceCalendar">
+		<xs:sequence>
+			<xs:element name="storeNumber" type="sdm:StringValue"/>
+			<xs:element name="calendarType" type="CSE:CalendarTypeEnum"/>
+			<xs:element name="patientId" type="sdm:IdentityAlphanumeric" minOccurs="0"/>
+			<xs:element name="accountEligible" type="sdm:Flag" minOccurs="0"/>
+			<xs:element name="calendarReminder" type="CSE:CalendarReminder" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+		<xs:element name="adherenceEligibility" type="CSE:AdherenceEligibility"/>
+	<xs:complexType name="AdherenceEligibility">
+		<xs:sequence>
+			<xs:element name="storeNumber" type="sdm:StringValue" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="patientId" type="sdm:IdentityAlphanumeric" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="accountEligible" type="sdm:Flag" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eligibilityReminder" type="CSE:EligibilityReminder" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CalendarReminder" type="CSE:CalendarReminder"/>
+	<xs:complexType name="CalendarReminder">
+		<xs:sequence>
+			<xs:element name="prescription" type="ehlth:Prescription"/>
+			<xs:element name="isRefillReminderEligible" type="sdm:Flag"/>
+			<xs:element name="isPickupReminderEligible" type="sdm:Flag"/>
+			<xs:element name="isAutoRefillEligible" type="sdm:Flag"/>
+			<xs:element name="isActive" type="sdm:Flag"/>
+			<xs:element name="reminderDate" type="CSE:ReminderDate" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="dispense" type="ehlth:Dispense" minOccurs="0"/>
+			<xs:element name="isRefillEligible" type="sdm:Flag"/>
+			<xs:element name="isRenewalEligible" type="sdm:Flag"/>
+			<xs:element name="portalAutoRefillFlag" type="sdm:Flag" minOccurs="0"/>
+			<xs:element name="portalRefillReminderFlag" type="sdm:Flag" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CalendarReminderEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AutoRefill"/>
+			<xs:enumeration value="RefillReminder"/>
+			<xs:enumeration value="RefillWindowStart"/>
+			<xs:enumeration value="PickupReminder"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CalendarTypeEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PatientCalendar"/>
+			<xs:enumeration value="PrescriptionCalendar"/>
+			<xs:enumeration value="DispenseCalendar"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="CoverageCard" type="CSE:CoverageCard"/>
+	<xs:complexType name="CoverageCard">
+		<xs:sequence>
+			<xs:element name="cardFront" type="sdm:Image"/>
+			<xs:element name="cardBack" type="sdm:Image"/>
+			<xs:element name="groupNumber" type="sdm:IdentityAlphanumeric"/>
+			<xs:element name="planNumber" type="sdm:IdentityAlphanumeric"/>
+			<xs:element name="carrierName" type="xs:Name"/>
+			<xs:element name="isActive" type="sdm:Flag"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Customer" type="CSE:Customer"/>
+	<xs:complexType name="Customer">
+		<xs:annotation>
+			<xs:documentation>The customer information including the
+                preference information that will be passed from consumer channel.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="customerid" type="sdm:StringValue" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Natural identifier for customer,  uniqueness provided by source system (DRx) , Created during pre-registration phase.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="email" type="sdm:StringValue" minOccurs="0"/>
+			<xs:element name="phonenumber" type="sdm:StringValue" minOccurs="0"/>
+			<xs:element name="preference" type="CSE:Preference" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Note: the preference still needs
+                        to be defined by the LCL Digital.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="patient" type="ehlth:Patient" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="language" type="sdm:StringValue" minOccurs="0"/>
+			<xs:element name="userId" type="sdm:StringValue" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>User identifier, natural key, uniqueness provided by DRx Users table, once online subscriber is verified (3 step process) verification process includes association with the patient.  </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="userType" type="CSE:UserTypeEnum" minOccurs="0"/>
+			<xs:element name="person" type="ehlth:Person" minOccurs="0"/>
+			<xs:element name="optimumNumber" type="sdm:StringValue" minOccurs="0"/>
+			<xs:element name="creationTimestamp" type="sdm:Timestamp" minOccurs="0"/>
+			<xs:element name="requestSource" type="sdm:StringValue" minOccurs="0"/>
+			<xs:element name="deactivationReason" type="sdm:StringValue" minOccurs="0"/>
+			<xs:element name="SourceChannel" type="ehlth:PharmacyChannel" minOccurs="0"/>
+			<xs:element name="detailedNotification" type="sdm:Count" minOccurs="0"/>
+			<xs:element name="lastLoginTimestamp" type="sdm:Timestamp" minOccurs="0"/>
+			<xs:element name="registrationReminderId" type="sdm:StringValue" minOccurs="0"/>
+			<xs:element name="succesfullLoginAttempt" type="sdm:Count" minOccurs="0"/>
+			<xs:element name="status" type="CSE:AccountStatusEnum" minOccurs="0"/>
+			<xs:element name="version" type="sdm:Count" minOccurs="0"/>
+			<xs:element name="patientVerification" type="CSE:PatientVerificationEnum" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Defines where the patient is verified, 
+Pre-registered =  Delta/HW Store
+Kroll Store
+Mapple
+RDx  = Digital Pharmacy</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verificationChannel" type="ehlth:PharmacyChannel" minOccurs="0"/>
+			<xs:element name="division" type="ehlth:Division" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="EligibilityReminder" type="CSE:EligibilityReminder"/>
+	<xs:complexType name="EligibilityReminder">
+		<xs:sequence>
+			<xs:element name="prescriptionNumber" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="isRefillEligible" type="sdm:Flag" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="isAutoRefillEligible" type="sdm:Flag" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="portalAutoRefillFlag" type="sdm:Flag" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="EntityType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Patient"/>
+			<xs:enumeration value="Rx"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PatientVerificationEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Delta Store"/>
+			<xs:enumeration value="DRx"/>
+			<xs:enumeration value="Mapple"/>
+			<xs:enumeration value="Kroll Store"/>
+			<xs:enumeration value="HWNG Store"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PopulationStrategyEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ByRefWithTree"/>
+			<xs:enumeration value="ByRefWithEntity"/>
+			<xs:enumeration value="ByValWithTree"/>
+			<xs:enumeration value="ByValWithEntity"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="Preference" type="CSE:Preference"/>
+	<xs:complexType name="Preference">
+		<xs:annotation>
+			<xs:documentation>The preference information that Customer
+                is associated with.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="issubscribedtomarketinginfr" type="sdm:Flag" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>isSubscribedToMarketingInFr - the
+                        customer is subcribed to the marketing in French
+                        language or not. (Note: bothe
+                        subscribedToMarketingInEn and
+                        subscribedToMarketingInFr can be true)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="issubscribedtomarketinginen" type="sdm:Flag" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>isSubscribedToMarketingInEn - the
+                        customer is subcribed to the marketing in
+                        English language or not.(Note: bothe
+                        subscribedToMarketingInEn and
+                        subscribedToMarketingInFr can be true)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="iscommunicationoptionbyemail" type="sdm:Flag" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>isCommunicationOptionByEmail - the
+                        customer would like email communcation for the
+                        notification or not. (Note: bothe
+                        communicationOptionByEmail and
+                        communicationOptionBySms can be true)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="iscommunicationoptionbysms" type="sdm:Flag" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>isCommunicationOptionBySms - the
+                        customer would like SMS communcation for the
+                        notification or not. (Note: bothe
+                        communicationOptionByEmail and
+                        communicationOptionBySms can be true)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultcommunicationmethod" type="sdm:StringValue" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>defaultCommunicationMethod - the
+                        default communication method if not specified.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isnotificationdetailshowingdrug" type="sdm:Flag" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>isNotificationDetailShowingDrug -
+                        the detail notification message shows the drug
+                        information or not.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isautoreminderselected" type="sdm:Flag" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>isAutoReminderSelected - has the
+                        customer chosen the auto
+                        refillReminder/pickupReminder or not. (Note: as
+                        we dicussed, this is the only flag that is
+                        applicable to all the auto reminders)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="callWhenReadyFlag" type="sdm:Flag" minOccurs="0"/>
+			<xs:element name="emailNotification" type="sdm:Flag" minOccurs="0"/>
+			<xs:element name="emailFillNotification" type="sdm:Flag" minOccurs="0"/>
+			<xs:element name="emailPickupNotification" type="sdm:Flag" minOccurs="0"/>
+			<xs:element name="smsFillNotification" type="sdm:Flag" minOccurs="0"/>
+			<xs:element name="emailMarketing" type="sdm:Flag" minOccurs="0"/>
+			<xs:element name="smsNotification" type="sdm:Flag" minOccurs="0"/>
+			<xs:element name="smsPickupNotification" type="sdm:Flag" minOccurs="0"/>
+			<xs:element name="lastUpdateTimestamp" type="sdm:Timestamp" minOccurs="0"/>
+			<xs:element name="globalAutoFill" type="sdm:Number" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="QueryCriteria" type="CSE:QueryCriteria"/>
+	<xs:complexType name="QueryCriteria">
+		<xs:sequence>
+			<xs:element name="firstName" type="sdm:StringValue" minOccurs="0"/>
+			<xs:element name="lastName" type="sdm:StringValue" minOccurs="0"/>
+			<xs:element name="phoneNumber" type="sdm:PhoneNumber" minOccurs="0"/>
+			<xs:element name="dateOfBirth" type="xs:date" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="RefillRequest" type="CSE:RefillRequest"/>
+	<xs:complexType name="RefillRequest">
+		<xs:sequence>
+			<xs:element name="batchIdentifier" type="sdm:StringValue" minOccurs="0"/>
+			<xs:element name="correlationId" type="sdm:StringValue" minOccurs="0"/>
+			<xs:element name="eventName" type="ehlth:EventEnum" minOccurs="0"/>
+			<xs:element name="fillRequestId" type="sdm:StringValue" minOccurs="0"/>
+			<xs:element name="fillRequestStatus" type="sdm:StringValue" minOccurs="0"/>
+			<xs:element name="fillRequestType" type="sdm:StringValue" minOccurs="0"/>
+			<xs:element name="lastModifiedTimestamp" type="sdm:Timestamp" minOccurs="0"/>
+			<xs:element name="promisedTimestamp" type="sdm:Timestamp" minOccurs="0"/>
+			<xs:element name="requestTimestamp" type="sdm:Timestamp" minOccurs="0"/>
+			<xs:element name="retryCount" type="sdm:Count" minOccurs="0"/>
+			<xs:element name="userId" type="sdm:StringValue" minOccurs="0"/>
+			<xs:element name="verificationState" type="CSE:VerificationStateEnum" minOccurs="0"/>
+			<xs:element name="version" type="sdm:Count" minOccurs="0"/>
+			<xs:element name="storeNumber" type="sdm:StringValue" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Used to enforce uniqueness for Rx identifier in order to link it to RefillRequest </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="prescriptionNumber" type="sdm:StringValue" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Used to link Rx  to RefillRequest for Barch Request.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ReminderDate" type="CSE:ReminderDate"/>
+	<xs:complexType name="ReminderDate">
+		<xs:sequence>
+			<xs:element name="reminder" type="CSE:CalendarReminderEnum"/>
+			<xs:element name="sequenceNum" type="xs:int"/>
+			<xs:element name="date" type="sdm:Timestamp"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="RxRefillWindow" type="CSE:RxRefillWindow"/>
+	<xs:complexType name="RxRefillWindow">
+		<xs:sequence>
+			<xs:element name="startdate" type="sdm:Timestamp" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>startDate - Date field registering
+                        the first date when a request to refill a
+                        prescription can be submitted.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="enddate" type="sdm:Timestamp" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>endDate - Date field registering
+                        the last  date when a request to refill a
+                        prescription can be submitted.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rx" type="ehlth:Prescription">
+				<xs:annotation>
+					<xs:documentation>rx - the prescription needs to be refilled.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isrefillable" type="sdm:Flag"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="UpdatePreferenceEntityBySourceChannel" type="CSE:UpdatePreferenceEntityBySourceChannel"/>
+	<xs:complexType name="UpdatePreferenceEntityBySourceChannel">
+		<xs:sequence>
+			<xs:element name="entityId" type="sdm:IdentityAlphanumeric" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Co-PatientId or Prescription Number. Both Ids uniqueness is enforced by StoreNumber </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="entityType" type="CSE:EntityType" minOccurs="0"/>
+			<xs:element name="storeNumber" type="sdm:StringValue" minOccurs="0"/>
+			<xs:element name="autoRefillFlag" type="sdm:Flag" minOccurs="0"/>
+			<xs:element name="pickupReminderFlag" type="sdm:Flag" minOccurs="0"/>
+			<xs:element name="globalAutoFill" type="sdm:Number" minOccurs="0"/>
+			<xs:element name="sourceChannel" type="ehlth:PharmacyChannel" minOccurs="0"/>
+			<xs:element name="lastUpdateTimestamp" type="sdm:Timestamp" minOccurs="0"/>
+			<xs:element name="garConfirmationStatus" type="sdm:StringValue" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="UserTypeEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Employee"/>
+			<xs:enumeration value="Guest"/>
+			<xs:enumeration value="PreRegCustomer"/>
+			<xs:enumeration value="UnverifiedCaregiver"/>
+			<xs:enumeration value="VerifiedCaregiver"/>
+			<xs:enumeration value="VerifiedCustomer"/>
+			<xs:enumeration value="UnverifiedCustomer"/>
+			<xs:enumeration value="Customer"/>
+			<xs:enumeration value="RegisteredCustomer"/>
+			<xs:enumeration value="Caregiver"/>
+			<xs:enumeration value="Patient"/>
+			<xs:enumeration value="Unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VerificationStateEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PreRegCustomer"/>
+			<xs:enumeration value="VerifiedCustomer"/>
+			<xs:enumeration value="UnverifiedCustomer"/>
+			<xs:enumeration value="Employee"/>
+			<xs:enumeration value="Guest"/>
+			<xs:enumeration value="UnverifiedCaregiver"/>
+			<xs:enumeration value="VerifiedCaregiver"/>
+			<xs:enumeration value="Customer"/>
+			<xs:enumeration value="RegisteredCustomer"/>
+			<xs:enumeration value="Caregiver"/>
+			<xs:enumeration value="Unknown"/>
+			<xs:enumeration value="Patient"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="Fault" type="CSE:Fault"/>
+	<xs:complexType name="Fault">
+		<xs:sequence>
+			<xs:element name="faultcode" type="sdm:StringValue" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="faultstring" type="sdm:StringValue" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ErrorMessage" type="err:ErrorMessage" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

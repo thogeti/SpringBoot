@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+    targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/HealthCareCoverageProvider"
+    xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth"
+    xmlns:hccp="http://shoppersdrugmart.ca/RxHB/DRx/HealthCareCoverageProvider"
+    xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+    <xs:import
+        namespace="http://www.shoppersdrugmart.ca/message/SDMDataTypes" schemaLocation="SDMDataTypes.xsd"/>
+    <xs:element name="GetCoverageCard" type="hccp:GetCoverageCard"/>
+    <xs:complexType name="GetCoverageCard">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="StoreNumber" type="sdm:StringValue"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="PatientId" type="sdm:IdentityAlphanumeric"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetCoverageCardResponse" type="hccp:GetCoverageCardResponse"/>
+    <xs:complexType name="GetCoverageCardResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0"
+                name="InsuranceCoverage" type="ehlth:InsuranceCoverage"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetMasterCardList" type="hccp:GetMasterCardList"/>
+    <xs:complexType name="GetMasterCardList">
+        <xs:sequence/>
+    </xs:complexType>
+    <xs:element name="GetMasterCardListResponse" type="hccp:GetMasterCardListResponse"/>
+    <xs:complexType name="GetMasterCardListResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0"
+                name="CoverageCard" type="ehlth:CoverageCard"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

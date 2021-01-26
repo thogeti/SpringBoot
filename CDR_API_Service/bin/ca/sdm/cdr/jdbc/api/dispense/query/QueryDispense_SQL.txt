@@ -1,0 +1,542 @@
+Dispense    0005
+---------
+    |
+    |       0010
+    |-----> Compound(cmpnd) 0012                            0014       0016       0017            0018
+    |            |------->> List(CompoundIngredients) ----> Pack ----> Drug ---> Drug_Mfctr  ---> Drug_MfctrDrgRecall 
+    |                                                                     | ---> Molecule
+    |            
+    |                                                  
+    |       0020
+    |-----> Initiator(Initr)
+    |           |
+    |           |----> 0022 {Addr, Email, Telecom}
+    |           |
+    |           |----> 0024 ProfessionalRegistration
+    |
+    |
+    |       0030
+    |-----> Location(txLoc)
+    |             |----> 0032 {Addr, Email, Telecom}
+    |             |
+    |             |----> 0034 Store ???
+    |
+    |       0040
+    |-----> Dispenser ---> ???
+    |
+    |
+    |
+    |       0050              0052      0053             0054
+    |-----> Pack(txPack) ---> Drug ---> Drug_Mfctr  ---> Drug_MfctrDrgRecall 
+    |                            | ---> Molecule
+    |
+    |
+    |        0060
+    |------> DosageForm  ??
+    |
+    |        0070
+    |----->> List(Notes) TxNt
+    |        ____________
+    |            |   |   |--------> 0072 recorder    ---> {Addr, Email, Telecom}
+    |            |   |
+    |            |   -------------> 0074 Supervisor  ---> {Addr, Email, Telecom}
+    |            |
+    |            |----------------> 0076 Location    ---> {Addr, Email, Telecom}
+    |
+    |
+    |        0080
+    |------> Supervisor(txSuper) ---> {Addr, Email, Telecom}
+    |
+    |
+    |        0090  
+    |------> Recorder(txRec) ---> {Addr, Email, Telecom}
+    |
+    |
+    |
+    |
+    |        0100
+    |------> ProfessionalService(PrfsnlSvc)
+    |        ______________________________       
+    |          |       |        |          |--> 0110 Location -------------> 0115 {Addr, Email, Telecom}
+    |          |       |        |                  
+    |          |       |        |-------------> 0120 MedicalPractitioner --> 0125 {Addr, Email, Telecom}
+    |          |       |
+    |          |       |----------------------> 0130 Supervisor  ----------> 0135 {Addr, Email, Telecom}
+    |          |      
+    |          |----------------------------->> 0140 List(Notes) PrfsnlSvcNt
+    |                                           ____________
+    |                                           |   |   |--------> 0143 recorder    ---> {Addr, Email, Telecom}
+    |                                           |   |
+    |                                           |   -------------> 0146 Supervisor  ---> {Addr, Email, Telecom}
+    |                                           |
+    |                                           |----------------> 0148 Location    ---> {Addr, Email, Telecom}
+    |
+    |
+    |------> PrescriptionHoldReasonTypeDisplay   ???
+    |------> PrescriptionResumeReasonTypeDisplay ???  
+
+
+
+
+select distinct
+       tx.*,               -- 0005
+
+       cmpnd.*,            -- 0010
+       CmpndIngrdnt.*,     -- 0012
+       CmpIngrPack.*,      -- 0014
+       CmpIngrPackDrg.*,   -- 0016
+       cipgMfctr.*,        -- 0017
+       cipgMfctrRecall.*,  -- 0018
+       cmpndDrgMlcl.*,
+
+       Initr.*,            -- 0020
+       prsnInitr.*,
+       txInitrCntctMthd.*,
+       txInitrEmail.*,     -- 0022
+       txInitrAddr.*,
+       txInitrTelecom.*,
+
+       txLoc.*,            -- 0030
+       txLocCntctMthd.*,
+       txLocEmail.*,       -- 0032
+       txLocAddr.*,
+       txLocTelecom.*,
+
+       txPack.*,           -- 0050
+       txPackDrg.*,        -- 0052
+       txDrugMfctr.*,      -- 0053
+       txDrugMfctrRecall.*,
+       txPackDrgMlcl.*,
+       txSUOMT.*,
+
+       TxNt.*,             -- 0070
+       TxNtRLS.*,
+       TxNtSuper.*,        -- 0074
+       TxNtSuperCntctMthd.*,
+       txNtSuperEmail.*,
+       txNtSuperAddr.*,
+       txNtSuperTelecom.*,
+
+
+       TxNtRLR.*,
+       txNtRec.*,          -- 0072
+       txNtRecCntctMthd.*,
+       txNtRecEmail.*,
+       txNtRecAddr.*,
+       txNtRecTelecom.*,
+
+       txNtLoc.*,          -- 0076
+       txNtLocCntctMthd.*,
+       txLocNtEmail.*,
+       txLocNtAddr.*,
+       txLocNtTelecom.*,
+
+       txPrsnRLS.*,
+       txSuper.*,          -- 0080
+       txSuperCntctMthd.*,
+       txSuperEmail.*,
+       txSuperAddr.*,
+       txSuperTelecom.*,
+
+       txPrsnRLR.*,
+       txRec.*,            -- 0090
+       txRecCntctMthd.*,
+       txRecEmail.*,
+       txRecAddr.*,
+       txRecTelecom.*,
+
+
+-- ProfessionalService Location:
+PrfsnlSvc.*,               -- 0100
+PrfsnlSvcLoc.*,            -- 0110
+PssLocCntctMthd.*,
+PssLocEmail.*,
+PssLocAddr.*,
+PssLocTelecom.*,
+
+-- ProfessionalService MedicalPractitioner:
+MedPrct.*,                 -- 0120 
+MedPrctp.*,
+MedPrctCntctMthd.*,
+MedPrctpEmail.*,
+MedPrctpAddr.*,
+MedPrctpTelecom.*,
+
+-- ProfessionalService Supervisor:
+PssRL.*,
+PssSuper.*,                -- 0130 
+PssSuperCntctMthd.*,
+PssSuperEmail.*,
+PssSuperAddr.*,
+PssSuperTelecom.*,
+
+
+-- ProfessionalService Note Supervisor:
+PrfsnlSvcNt.*,             -- 0140 
+PrfsnlSvcNtRLS.*,
+PrfsnlSvcNtS.*,            -- 0146
+PrfsnlSvcNtCMS.*,
+PrfsnlSvcNtSEmail.*,
+PrfsnlSvcNtSAddr.*,
+PrfsnlSvcNtSTelecom.*,
+
+-- ProfessionalService Note Recorder:
+PrfsnlSvcNtRLR.*,
+PrfsnlSvcNtR.*,            -- 0143 
+PrfsnlSvcNtCMR.*,
+PrfsnlSvcNtREmail.*,
+PrfsnlSvcNtRAddr.*,
+PrfsnlSvcNtRTelecom.*,
+
+-- ProfessionalService Note Location:
+PrfsnlSvcNtLoc.*,          -- 0148 
+PrfsnlSvcNtLocCM.*,
+PrfsnlSvcNtLocEmail.*,
+PrfsnlSvcNtLocAddr.*,
+PrfsnlSvcNtLocTelecom.*
+
+
+
+  from tx tx
+
+          ------------ tx Compound BLOCK ----------------   
+          join cmpnd  cmpnd
+            on tx.cmpndkey = cmpnd.cmpndkey
+
+          join CmpndIngrdnt CmpndIngrdnt
+            on cmpnd.CmpndKey = CmpndIngrdnt.CmpndKey
+
+          join Pack CmpIngrPack
+            on CmpndIngrdnt.packKey = CmpIngrPack.packKey
+
+          join drg CmpIngrPackDrg
+            on CmpIngrPack.DrgKey = CmpIngrPackDrg.DrgKey
+
+          join Mfctr cipgMfctr                         
+            on CmpIngrPackDrg.MfctrKey = cipgMfctr.MfctrKey
+
+              left outer join MfctrDrgRecall cipgMfctrRecall  
+                      on cipgMfctr.MfctrKey = cipgMfctrRecall.MfctrKey and 
+                         CmpIngrPackDrg.DrgKey = cipgMfctrRecall.DrgKey 
+
+          join Mlcl cmpndDrgMlcl
+            on CmpIngrPackDrg.DrgKey = cmpndDrgMlcl.DrgKey
+
+          join StrngthUOMTyp cdmSUOMT
+            on cmpndDrgMlcl.StrngthUOMTypKey = cdmSUOMT.StrngthUOMTypKey
+
+
+
+          ------------ tx Initiator BLOCK ----------------   
+          join PrsnRl Initr
+            on tx.InitrKey = Initr.PrsnRlKey
+
+          join prsn prsnInitr
+            on Initr.PrsnRlKey = prsnInitr.PrsnKey
+					       
+               left outer join CntctMthd txInitrCntctMthd  
+	                    on prsnInitr.PrsnKey = txInitrCntctMthd.PrsnKey  
+						   
+               left outer join Email txInitrEmail
+			    on txInitrCntctMthd.CntctMthdKey = txInitrEmail.EmailKey  
+						   
+               left outer join Addr txInitrAddr
+                            on txInitrCntctMthd.CntctMthdKey = txInitrAddr.AddrKey  
+						   
+               left outer join Telecom txInitrTelecom
+                            on txInitrCntctMthd.CntctMthdKey = txInitrTelecom.TelecomKey  
+
+
+
+          ------------ tx Location BLOCK ------------------
+          join Loc txLoc
+	    on tx.LocKey = txLoc.LocKey
+
+                left outer join CntctMthd txLocCntctMthd  
+		             on txLoc.LocKey = txLocCntctMthd.LocKey 
+
+                left outer join Email txLocEmail
+			     on txLocCntctMthd.CntctMthdKey = txLocEmail.EmailKey  
+						   
+                left outer join Addr txLocAddr
+  		             on txLocCntctMthd.CntctMthdKey = txLocAddr.AddrKey  
+						   
+                left outer join Telecom txLocTelecom
+			     on txLocCntctMthd.CntctMthdKey = txLocTelecom.TelecomKey  
+
+
+          ------------ tx Pack BLOCK  ---------------------------
+          join Pack txPack
+            on tx.packKey = txPack.packKey
+
+          join drg txPackDrg
+            on txPack.DrgKey = txPackDrg.DrgKey
+
+          join Mfctr txDrugMfctr                         
+            on txPackDrg.MfctrKey = txDrugMfctr.MfctrKey
+
+                  left outer join MfctrDrgRecall txDrugMfctrRecall  
+                               on txDrugMfctr.MfctrKey = txDrugMfctrRecall.MfctrKey and
+                                  txPackDrg.DrgKey = txDrugMfctrRecall.DrgKey 
+
+          join Mlcl txPackDrgMlcl
+            on txPackDrg.DrgKey = txPackDrgMlcl.DrgKey
+
+          join StrngthUOMTyp txSUOMT
+            on txPackDrgMlcl.StrngthUOMTypKey = txSUOMT.StrngthUOMTypKey
+
+
+          --=====================================================
+          --             0070 tx Note BLOCK  
+          --=====================================================
+          left outer join TxNt TxNt
+                  on tx.TxKey = TxNt.TxKey
+
+                left outer join PrsnRl  TxNtRLS
+                             on TxNt.SprvsrKey = TxNtRLS.PrsnRlKey
+
+                      join prsn TxNtSuper  ----> 0074 Supervisor
+                        on TxNtRLS.PrsnRlKey = TxNtSuper.PrsnKey
+					       
+ 		             left outer join CntctMthd TxNtSuperCntctMthd  
+		  		          on TxNtSuper.PrsnKey = TxNtSuperCntctMthd.PrsnKey  
+						   
+                             left outer join Email txNtSuperEmail  
+				          on TxNtSuperCntctMthd.CntctMthdKey = txNtSuperEmail.EmailKey  
+						   
+                             left outer join Addr txNtSuperAddr  
+                                          on TxNtSuperCntctMthd.CntctMthdKey = txNtSuperAddr.AddrKey  
+						   
+                             left outer join Telecom txNtSuperTelecom  
+			                  on TxNtSuperCntctMthd.CntctMthdKey = txNtSuperTelecom.TelecomKey  
+                ----------------------------------------------------- 
+
+                left outer join PrsnRl  TxNtRLR
+                             on txNt.RcrdrKey = txNtRLR.PrsnRlKey
+
+                      join prsn txNtRec   ----> 0072 Recorder
+                        on txNtRLR.PrsnRlKey = txNtRec.PrsnKey
+					       
+ 		             left outer join CntctMthd txNtRecCntctMthd  
+		  		          on txNtRec.PrsnKey = txNtRecCntctMthd.PrsnKey  
+						   
+                             left outer join Email txNtRecEmail  
+				          on txNtRecCntctMthd.CntctMthdKey = txNtRecEmail.EmailKey  
+						   
+                             left outer join Addr txNtRecAddr  
+                                          on txNtRecCntctMthd.CntctMthdKey = txNtRecAddr.AddrKey  
+						   
+                             left outer join Telecom txNtRecTelecom  
+			                  on txNtRecCntctMthd.CntctMthdKey = txNtRecTelecom.TelecomKey  
+                ----------------------------------------------------------- 
+
+                left outer join loc txNtLoc -- 0076
+                             on TxNt.LocKey = txNtLoc.LocKey
+
+                     left outer join CntctMthd txNtLocCntctMthd  
+	  	                on txNtLoc.LocKey = txNtLocCntctMthd.LocKey 
+
+                     left outer join Email txLocNtEmail
+			        on txNtLocCntctMthd.CntctMthdKey = txLocNtEmail.EmailKey  
+						   
+                     left outer join Addr txLocNtAddr
+  		                on txNtLocCntctMthd.CntctMthdKey = txLocNtAddr.AddrKey  
+						   
+                     left outer join Telecom txLocNtTelecom
+			        on txNtLocCntctMthd.CntctMthdKey = txLocNtTelecom.TelecomKey  
+                ----------------------------------------------------------- 
+
+
+
+          ------------ tx Supervisor BLOCK  ----------------------
+          left outer join PrsnRl txPrsnRLS
+                  on tx.SprvsrKey = txPrsnRLS.PrsnRlKey
+
+          join prsn txSuper
+            on txPrsnRLS.PrsnRlKey = txSuper.PrsnKey
+					       
+               left outer join CntctMthd txSuperCntctMthd  
+	                    on txSuper.PrsnKey = txSuperCntctMthd.PrsnKey  
+						   
+               left outer join Email txSuperEmail
+			    on txSuperCntctMthd.CntctMthdKey = txSuperEmail.EmailKey  
+						   
+               left outer join Addr txSuperAddr
+                            on txSuperCntctMthd.CntctMthdKey = txSuperAddr.AddrKey  
+						   
+               left outer join Telecom txSuperTelecom
+                            on txSuperCntctMthd.CntctMthdKey = txSuperTelecom.TelecomKey  
+
+
+          ------------ tx Recorder BLOCK  ----------------------
+          left outer join PrsnRl  txPrsnRLR
+                       on tx.RcrdrKey = txPrsnRLS.PrsnRlKey
+
+          join prsn txRec 
+                 on txPrsnRLR.PrsnRlKey = txRec.PrsnKey
+					       
+ 		    left outer join CntctMthd txRecCntctMthd
+  		                 on txRec.PrsnKey = txRecCntctMthd.PrsnKey  
+						   
+                    left outer join Email txRecEmail
+		                 on txRecCntctMthd.CntctMthdKey = txRecEmail.EmailKey  
+						   
+                    left outer join Addr  txRecAddr
+                                 on txRecCntctMthd.CntctMthdKey = txRecAddr.AddrKey  
+						   
+                    left outer join Telecom txRecTelecom  
+			         on txRecCntctMthd.CntctMthdKey = txRecTelecom.TelecomKey  
+
+
+          --=====================================================
+          --           0100 ProfessionalService
+          --=====================================================
+          join PrfsnlSvc PrfsnlSvc
+            on tx.TxKey = PrfsnlSvc.TxKey
+
+          ----------------- 0110 ProfessionalService Location --------
+          left outer join Loc PrfsnlSvcLoc
+                  on PrfsnlSvc.LocKey = PrfsnlSvcLoc.LocKey
+
+                  left outer join CntctMthd PssLocCntctMthd
+	 	             on PrfsnlSvcLoc.LocKey = PssLocCntctMthd.LocKey 
+
+                  left outer join Email PssLocEmail
+			     on PssLocCntctMthd.CntctMthdKey = PssLocEmail.EmailKey  
+						   
+                  left outer join Addr PssLocAddr
+  		             on PssLocCntctMthd.CntctMthdKey = PssLocAddr.AddrKey  
+						   
+                  left outer join Telecom PssLocTelecom
+			     on PssLocCntctMthd.CntctMthdKey = PssLocTelecom.TelecomKey  
+
+
+          ----------------- 0120 ProfessionalService MedicalPractitioner --------
+          left outer join PrsnRl MedPrct
+                  on PrfsnlSvc.SvcPrvdrKey = MedPrct.PrsnRlKey
+
+               join prsn MedPrctp
+                 on MedPrct.PrsnRlKey = MedPrctp.PrsnKey
+					       
+ 		    left outer join CntctMthd MedPrctCntctMthd
+  		                 on MedPrctp.PrsnKey = MedPrctCntctMthd.PrsnKey  
+						   
+                    left outer join Email MedPrctpEmail
+		                 on MedPrctCntctMthd.CntctMthdKey = MedPrctpEmail.EmailKey  
+						   
+                    left outer join Addr  MedPrctpAddr
+                                 on MedPrctCntctMthd.CntctMthdKey = MedPrctpAddr.AddrKey  
+						   
+                    left outer join Telecom MedPrctpTelecom  
+			         on MedPrctCntctMthd.CntctMthdKey = MedPrctpTelecom.TelecomKey  
+
+
+          ----------------- 0130 ProfessionalService Supervisor --------
+          left outer join PrsnRl PssRL
+                  on PrfsnlSvc.SprvsrKey = PssRL.PrsnRlKey
+
+          join prsn PssSuper
+            on PssRL.PrsnRlKey = PssSuper.PrsnKey
+					       
+               left outer join CntctMthd PssSuperCntctMthd  
+	                    on PssSuper.PrsnKey = PssSuperCntctMthd.PrsnKey  
+						   
+               left outer join Email PssSuperEmail
+			    on PssSuperCntctMthd.CntctMthdKey = PssSuperEmail.EmailKey  
+						   
+               left outer join Addr PssSuperAddr
+                            on PssSuperCntctMthd.CntctMthdKey = PssSuperAddr.AddrKey  
+						   
+               left outer join Telecom PssSuperTelecom
+                            on PssSuperCntctMthd.CntctMthdKey = PssSuperTelecom.TelecomKey  
+
+
+          ---------------------------------------------------
+          ----------- 0140 ProfessionalService Note ---------
+          ---------------------------------------------------
+          left outer join PrfsnlSvcNt PrfsnlSvcNt
+                  on PrfsnlSvc.PrfsnlSvcKey = PrfsnlSvcNt.PrfsnlSvcKey
+
+                left outer join PrsnRl  PrfsnlSvcNtRLS
+                        on PrfsnlSvcNt.SprvsrKey = PrfsnlSvcNtRLS.PrsnRlKey
+
+                      join prsn PrfsnlSvcNtS  ----> 0146 Supervisor
+                        on PrfsnlSvcNtRLS.PrsnRlKey = PrfsnlSvcNtS.PrsnKey
+					       
+ 		             left outer join CntctMthd PrfsnlSvcNtCMS
+		  		          on PrfsnlSvcNtS.PrsnKey = PrfsnlSvcNtCMS.PrsnKey  
+						   
+                             left outer join Email PrfsnlSvcNtSEmail  
+				          on PrfsnlSvcNtCMS.CntctMthdKey = PrfsnlSvcNtSEmail.EmailKey  
+						   
+                             left outer join Addr PrfsnlSvcNtSAddr  
+                                          on PrfsnlSvcNtCMS.CntctMthdKey = PrfsnlSvcNtSAddr.AddrKey  
+						   
+                             left outer join Telecom PrfsnlSvcNtSTelecom  
+			                  on PrfsnlSvcNtCMS.CntctMthdKey = PrfsnlSvcNtSTelecom.TelecomKey  
+           ----------------------------------------------------- 
+
+                left outer join PrsnRl  PrfsnlSvcNtRLR
+                             on PrfsnlSvcNt.RcrdrKey = PrfsnlSvcNtRLR.PrsnRlKey
+
+                      join prsn PrfsnlSvcNtR  ----> 0143 Recorder
+                        on PrfsnlSvcNtRLR.PrsnRlKey = PrfsnlSvcNtR.PrsnKey
+					       
+ 		             left outer join CntctMthd PrfsnlSvcNtCMR
+		  		          on PrfsnlSvcNtR.PrsnKey = PrfsnlSvcNtCMR.PrsnKey  
+						   
+                             left outer join Email PrfsnlSvcNtREmail
+				          on PrfsnlSvcNtCMR.CntctMthdKey = PrfsnlSvcNtREmail.EmailKey  
+						   
+                             left outer join Addr PrfsnlSvcNtRAddr  
+                                          on PrfsnlSvcNtCMR.CntctMthdKey = PrfsnlSvcNtRAddr.AddrKey  
+						   
+                             left outer join Telecom PrfsnlSvcNtRTelecom  
+			                  on PrfsnlSvcNtCMR.CntctMthdKey = PrfsnlSvcNtRTelecom.TelecomKey  
+           ----------------------------------------------------- 
+
+                 left outer join Loc  PrfsnlSvcNtLoc -- 0148 
+                         on PrfsnlSvcNt.LocKey = PrfsnlSvcNtLoc.LocKey
+
+                        left outer join CntctMthd PrfsnlSvcNtLocCM 
+	  	                on PrfsnlSvcNtLoc.LocKey = PrfsnlSvcNtLocCM.LocKey 
+
+                        left outer join Email PrfsnlSvcNtLocEmail
+	  		        on PrfsnlSvcNtLocCM.CntctMthdKey = PrfsnlSvcNtLocEmail.EmailKey  
+						   
+                        left outer join Addr PrfsnlSvcNtLocAddr
+  		                on PrfsnlSvcNtLocCM.CntctMthdKey = PrfsnlSvcNtLocAddr.AddrKey  
+						   
+                        left outer join Telecom PrfsnlSvcNtLocTelecom
+			        on PrfsnlSvcNtLocCM.CntctMthdKey = PrfsnlSvcNtLocTelecom.TelecomKey  
+
+
+ where tx.TxKey = 1 -- ?
+ order by tx.TxKey,
+
+          tx.cmpndkey,
+          CmpndIngrdnt.CmpndKey,
+
+          tx.InitrKey,
+          tx.LocKey,
+          tx.packKey,
+
+          TxNt.TxKey,
+          TxNtSuper.PrsnKey,
+          TxNtRec.PrsnKey,
+          txNtLoc.LocKey,           -- 0076
+
+          txSuper.PrsnKey,
+          txRec.PrsnKey,
+
+          PrfsnlSvc.PrfsnlSvcKey,   -- 0100 ProfessionalService
+          PrfsnlSvcLoc.LocKey,      -- 0110 ProfessionalService Location
+          MedPrctp.PrsnKey,         -- 0120 ProfessionalService MedicalPractitioner
+          PssSuper.PrsnKey,         -- 0130 ProfessionalService Supervisor
+
+          PrfsnlSvcNt.PrfsnlSvcKey, -- 0140 ProfessionalService Notes
+          PrfsnlSvcNtS.PrsnKey,     -- 0146 ProfessionalService Note Supervisor
+          PrfsnlSvcNtR.PrsnKey,     -- 0143 ProfessionalService Note Recorder
+          PrfsnlSvcNtLocCM.LocKey   -- 0148 ProfessionalService Note Location
+
+

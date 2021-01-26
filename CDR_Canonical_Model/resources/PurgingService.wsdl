@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://shoppersdrugmart.ca/cdr/PurgingService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PurgingService" targetNamespace="http://shoppersdrugmart.ca/cdr/PurgingService">
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified" targetNamespace="http://shoppersdrugmart.ca/cdr/PurgingService">
+			<xsd:element name="PurgingProcess">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="BusinessProcess" type="xsd:string" />
+						<xsd:element name="RequestTimestamp" type="xsd:dateTime"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="PurgingProcessResponseDetail">
+				<xsd:sequence>
+					<xsd:element name="StoreNumber" type="xsd:string" maxOccurs="1" minOccurs="1" />
+					<xsd:element name="PrescriptionNumber" type="xsd:int" maxOccurs="1" minOccurs="0"/>
+					<xsd:element name="DispenseNumber" type="xsd:int" maxOccurs="1" minOccurs="0"/>
+					<xsd:element name="Subscription" type="xsd:string" maxOccurs="unbounded" minOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="PurgingProcessResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="PurgingProcessResponseDetail"
+							type="tns:PurgingProcessResponseDetail" maxOccurs="unbounded"
+							minOccurs="1" />
+						<xsd:element name="TotalDeletedPrescription"
+							type="xsd:int">
+						</xsd:element>
+						<xsd:element name="TotalDeletedDispense" type="xsd:int">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	
+	
+	<wsdl:message name="PurgingRequest">
+		<wsdl:part name="PurgingProcess" element="tns:PurgingProcess"/>
+	</wsdl:message>
+	
+	
+	<wsdl:message name="PurgingResponse">
+		<wsdl:part name="PurgingProcessResponse" element="tns:PurgingProcessResponse"/>
+	</wsdl:message>
+	
+	
+	<wsdl:portType name="PurgingService">
+		<wsdl:operation name="purgingProcess">
+			<wsdl:input message="tns:PurgingRequest"/>
+			<wsdl:output message="tns:PurgingResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="PurgingService" type="tns:PurgingService">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="purgingProcess">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/cdr/PurgingService/purgingProcess"/>	
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="PurgingService">
+		<wsdl:port binding="tns:PurgingService" name="PurgingService">
+			<soap:address location="http://shoppersdrugmart.ca/cdr/PurgingService"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

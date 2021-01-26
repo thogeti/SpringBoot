@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2015 rel. 3 (x64) (http://www.altova.com) by DC (SHOPPERS DRUG MART INC) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://shoppersdrugmart.ca/RxHB/DRx/MedicationReview" xmlns:cse="http://shoppersdrugmart.ca/RxHB/DRx/CSE" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" xmlns:odm="http://www.ibm.com/rules/decisionservice/MedcheckRuleApp/MedcheckDetermination" targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/MedicationReview" version="2.9.2">
+	<xs:import namespace="http://www.ibm.com/rules/decisionservice/MedcheckRuleApp/MedcheckDetermination" schemaLocation="ODMPayload.xsd"/>
+	<xs:element name="GetMedicationReviewRequest" type="tns:GetMedicationReviewRequest"/>
+	<xs:complexType name="GetMedicationReviewRequest">
+		<xs:sequence>
+			<xs:element name="MedIn" type="odm:medCheckIn" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetMedicationReviewResponse" type="tns:GetMedicationReviewResponse"/>
+	<xs:complexType name="GetMedicationReviewResponse">
+		<xs:sequence>
+			<xs:element name="MedOut" type="odm:medCheckOut" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="HealthCareCoverageProviderService" targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/HealthCareCoverageProviderService" xmlns:hccps="http://shoppersdrugmart.ca/RxHB/DRx/HealthCareCoverageProviderService" xmlns:hccp="http://shoppersdrugmart.ca/RxHB/DRx/HealthCareCoverageProvider" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" >
+
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+			<import namespace="http://shoppersdrugmart.ca/RxHB/DRx/HealthCareCoverageProvider" schemaLocation="HealthCareCoverageProvider.xsd"/>
+		</schema>
+	</wsdl:types>
+
+	<wsdl:message name="GetCoverageCard">
+		<wsdl:part name="GetCoverageCard" element="hccp:GetCoverageCard"/>
+	</wsdl:message>
+	<wsdl:message name="GetCoverageCardResponse">
+		<wsdl:part name="GetCoverageCardResponse" element="hccp:GetCoverageCardResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetMasterCardList">
+		<wsdl:part name="GetMasterCardList" element="hccp:GetMasterCardList"/>
+	</wsdl:message>
+	<wsdl:message name="GetMasterCardListResponse">
+		<wsdl:part name="GetMasterCardListResponse" element="hccp:GetMasterCardListResponse"/>
+	</wsdl:message>	
+	
+	<wsdl:portType name="HealthCareCoverageProvider">
+		<wsdl:operation name="getCoverageCard">
+			<wsdl:input name="GetCoverageCard" message="hccps:GetCoverageCard"/>
+			<wsdl:output name="GetCoverageCardResponse" message="hccps:GetCoverageCardResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getMasterCardList">
+			<wsdl:input name="GetMasterCardList" message="hccps:GetMasterCardList"/>
+			<wsdl:output name="GetMasterCardListResponse" message="hccps:GetMasterCardListResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	
+	<wsdl:binding name="HealthCareCoverageProvider" type="hccps:HealthCareCoverageProvider">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getCoverageCard">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/HealthCareCoverageProvider/getCoverageCard" style="document"/>
+			<wsdl:input name="GetCoverageCard">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="GetCoverageCardResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getMasterCardList">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/HealthCareCoverageProvider/getMasterCardList" style="document"/>
+			<wsdl:input name="GetMasterCardList">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="GetMasterCardListResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="HealthCareCoverageProviderService">
+		<wsdl:port name="HealthCareCoverageProvider" binding="hccps:HealthCareCoverageProvider">
+			<soap:address location="http://shoppersdrugmart.ca/RxHB/DRx/HealthCareCoverageProviderService"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

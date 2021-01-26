@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="PatientService">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/.apt_src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-test-sources/test-annotations"/>
+        <dependent-module archiveName="CDR_Canonical_Model-${release}.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/CDR_Canonical_Model/CDR_Canonical_Model">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CDR_Exception_Framework-${release}.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/CDR_Exception_Framework/CDR_Exception_Framework">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CDR_CommonUtil-${release}.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/CDR_CommonUtil/CDR_CommonUtil">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CDR_API_Service-${release}.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/CDR_API_Service/CDR_API_Service">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="PatientService"/>
+        <property name="java-output-path" value="/PatientService/build/classes"/>
+    </wb-module>
+</project-modules>

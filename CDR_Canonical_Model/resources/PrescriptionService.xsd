@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:prsc="http://shoppersdrugmart.ca/RxHB/DRx/Prescription" xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" xmlns:CSE="http://shoppersdrugmart.ca/RxHB/DRx/CSE" targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/Prescription">
+	<xs:import namespace="http://www.shoppersdrugmart.ca/message/SDMDataTypes" schemaLocation="SDMDataTypes.xsd"/>
+	<xs:import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+	<xs:import namespace="http://shoppersdrugmart.ca/RxHB/DRx/CSE" schemaLocation="ChannelServiceEntities.xsd"/>
+	<xs:element name="PrescriptionTransfer" type="prsc:PrescriptionTransfer"/>
+	<xs:complexType name="PrescriptionTransfer">
+		<xs:sequence>
+			<xs:element name="customer" type="CSE:Customer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="patient" type="ehlth:Patient" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="prescription" type="ehlth:Prescription" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="fromStoreType" type="sdm:StringValue" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fromStoreName" type="sdm:StringValue" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fromStorePhoneNumber" type="sdm:StringValue" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="transferAllPrescriptions" type="sdm:Flag" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="transferToStoreId" type="sdm:StringValue" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="initiationTime" type="sdm:Timestamp" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PrescriptionTransferResponse" type="prsc:PrescriptionTransferResponse"/>
+	<xs:complexType name="PrescriptionTransferResponse">
+		<xs:sequence>
+			<xs:element name="Flag" type="sdm:Flag" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="correlationID" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

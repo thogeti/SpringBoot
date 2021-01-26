@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:enum="http://www.shoppersdrugmart.ca/enumerations">
+	<xs:simpleType name="OptimumCardTypeCode">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="P"/>
+			<xs:enumeration value="D"/>
+			<xs:enumeration value="B"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Province">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Quebec"/>
+			<xs:enumeration value="Iowa"/>
+			<xs:enumeration value="Kansas"/>
+			<xs:enumeration value="Kentucky"/>
+			<xs:enumeration value="Louisiana"/>
+			<xs:enumeration value="Maine"/>
+			<xs:enumeration value="Maryland"/>
+			<xs:enumeration value="Massachusetts"/>
+			<xs:enumeration value="Michigan"/>
+			<xs:enumeration value="Minnesota"/>
+			<xs:enumeration value="Mississippi"/>
+			<xs:enumeration value="Missouri"/>
+			<xs:enumeration value="Montana"/>
+			<xs:enumeration value="Nebraska"/>
+			<xs:enumeration value="Nevada"/>
+			<xs:enumeration value="New Hampshire"/>
+			<xs:enumeration value="New Jersey"/>
+			<xs:enumeration value="New Mexico"/>
+			<xs:enumeration value="New York"/>
+			<xs:enumeration value="North Carolina"/>
+			<xs:enumeration value="North Dakota"/>
+			<xs:enumeration value="Ohio"/>
+			<xs:enumeration value="Oklahoma"/>
+			<xs:enumeration value="Oregon"/>
+			<xs:enumeration value="Pennsylvania"/>
+			<xs:enumeration value="Rhode Island"/>
+			<xs:enumeration value="South Carolina"/>
+			<xs:enumeration value="South Dakota"/>
+			<xs:enumeration value="Tennessee"/>
+			<xs:enumeration value="Texas"/>
+			<xs:enumeration value="Utah"/>
+			<xs:enumeration value="Vermont"/>
+			<xs:enumeration value="Virginia"/>
+			<xs:enumeration value="Washington"/>
+			<xs:enumeration value="West Virginia"/>
+			<xs:enumeration value="Wisconsin"/>
+			<xs:enumeration value="Wyoming"/>
+			<xs:enumeration value="Ontario"/>
+			<xs:enumeration value="Manitoba"/>
+			<xs:enumeration value="New Brunswick"/>
+			<xs:enumeration value="Newfoundland and Labrador"/>
+			<xs:enumeration value="Nova Scotia"/>
+			<xs:enumeration value="Northwest Territories"/>
+			<xs:enumeration value="Nunavut"/>
+			<xs:enumeration value="Prince Edward Island"/>
+			<xs:enumeration value="Saskatchewan"/>
+			<xs:enumeration value="Yukon"/>
+			<xs:enumeration value="British Columbia"/>
+			<xs:enumeration value="Alberta"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SDMLanguageCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="eng"/>
+			<xs:enumeration value="fra"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Country">
+		<xs:annotation>
+			<xs:documentation>Enumeration of countries.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Canada"/>
+			<xs:enumeration value="United States"/>
+			<xs:enumeration value="Other Countries"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

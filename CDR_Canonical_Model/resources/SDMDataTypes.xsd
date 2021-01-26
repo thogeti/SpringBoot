@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes" targetNamespace="http://www.shoppersdrugmart.ca/message/SDMDataTypes" elementFormDefault="qualified">
+	<xs:simpleType name="Money">
+		<xs:annotation>
+			<xs:documentation>A standard monetary amount.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:totalDigits value="17"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Name">
+		<xs:annotation>
+			<xs:documentation>Name of an object.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="128"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NaturalKey">
+		<xs:annotation>
+			<xs:documentation>The natural key of the source file/table. it is the concatenation of all the fields/columns  that makes the record/row unique within the source system. 
+thus the combination of DV_DataSource and NaturalKey should be unique within the enterprise. The field will be  implemented as  varchar(256) (or equivalent) in the dbms.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="128"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DateDay">
+		<xs:annotation>
+			<xs:documentation>Day of the month from the Gregorian calendar.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int"/>
+	</xs:simpleType>
+	<xs:simpleType name="DateMonth">
+		<xs:annotation>
+			<xs:documentation>Month of the year from the Gregorian calendar.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int"/>
+	</xs:simpleType>
+	<xs:simpleType name="DateYear">
+		<xs:annotation>
+			<xs:documentation>Year from the Gregorian calendar.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int"/>
+	</xs:simpleType>
+	<xs:simpleType name="Description">
+		<xs:annotation>
+			<xs:documentation>Text string that describes the object.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="128"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DescriptionNarrative">
+		<xs:annotation>
+			<xs:documentation>A number of paragraphs that describe the object.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1024"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Identity">
+		<xs:annotation>
+			<xs:documentation>Numeric identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long"/>
+	</xs:simpleType>
+	<xs:simpleType name="IdentityGTIN">
+		<xs:annotation>
+			<xs:documentation>GTIN describes a family of GS1 (EAN.UCC) global data structures that employ 14 digits and can be encoded into various types of data carriers. Currently, GTIN is used exclusively within bar codes, but it could also be used in other data carriers such as radio frequency identification (RFID). The GTIN is only a term and does not impact any existing standards, nor does it place any additional requirements on scanning hardware. For North American companies, the UPC is an existing form of the GTIN. The family of data structures (not symbologies) comprising GTIN include:
+
+GTIN-12 (UPC-A): this is a 12-digit number used primarily in North America
+GTIN-8 (EAN/UCC-8): this is an 8-digit number used predominately outside of North America
+GTIN-13 (EAN/UCC-13): this is a 13-digit number used predominately outside of North America
+GTIN-14 (EAN/UCC-14 or ITF-14): this is a 14-digit number used to identify trade items at various packaging levels.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="64"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IdentityUUID">
+		<xs:annotation>
+			<xs:documentation>The intent of UUIDs is to enable distributed systems to uniquely identify information without significant central coordination. In this context the word unique should be taken to mean "practically unique" rather than "guaranteed unique". Since the identifiers have a finite size, it is possible for two differing items to share the same identifier. The identifier size and generation process need to be selected so as to make this sufficiently improbable in practice. Anyone can create a UUID and use it to identify something with reasonable confidence that the same identifier will never be unintentionally created by anyone to identify something else. Information labeled with UUIDs can therefore be later combined into a single database without needing to resolve identifier (ID) conflicts.
+
+A UUID is a 16-octet (128-bit) number.
+
+In its canonical form, a UUID is represented by 32 lowercase hexadecimal digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 alphanumeric characters and four hyphens). For example:
+
+123e4567-e89b-12d3-a456-426655440000
+
+UUIDs should be represented in lowercase.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="38"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Quantity">
+		<xs:annotation>
+			<xs:documentation>The property of things that is measurable. Eg. a size or extent or weight or amount of number.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int"/>
+	</xs:simpleType>
+	<xs:simpleType name="Score">
+		<xs:annotation>
+			<xs:documentation>Datatype representing an act or instance of making or earning a point or points.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="4"/>
+			<xs:totalDigits value="7"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Time">
+		<xs:annotation>
+			<xs:documentation>Number of time units (hrs, minutes, seconds …) since 12 am.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:time"/>
+	</xs:simpleType>
+	<xs:simpleType name="WebPagePosition">
+		<xs:annotation>
+			<xs:documentation>Coordinates on a page.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int"/>
+	</xs:simpleType>
+	<xs:simpleType name="Rate">
+		<xs:annotation>
+			<xs:documentation>A stated numerical position between two sets of things.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float"/>
+	</xs:simpleType>
+	<xs:simpleType name="Size">
+		<xs:annotation>
+			<xs:documentation>The relative bigness or extend of a thing.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float"/>
+	</xs:simpleType>
+	<xs:simpleType name="DecimalCount">
+		<xs:annotation>
+			<xs:documentation>This datatype is used for fields that represent the a total number of objects represented as a decimal value.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="3"/>
+			<xs:totalDigits value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NumericValue">
+		<xs:annotation>
+			<xs:documentation>Numeric value data type.  Numeric value of something.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float"/>
+	</xs:simpleType>
+	<xs:simpleType name="MoneyShort">
+		<xs:annotation>
+			<xs:documentation>Monetary Amount up to $1M.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:totalDigits value="7"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Cost">
+		<xs:annotation>
+			<xs:documentation>Cost expressed as a monetary value.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="4"/>
+			<xs:totalDigits value="17"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StringValue">
+		<xs:annotation>
+			<xs:documentation>Value array or a set of delimited values. Eg: a comma separated list.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1024"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DecimalQuantity">
+		<xs:annotation>
+			<xs:documentation>Things that is measurable eg. a size or extent or weight or amount of number.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="4"/>
+			<xs:totalDigits value="19"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BLOB">
+		<xs:annotation>
+			<xs:documentation>A Binary Large OBject (BLOB) is a collection of binary data stored as a single entity.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="4096000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StringValuelong">
+		<xs:annotation>
+			<xs:documentation>Very Long String Value - 4096 characters or less.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="4096"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodeLong">
+		<xs:annotation>
+			<xs:documentation>This is a long version of a set of predefined domain values. This datatype is used when the vocabulary is not modeled as an entity.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="64"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MoneyLong">
+		<xs:annotation>
+			<xs:documentation>Monetary amount that can exceed $1M.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="4"/>
+			<xs:totalDigits value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DescriptionLong">
+		<xs:annotation>
+			<xs:documentation>A long text string that describes the object.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="256"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StringValueUnicode">
+		<xs:annotation>
+			<xs:documentation>A Short Description Field (64 characters or less) that supports Unicode characters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="64"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StringValueLongUnicode">
+		<xs:annotation>
+			<xs:documentation>A Long Description Field (4096 characters or less) that supports Unicode characters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="4096"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DescriptionUnicode">
+		<xs:annotation>
+			<xs:documentation>A description that supports Unicode characters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="128"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AddressLineUnicode">
+		<xs:annotation>
+			<xs:documentation>AddressLine to support Unicode characters</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="sdm:StringValueLongUnicode"/>
+	</xs:simpleType>
+	<xs:simpleType name="StringValueShort">
+		<xs:annotation>
+			<xs:documentation>String with max length of 64.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="64"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ScoreFloat">
+		<xs:annotation>
+			<xs:documentation>A floating point number.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float"/>
+	</xs:simpleType>
+	<xs:simpleType name="StringValueUnicode256">
+		<xs:annotation>
+			<xs:documentation>A Short Description Field (256 characters or less) that supports Unicode characters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="256"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StringValueUnicode1K">
+		<xs:annotation>
+			<xs:documentation>A Short Description Field (1024 characters or less) that supports Unicode characters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1024"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Indicator">
+		<xs:annotation>
+			<xs:documentation>A indicator that is longer that a single character.  Example True or False.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AddressLineLong">
+		<xs:annotation>
+			<xs:documentation>An address line but longer than normal - 256 characters</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="256"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Date">
+		<xs:annotation>
+			<xs:documentation>Calendar Date from the Gregorian calendar.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="IdentityAlphanumeric">
+		<xs:annotation>
+			<xs:documentation>Identifying alphanumeric string.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="128"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Count">
+		<xs:annotation>
+			<xs:documentation>This datatype is used for fields that represent the a total number of objects represented as a whole number.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int"/>
+	</xs:simpleType>
+	<xs:simpleType name="Code">
+		<xs:annotation>
+			<xs:documentation>A set of predefined domain values. This datatype is used when the vocabulary is not modeled as an entity.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Flag">
+		<xs:annotation>
+			<xs:documentation>An boolean indicator, 1 is yes and 2 is no.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BitMap">
+		<xs:annotation>
+			<xs:documentation>A bitmap is a type of memory organization or image file format used to store digital images.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:base64Binary">
+			<xs:maxLength value="4096"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Timestamp">
+		<xs:annotation>
+			<xs:documentation>The timestamp in ISO8601 format eg: 2015-06-03T13:21:58+00:00</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="AddressLine">
+		<xs:annotation>
+			<xs:documentation>This is a single line of an address. For example "747 Don Mills Road". This can also be used for line 2 of the address. For example "Unit 1".</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="81"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PostalCode">
+		<xs:annotation>
+			<xs:documentation>Postal or zip code.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PhoneNumber">
+		<xs:annotation>
+			<xs:documentation>Telephone number.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="32"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Percent">
+		<xs:annotation>
+			<xs:documentation>A ratio express as a factor of 100.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="4"/>
+			<xs:totalDigits value="7"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Path">
+		<xs:annotation>
+			<xs:documentation>XML path (xPath).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="256"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Password">
+		<xs:annotation>
+			<xs:documentation>Security access code.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="32"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NameLong">
+		<xs:annotation>
+			<xs:documentation>Just shy of a description.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="256"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Number">
+		<xs:annotation>
+			<xs:documentation>Integer number.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int"/>
+	</xs:simpleType>
+	<xs:simpleType name="Image">
+		<xs:annotation>
+			<xs:documentation>Datatype used to store pictures as a binary object allowing any format of picture. There is another datatype if the picture being stored is BitMap.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:base64Binary">
+			<xs:maxLength value="4096000"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

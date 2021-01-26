@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="HW4BComponent" 
+                  targetNamespace="http://shoppersdrugmart.ca/cdr/HW4BUpsertService" 
+                  xmlns:cdr="http://shoppersdrugmart.ca/cdr/CDRCommonEventPersist" 
+                  xmlns:tns="http://shoppersdrugmart.ca/cdr/HW4BUpsertService" 
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+                  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://www.shoppersdrugmart.ca/message/SDMDataTypes" schemaLocation="SDMDataTypes.xsd"/>
+			<import namespace="http://shoppersdrugmart.ca/cdr/CDRCommonEventPersist" schemaLocation="CDRCommonEventPersist.xsd"/>
+		</schema>
+	</wsdl:types>
+	
+	
+	
+	<!--
+	    *******************************************************************
+        ***************  Request Response messages ************************ 
+        *******************************************************************
+    -->
+	<wsdl:message name="HW4BUpsert">
+		<wsdl:part name="HW4BUpsert" element="cdr:HW4BEventUpsert"/>
+	</wsdl:message>
+	
+	<wsdl:message name="HW4BUpsertResponse">
+		<wsdl:part name="HW4BUpsertResponse" element="cdr:HW4BEventUpsertResponse"/>
+	</wsdl:message>
+	
+
+	<!--
+	    *******************************************************************
+        *************** portType Web Service operations ******************* 
+        *******************************************************************
+    -->
+	<wsdl:portType name="HW4BUpsertPortType">
+		<wsdl:operation name="upsert">
+			<wsdl:input name="HW4BUpsert" message="tns:HW4BUpsert"/>
+			<wsdl:output name="HW4BUpsertResponse" message="tns:HW4BUpsertResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	
+	
+	
+	<!--
+	    *******************************************************************
+        *************** binding                         ******************* 
+        *******************************************************************
+    -->
+	<wsdl:binding name="HW4BUpsertBinding" type="tns:HW4BUpsertPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		
+		<wsdl:operation name="upsert">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/cdr/HW4BUpsertService/upsert" style="document"/>
+			
+			<wsdl:input name="HW4BUpsert">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			
+			<wsdl:output name="HW4BUpsertResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	
+	
+	<wsdl:service name="HW4BUpsertService">
+		<wsdl:port name="HW4BUsertService" binding="tns:HW4BUpsertBinding">
+		            <soap:address location="http://shoppersdrugmart.ca/cdr/HW4BUpsertService"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

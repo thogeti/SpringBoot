@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="WSDLComponentPrescription" targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/PrescriptionService" 
+      xmlns:pres="http://shoppersdrugmart.ca/RxHB/DRx/Prescription" 
+      xmlns:tns="http://shoppersdrugmart.ca/RxHB/DRx/PrescriptionService"
+      xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+      xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+      xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+      xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      
+	<wsdl:import namespace="http://shoppersdrugmart.ca/RxHB/DRx/Prescription" location="PrescriptionService.xsd"/>
+	<wsdl:types/>
+	
+
+	
+	<!--
+	    *******************************************************************
+        ***************  Request Response messages ************************ 
+        *******************************************************************
+    -->
+	<wsdl:message name="PrescriptionTransferRequest">
+		<wsdl:part name="PrescriptionTransferRequest" type="pres:PrescriptionTransfer"/>
+	</wsdl:message>
+	
+	<wsdl:message name="PrescriptionTransferResponse">
+		<wsdl:part name="PrescriptionTransferResponse" type="pres:PrescriptionTransferResponse"/>
+	</wsdl:message>
+	
+	
+	
+	
+	<!--
+	    *******************************************************************
+        *************** portType Web Service operations ******************* 
+        *******************************************************************
+    -->
+	<wsdl:portType name="PrescriptionTransferPortType">
+		<wsdl:operation name="transfer">
+			<wsdl:input name="PrescriptionTransferRequest" message="tns:PrescriptionTransferRequest"/>
+			<wsdl:output name="PrescriptionTransferResponse" message="tns:PrescriptionTransferResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	
+	<!--
+	    *******************************************************************
+        *************** binding                         ******************* 
+        *******************************************************************
+    -->
+	<wsdl:binding name="PrescriptionTransferBinding" type="tns:PrescriptionTransferPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		
+		<wsdl:operation name="transfer">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/RxService/transfer" style="document"/>
+			<wsdl:input name="PrescriptionTransferRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			
+			<wsdl:output name="PrescriptionTransferResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	
+	
+	
+	
+	<wsdl:service name="PrescriptionService">
+		<wsdl:port name="PrescriptionTransferPortType" binding="tns:PrescriptionTransferBinding">
+			<soap:address location="http://shoppersdrugmart.ca/RxHB/DRx/PrescriptionService"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

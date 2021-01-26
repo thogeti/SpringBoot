@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='utf-8'?>
+<WL5G3N0:definitions name="StoreUpsertService" 
+         targetNamespace="http://shoppersdrugmart.ca/cdr/StoreUpsertService"
+         xmlns="" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" 
+         xmlns:WL5G3N1="http://shoppersdrugmart.ca/cdr/CDRCommonEventPersist"
+         xmlns:WL5G3N2="http://www.shoppersdrugmart.ca/message/ErrorXML" 
+         xmlns:WL5G3N3="http://shoppersdrugmart.ca/cdr/StoreUpsertService"
+         xmlns:WL5G3N4="http://schemas.xmlsoap.org/wsdl/soap/">
+  <WL5G3N0:types>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" 
+               xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+               xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+               xmlns:pr="http://shoppersdrugmart.ca/cdr/CDRCommonEventPersist" 
+               xmlns:prs="http://shoppersdrugmart.ca/cdr/StoreUpsertService" 
+               xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+               xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               xmlns:xsd1="http://www.shoppersdrugmart.ca/message/ErrorXML">
+               
+               <xs:import namespace="http://shoppersdrugmart.ca/cdr/CDRCommonEventPersist" schemaLocation="CDRCommonEventPersist.xsd"/>
+               <xs:import namespace="http://www.shoppersdrugmart.ca/message/ErrorXML" schemaLocation="CanonicalError.xsd"/>
+    </xs:schema>
+    
+    
+    <xs:schema targetNamespace="http://shoppersdrugmart.ca/cdr/StoreUpsertService" 
+               xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+               xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+               xmlns:pr="http://shoppersdrugmart.ca/cdr/CDRCommonEventPersist" 
+               xmlns:prs="http://shoppersdrugmart.ca/cdr/StoreUpsertService"
+               xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+               xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+               xmlns:xsd1="http://www.shoppersdrugmart.ca/message/ErrorXML">
+      <xs:element name="StoreUpsertFault">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="StoreUpsertFault" type="xsd:string">&#xA;            &#x9;&#x9;&#x9;</xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    
+  </WL5G3N0:types>
+  
+  
+  <WL5G3N0:message name="StoreUpsert">
+    <WL5G3N0:part element="WL5G3N1:StoreUpsert" name="StoreUpsert"/>
+  </WL5G3N0:message>
+  
+  <WL5G3N0:message name="StoreUpsertResponse">
+    <WL5G3N0:part element="WL5G3N1:StoreUpsertResponse" name="StoreUpsertResponse"/>
+  </WL5G3N0:message>
+  
+  <WL5G3N0:message name="StoreUpsertFault">
+    <WL5G3N0:part element="WL5G3N3:StoreUpsertFault" name="StoreUpsertFault"/>
+  </WL5G3N0:message>
+  
+  
+  
+  <WL5G3N0:portType name="StoreUpsertService">
+    <WL5G3N0:documentation>Put attributes and operations</WL5G3N0:documentation>
+    <WL5G3N0:operation name="StoreUpsert">
+      <WL5G3N0:input message="WL5G3N3:StoreUpsert" name="StoreUpsert"/>
+      <WL5G3N0:output message="WL5G3N3:StoreUpsertResponse" name="StoreUpsertResponse"/>
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  
+  
+  <WL5G3N0:binding name="StoreUpsertService" type="WL5G3N3:StoreUpsertService">
+    <WL5G3N4:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N0:operation name="StoreUpsert">
+      <WL5G3N4:operation soapAction="http://shoppersdrugmart.ca/cdr/StoreUpsertService/StoreUpsert"/>
+      <WL5G3N0:input>
+        <WL5G3N4:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N4:body use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  
+  
+  <WL5G3N0:service name="StoreUpsertService">
+    <WL5G3N0:port binding="WL5G3N3:StoreUpsertService" name="StoreUpsertService">
+      <WL5G3N4:address location="http://shoppersdrugmart.ca/cdr/StoreUpsertService"/>
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2015 rel. 3 (x64) (http://www.altova.com) by DC (SHOPPERS DRUG MART INC) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gp="http://shoppersdrugmart.ca/RxHB/DRx/GetPatient" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" xmlns:sdm="http://www.shoppersdrugmart.ca/message/SDMDataTypes" xmlns:CSE="http://shoppersdrugmart.ca/RxHB/DRx/CSE" targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/GetPatient">
+	<xs:import namespace="http://shoppersdrugmart.ca/RxHB/DRx/CSE" schemaLocation="ChannelServiceEntities.xsd"/>
+	<xs:import namespace="http://www.shoppersdrugmart.ca/message/SDMDataTypes" schemaLocation="SDMDataTypes.xsd"/>
+	<xs:import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+	<xs:element name="GetPatientResponse" type="gp:GetPatientResponse"/>
+	<xs:complexType name="GetPatientResponse">
+		<xs:sequence>
+			<xs:element name="Patient" type="ehlth:Patient" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetPatientByPatientId" type="gp:GetPatientByPatientId"/>
+	<xs:complexType name="GetPatientByPatientId">
+		<xs:sequence>
+			<xs:element name="StoreNumber" type="sdm:StringValue" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PatientId" type="sdm:IdentityAlphanumeric" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetPatientByPatientIdResponse" type="gp:GetPatientByPatientIdResponse"/>
+	<xs:complexType name="GetPatientByPatientIdResponse">
+		<xs:sequence>
+			<xs:element name="Patient" type="ehlth:Patient" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetPatient" type="gp:GetPatient"/>
+	<xs:complexType name="GetPatient">
+		<xs:sequence>
+			<xs:element name="StoreNumber" type="sdm:StringValue" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="RxNumber" type="sdm:Number" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetPatientByQueryCriteriaResponse" type="gp:GetPatientByQueryCriteriaResponse"/>
+	<xs:complexType name="GetPatientByQueryCriteriaResponse">
+		<xs:sequence>
+			<xs:element name="Patient" type="ehlth:Patient" minOccurs="0" maxOccurs="25"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetPatientByQueryCriteria" type="gp:GetPatientByQueryCriteria"/>
+	<xs:complexType name="GetPatientByQueryCriteria">
+		<xs:sequence>
+			<xs:element name="StoreNumber" type="sdm:StringValue" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="QueryCriteria" type="CSE:QueryCriteria" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetPatientByTransactionNumber" type="gp:GetPatientByTransactionNumber"/>
+	<xs:complexType name="GetPatientByTransactionNumber">
+		<xs:sequence>
+			<xs:element name="Banner" type="sdm:StringValue" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="StoreNumber" type="sdm:StringValue" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ConsumerName" type="sdm:StringValue" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ConsumerSendTimestamp" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="CorrelationId" type="sdm:StringValue" minOccurs="1" maxOccurs="1"/>			
+			<xs:element name="TransactionNumber" type="sdm:IdentityAlphanumeric" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetPatientByTransactionNumberResponse" type="gp:GetPatientByTransactionNumberResponse"/>
+	<xs:complexType name="GetPatientByTransactionNumberResponse">
+		<xs:sequence>
+			<xs:element name="Patient" type="ehlth:Patient" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

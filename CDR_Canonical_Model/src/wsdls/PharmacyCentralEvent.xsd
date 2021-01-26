@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2016 rel. 2 sp1 (x64) (http://www.altova.com) by SHOPPERS DRUG MART INC (SHOPPERS DRUG MART INC) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:PCE="http://shoppersdrugmart.ca/RxHB/PharmacyCentralEvent" xmlns:evf="http://shoppersdrugmart.ca/RX/TRR/BusinessEventMessageType" xmlns:be="http://shoppersdrugmart.ca/RxHB/eHealth/BusinessEvent" xmlns:BE="http://shoppersdrugmart.ca/RxHB/eHealthBusinessEvent" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" xmlns:eHBE="http://shoppersdrugmart.ca/RxHB/eHealthBException" xmlns:ns1="http://www.shoppersdrugmart.ca/message/SDMDataTypes" targetNamespace="http://shoppersdrugmart.ca/RxHB/PharmacyCentralEvent">
+	<xs:import namespace="http://shoppersdrugmart.ca/RxHB/eHealth/BusinessEvent" schemaLocation="eHealthBusinessEvent.xsd"/>
+	<xs:import namespace="http://shoppersdrugmart.ca/RxHB/eHealth" schemaLocation="eHealth.xsd"/>
+	<xs:element name="PharmacyCentralBusinessEvent" type="PCE:PharmacyCentralBusinessEvent"/>
+	<xs:complexType name="PharmacyCentralBusinessEvent">
+		<xs:sequence>
+			<xs:element name="correlationID" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="consumerSendTimestamp" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="requestedStartDate" type="xs:dateTime" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="reason" type="ehlth:QueryReason" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessEventPayload" type="be:BusinessEventPayload" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="producerRecordId" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="causedByEventName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="originalEventTimestamp" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessProcess" type="PCE:PharmacyBusinessEventProcessEnum" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="eventName" type="PCE:PharmacyBusinessEventEnum" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="eventReasonCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="PharmacyBusinessEventEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AbortCancel"/>
+			<xs:enumeration value="Data Entry Modify"/>
+			<xs:enumeration value="Cancel and Log"/>
+			<xs:enumeration value="AdaptRxLogged"/>
+			<xs:enumeration value="AdjudicatePostponeTx"/>
+			<xs:enumeration value="ADR Added"/>
+			<xs:enumeration value="ADR Deleted"/>
+			<xs:enumeration value="ADR Note Added"/>
+			<xs:enumeration value="ADR Note Deleted"/>
+			<xs:enumeration value="ADR Updated"/>
+			<xs:enumeration value="Allergy Intolerance Note Added"/>
+			<xs:enumeration value="Allergy Intolerance Note Deleted"/>
+			<xs:enumeration value="AutoPostpone"/>
+			<xs:enumeration value="ClaimAdjusted"/>
+			<xs:enumeration value="Clinical Profile Allergy Intolerance Added"/>
+			<xs:enumeration value="Clinical Profile Allergy Intolerance Deleted"/>
+			<xs:enumeration value="Clinical Profile Allergy Intolerance Updated"/>
+			<xs:enumeration value="Clinical Profile Medical Condition Added"/>
+			<xs:enumeration value="Clinical Profile Medical Condition Updated"/>
+			<xs:enumeration value="Clinical Verification Complete"/>
+			<xs:enumeration value="CMPT"/>
+			<xs:enumeration value="CompleteCounselling"/>
+			<xs:enumeration value="CompoundDataChanged"/>
+			<xs:enumeration value="Consent Managed"/>
+			<xs:enumeration value="ContactCreated"/>
+			<xs:enumeration value="CVAccepted"/>
+			<xs:enumeration value="CVDeclined"/>
+			<xs:enumeration value="Data Entry Complete Log"/>
+			<xs:enumeration value="Data Entry Complete New"/>
+			<xs:enumeration value="Data Entry Complete Post"/>
+			<xs:enumeration value="Data Entry Complete Refill"/>
+			<xs:enumeration value="DataEntrySubmitted"/>
+			<xs:enumeration value="Defer"/>
+			<xs:enumeration value="Discontinue Rx Post"/>
+			<xs:enumeration value="DiscontinueRx"/>
+			<xs:enumeration value="Display Linkable Prescription Profile"/>
+			<xs:enumeration value="Display Linked Prescription Details"/>
+			<xs:enumeration value="Display Medical Condition History"/>
+			<xs:enumeration value="Display Medical Condition List"/>
+			<xs:enumeration value="Display Medication Profile"/>
+			<xs:enumeration value="Display Patient Observation"/>
+			<xs:enumeration value="Display Patient Reactions"/>
+			<xs:enumeration value="Display Prescription Details"/>
+			<xs:enumeration value="Display Provincial Patient"/>
+			<xs:enumeration value="Display Provincial Patient List"/>
+			<xs:enumeration value="Display Provincial Prescriber List"/>
+			<xs:enumeration value="Display Provincial Provider List"/>
+			<xs:enumeration value="DrugDataChanged"/>
+			<xs:enumeration value="DUR Management Completed"/>
+			<xs:enumeration value="DURExecuted"/>
+			<xs:enumeration value="DVAccepted"/>
+			<xs:enumeration value="DVDeclined"/>
+			<xs:enumeration value="Electronic Import"/>
+			<xs:enumeration value="Get Allergy Intolerance Profile"/>
+			<xs:enumeration value="Get Allergy Intolerance Record History"/>
+			<xs:enumeration value="Get Patient Comprehensive Profile"/>
+			<xs:enumeration value="Link Patient"/>
+			<xs:enumeration value="Medical Condition Note Added"/>
+			<xs:enumeration value="Medical Condition Note Deleted"/>
+			<xs:enumeration value="Patient Added"/>
+			<xs:enumeration value="Patient Deleted"/>
+			<xs:enumeration value="Patient Linked"/>
+			<xs:enumeration value="Patient Merged"/>
+			<xs:enumeration value="Patient Note Added"/>
+			<xs:enumeration value="Patient Note Deleted"/>
+			<xs:enumeration value="Patient Observation Added"/>
+			<xs:enumeration value="Patient Observation Deleted"/>
+			<xs:enumeration value="Patient Observation Note Added"/>
+			<xs:enumeration value="Patient Order Complete"/>
+			<xs:enumeration value="Patient Order Complete Delete"/>
+			<xs:enumeration value="Patient Updated"/>
+			<xs:enumeration value="PatientCounsellingCompleted"/>
+			<xs:enumeration value="PatientDataChanged"/>
+			<xs:enumeration value="PCAccepted"/>
+			<xs:enumeration value="PCDeclined"/>
+			<xs:enumeration value="PharmacistRenewable"/>
+			<xs:enumeration value="PostponeTx"/>
+			<xs:enumeration value="PrescriberDataChanged"/>
+			<xs:enumeration value="Provincial Patient Added"/>
+			<xs:enumeration value="RebillClaims"/>
+			<xs:enumeration value="RefillCreated"/>
+			<xs:enumeration value="Refusal to Fill"/>
+			<xs:enumeration value="Refusal To Fill Deleted"/>
+			<xs:enumeration value="Rx Cancel Complete Delete"/>
+			<xs:enumeration value="Rx Discontinue"/>
+			<xs:enumeration value="Rx Log Modified"/>
+			<xs:enumeration value="Rx Modified Complete Delete"/>
+			<xs:enumeration value="Rx Note Added"/>
+			<xs:enumeration value="Rx Note Deleted"/>
+			<xs:enumeration value="Rx Resumed"/>
+			<xs:enumeration value="Rx Transferred"/>
+			<xs:enumeration value="RxAdapted"/>
+			<xs:enumeration value="RxDataChanged"/>
+			<xs:enumeration value="RxIntakeSubmitted"/>
+			<xs:enumeration value="RxLogged"/>
+			<xs:enumeration value="RxPickUpCompleted"/>
+			<xs:enumeration value="RxPosted"/>
+			<xs:enumeration value="RxTransfer"/>
+			<xs:enumeration value="Search Location"/>
+			<xs:enumeration value="Search Patient"/>
+			<xs:enumeration value="Search Pharmacy"/>
+			<xs:enumeration value="SSF"/>
+			<xs:enumeration value="StoreDataChanged"/>
+			<xs:enumeration value="SubmitFilling"/>
+			<xs:enumeration value="Tx Cancel Complete"/>
+			<xs:enumeration value="Tx Cancel Complete Delete"/>
+			<xs:enumeration value="Tx Cancel Complete Post"/>
+			<xs:enumeration value="Tx Modify Complete Post"/>
+			<xs:enumeration value="Tx Note Added"/>
+			<xs:enumeration value="Tx Note Deleted"/>
+			<xs:enumeration value="TxCancelled"/>
+			<xs:enumeration value="TxDataChanged"/>
+			<xs:enumeration value="TxModifyCompleted"/>
+			<xs:enumeration value="Unauth"/>
+			<xs:enumeration value="UnauthProcessCreated"/>
+			<xs:enumeration value="VarianceAdjusted"/>
+			<xs:enumeration value="RefillFailed"/>
+			<xs:enumeration value="RefillSuccess"/>
+			<xs:enumeration value="ReauthFailed"/>
+			<xs:enumeration value="ReauthSuccess"/>
+			<xs:enumeration value="HW4B Event Added"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PharmacyBusinessEventProcessEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RxIntake"/>
+			<xs:enumeration value="DataVerification"/>
+			<xs:enumeration value="ClinicalVerification"/>
+			<xs:enumeration value="Fax"/>
+			<xs:enumeration value="Refill"/>
+			<xs:enumeration value="Patient"/>
+			<xs:enumeration value="Reauth"/>
+			<xs:enumeration value="Prescriber"/>
+			<xs:enumeration value="AdaptRx"/>
+			<xs:enumeration value="AutoPostpone"/>
+			<xs:enumeration value="CMPT"/>
+			<xs:enumeration value="Compound"/>
+			<xs:enumeration value="Contact"/>
+			<xs:enumeration value="DataEntry"/>
+			<xs:enumeration value="Defer"/>
+			<xs:enumeration value="Drug"/>
+			<xs:enumeration value="Event-Framework"/>
+			<xs:enumeration value="Filling"/>
+			<xs:enumeration value="PatientCounselling"/>
+			<xs:enumeration value="PharmacistRenewal"/>
+			<xs:enumeration value="PickUpAssist"/>
+			<xs:enumeration value="PostponeTx"/>
+			<xs:enumeration value="ProductVerification"/>
+			<xs:enumeration value="RebillClaims"/>
+			<xs:enumeration value="RxTransfer"/>
+			<xs:enumeration value="Store"/>
+			<xs:enumeration value="Opioid"/>
+			<xs:enumeration value="PurgeProcess"/>
+			<xs:enumeration value="HW4B Process"/>
+			<xs:enumeration value="HW4BEvent"/>
+			<xs:enumeration value="TxModified"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

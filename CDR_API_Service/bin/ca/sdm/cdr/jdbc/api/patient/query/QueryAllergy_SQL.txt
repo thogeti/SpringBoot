@@ -1,0 +1,270 @@
+         0010
+       PtntAlrgy 
+           |       0020
+           |---> Alrg_Drug 
+           |          |
+           |          |---> 0022 Alrg_Drug_Mfctr ---> MfctrDrgRecall
+           |          |---> 0024 Molecule
+           |
+           |     0030      
+           |--->> rctn 
+           |       |
+           |       |--->> 0032 RctnNt  
+           |       |            | 
+           |       |            |---> TODO: !!! Missing recorder & Supervisor !!! 
+           |       |
+           |       |
+           |       |---> 0034 Rctn_Drug 
+           |       |          ----------
+           |                         ---> 0036 Rctn_Drug_Mfctr  ---> Rctn_Drug_MfctrDrgRecall 
+           |                         ---> 0038 Molecule
+           |
+           |       0040
+           |--->> ptntAlrgyNt 
+           |       |   |   |
+                   |   |   |--------> 0042 recorder    ---> {Addr, Email, Telecom}
+                   |   |
+                   |   -------------> 0044 Supervisor  ---> {Addr, Email, Telecom}
+                   |
+                   |----------------> ?? Dispenser   ---> {Addr, Email, Telecom}
+
+           |
+           |
+           |
+           |
+           |      0050
+           |---> AlrgyTst
+           |
+           |      0060
+           |---> AlrgyLoc    ---> {Addr, Email, Telecom}
+           | 
+           |      0070 
+           |---> recorder    ---> {Addr, Email, Telecom}
+           |
+           |      0080
+           |---> Supervisor  ---> {Addr, Email, Telecom}
+           |
+           |---> ?? Dispenser  ---> {Addr, Email, Telecom}
+
+
+
+
+select distinct
+       PtntAlrgy.*,                  -- 0010
+       Alrg_Drug.*,                  -- 0020
+       Alrg_Drug_Mfctr.*,            
+       Alrg_Drug_MfctrDrgRecall.*,  
+       AlrgDrgMlcl.*,
+
+       Rctn.*,                       -- 0030                     
+       RctnNt.*,                     -- 0032
+       Rctn_Drug.*,                  -- 0034
+       Rctn_Drug_Mfctr.*,           
+       Rctn_Drug_MfctrDrgRecall.*,  
+       RctnDrgMlcl.*,
+       -----------------------
+
+       ptntAlrgyNt.*,                -- 0040
+       ptntAlrgyNtRLS.*,
+       ptntAlrgyNtSuper.*,           -- 0044
+       ptntAlrgyNtSuperCntctMthd.*,
+       ptntAlrgyNtSuperEmail.*,
+       ptntAlrgyNtSuperAddr.*,
+       ptntAlrgyNtSuperTelecom.*,
+
+       ptntAlrgyNtRLR.*,
+       ptntAlrgyNtRec.*,             -- 0042
+       ptntAlrgyNtRecCntctMthd.*,
+       ptntAlrgyNtRecEmail.*,
+       ptntAlrgyNtRecAddr.*,
+       ptntAlrgyNtRecTelecom.*,
+       -----------------------
+
+
+       AlrgyTst.*,                   -- 0050
+
+       AlrgyLoc.*,                   -- 0060
+       AlrgyLocCntctMthd.*, 
+       AlrgyLocAddr.*,
+       AlrgyLocEmail.*,
+       AlrgyLocTelecom.*, 
+
+       Super.*,                      -- 0080
+       SuperCntctMthd.*, 
+       SuperRl.*,
+       SuperAddr.*,
+       SuperEmail.*,
+       SuperTelecom.*, 
+
+       Recorder.*,                   -- 0070
+       RcrdrRl.*,
+       RcrdrCntctMthd.*,
+       RcrdrAddr.*,
+       RcrdrEmail.*,
+       RcrdrTelecom.*
+
+  from PtntAlrgy PtntAlrgy          
+
+           ------------ 0020 Allergy Drug BLOCK ----------------   
+           join drg Alrg_Drug                                  
+             on PtntAlrgy.drgKey = Alrg_Drug.drgKey        
+
+           join Mfctr Alrg_Drug_Mfctr                         
+             on  Alrg_Drug.MfctrKey = Alrg_Drug_Mfctr.MfctrKey
+
+                  left outer join MfctrDrgRecall Alrg_Drug_MfctrDrgRecall  
+                               on Alrg_Drug_Mfctr.MfctrKey = Alrg_Drug_MfctrDrgRecall.MfctrKey 
+
+           join Mlcl AlrgDrgMlcl
+             on Alrg_Drug.DrgKey = AlrgDrgMlcl.DrgKey
+
+
+           ------------  0030 REACTIONS BLOCK ----------------      
+           left outer join rctn rctn                                
+                        on PtntAlrgy.ptntalrgykey = rctn.ptntalrgykey  
+
+                      left outer join RctnNt RctnNt                      
+                                   on rctn.RctnKey = RctnNt.RctnKey              
+
+
+                      left outer join DrgRctn DrgRctn                     
+                                   on rctn.RctnKey = DrgRctn.RctnKey             
+
+                      join Drg Rctn_Drug                                 
+                        on DrgRctn.DrgKey = Rctn_Drug.DrgKey          
+
+                      join Mfctr Rctn_Drug_Mfctr                         
+                        on Rctn_Drug.MfctrKey = Rctn_Drug_Mfctr.MfctrKey  
+
+                           left outer join MfctrDrgRecall Rctn_Drug_MfctrDrgRecall 
+                                        on Rctn_Drug_Mfctr.MfctrKey = Rctn_Drug_MfctrDrgRecall.MfctrKey 
+
+                      join Mlcl RctnDrgMlcl
+                        on Rctn_Drug.DrgKey = RctnDrgMlcl.DrgKey
+
+
+           --=============================================
+           ------------ 0040 ptntAlrgyNt BLOCK -----------
+           --=============================================
+           left outer join ptntAlrgyNt ptntAlrgyNt              
+                        on PtntAlrgy.ptntalrgykey = PtntAlrgyNt.PtntAlrgyKey 
+
+                left outer join PrsnRl  ptntAlrgyNtRLS
+                             on ptntAlrgyNt.SprvsrKey = ptntAlrgyNtRLS.PrsnRlKey
+
+                      join prsn ptntAlrgyNtSuper  ----> 0044 Supervisor
+                        on ptntAlrgyNtRLS.PrsnRlKey = ptntAlrgyNtSuper.PrsnKey
+					       
+ 		             left outer join CntctMthd ptntAlrgyNtSuperCntctMthd  
+		  		          on ptntAlrgyNtSuper.PrsnKey = ptntAlrgyNtSuperCntctMthd.PrsnKey  
+						   
+                             left outer join Email ptntAlrgyNtSuperEmail  
+				          on ptntAlrgyNtSuperCntctMthd.CntctMthdKey = ptntAlrgyNtSuperEmail.EmailKey  
+						   
+                             left outer join Addr ptntAlrgyNtSuperAddr  
+                                          on ptntAlrgyNtSuperCntctMthd.CntctMthdKey = ptntAlrgyNtSuperAddr.AddrKey  
+						   
+                             left outer join Telecom ptntAlrgyNtSuperTelecom  
+			                  on ptntAlrgyNtSuperCntctMthd.CntctMthdKey = ptntAlrgyNtSuperTelecom.TelecomKey  
+                ----------------------------------------------------- 
+
+
+                left outer join PrsnRl  ptntAlrgyNtRLR
+                             on ptntAlrgyNt.RcrdrKey = ptntAlrgyNtRLR.PrsnRlKey
+
+
+                      join prsn ptntAlrgyNtRec   ----> 0042 Recorder
+                        on ptntAlrgyNtRLR.PrsnRlKey = ptntAlrgyNtRec.PrsnKey
+					       
+ 		             left outer join CntctMthd ptntAlrgyNtRecCntctMthd  
+		  		          on ptntAlrgyNtRec.PrsnKey = ptntAlrgyNtRecCntctMthd.PrsnKey  
+						   
+                             left outer join Email ptntAlrgyNtRecEmail  
+				          on ptntAlrgyNtRecCntctMthd.CntctMthdKey = ptntAlrgyNtRecEmail.EmailKey  
+						   
+                             left outer join Addr ptntAlrgyNtRecAddr  
+                                          on ptntAlrgyNtRecCntctMthd.CntctMthdKey = ptntAlrgyNtRecAddr.AddrKey  
+						   
+                             left outer join Telecom ptntAlrgyNtRecTelecom  
+			                  on ptntAlrgyNtRecCntctMthd.CntctMthdKey = ptntAlrgyNtRecTelecom.TelecomKey  
+               ----------------------------------------------------- 
+
+
+                                            
+           ------------ 0050 AllergyTest BLOCK ----------------     
+           left outer join AlrgyTst  AlrgyTst                   
+                        on PtntAlrgy.ptntalrgykey = AlrgyTst.PtntAlrgyKey 
+                                              
+
+           ------------ 0060 Allergy Location BLOCK ------------------
+           join Loc AlrgyLoc
+	     on PtntAlrgy.LocKey = AlrgyLoc.LocKey
+
+                left outer join CntctMthd AlrgyLocCntctMthd  
+		             on AlrgyLoc.LocKey = AlrgyLocCntctMthd.LocKey 
+
+
+                left outer join Email AlrgyLocEmail  
+			        on AlrgyLocCntctMthd.CntctMthdKey = AlrgyLocEmail.EmailKey  
+						   
+                left outer join Addr AlrgyLocAddr  
+  		                on AlrgyLocCntctMthd.CntctMthdKey = AlrgyLocAddr.AddrKey  
+						   
+                left outer join Telecom AlrgyLocTelecom  
+			        on AlrgyLocCntctMthd.CntctMthdKey = AlrgyLocTelecom.TelecomKey  
+
+
+
+           ------------ 0080 Allergy Supervisor BLOCK ----------------
+           join PrsnRl  SuperRl
+             on PtntAlrgy.SprvsrKey = SuperRl.PrsnRlKey
+
+           join prsn Super
+             on SuperRl.PrsnRlKey = Super.PrsnKey
+					       
+ 		             left outer join CntctMthd SuperCntctMthd  
+		  		          on Super.PrsnKey = SuperCntctMthd.PrsnKey  
+						   
+                             left outer join Email SuperEmail  
+				          on SuperCntctMthd.CntctMthdKey = SuperEmail.EmailKey  
+						   
+                             left outer join Addr SuperAddr  
+	   		                  on SuperCntctMthd.CntctMthdKey = SuperAddr.AddrKey  
+						   
+                             left outer join Telecom SuperTelecom  
+			                  on SuperCntctMthd.CntctMthdKey = SuperTelecom.TelecomKey  
+
+
+           ------------ 0070 Allergy Recorder BLOCK ------------------
+           join PrsnRl  RcrdrRl
+             on PtntAlrgy.RcrdrKey = RcrdrRl.PrsnRlKey
+
+           join prsn Recorder
+             on RcrdrRl.PrsnRlKey = Recorder.PrsnKey
+					       
+ 		             left outer join CntctMthd RcrdrCntctMthd  
+		  		          on Recorder.PrsnKey = RcrdrCntctMthd.PrsnKey  
+						   
+                             left outer join Email RcrdrEmail  
+				          on RcrdrCntctMthd.CntctMthdKey = RcrdrEmail.EmailKey  
+						   
+                             left outer join Addr RcrdrAddr  
+	   		                  on RcrdrCntctMthd.CntctMthdKey = RcrdrAddr.AddrKey  
+						   
+                             left outer join Telecom RcrdrTelecom  
+			                  on RcrdrCntctMthd.CntctMthdKey = RcrdrTelecom.TelecomKey  
+
+
+
+  where PtntAlrgy.PtntKey = 1 -- ?
+  order by PtntAlrgy.ptntalrgykey,     -- 0010
+           Alrg_Drug.DrgKey,           -- 0020
+           Rctn.RctnKey,               -- 0030
+           RctnNt.RctnNtKey,           -- 0032
+           Rctn_Drug.DrgKey,           -- 0034
+           ptntAlrgyNt.ptntAlrgyNtKey, -- 0040
+
+           AlrgyTst.AlrgyTstKey,       -- 0050
+           AlrgyLoc.LocKey,            -- 0060
+           Super.PrsnKey,              -- 0080
+           Recorder.PrsnKey            -- 0070

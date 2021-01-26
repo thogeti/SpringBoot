@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2015 rel. 3 (x64) (http://www.altova.com) by DC (SHOPPERS DRUG MART INC) -->
+<wsdl:definitions xmlns:svcmp="http://shoppersdrugmart.ca/RxHB/DRx/MedicationReviewService" xmlns:ehlth="http://shoppersdrugmart.ca/RxHB/eHealth" xmlns:mr="http://shoppersdrugmart.ca/RxHB/DRx/MedicationReview" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="MedicationReviewService" targetNamespace="http://shoppersdrugmart.ca/RxHB/DRx/MedicationReviewService">
+<wsdl:documentation>	
+     Project: EMR Accuro     
+    Version:  2.9.2  
+</wsdl:documentation>
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://shoppersdrugmart.ca/RxHB/DRx/MedicationReview" schemaLocation="MedicationReview.xsd"/>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="GetMedicationReviewRequest">
+		<wsdl:part name="GetMedicationReviewRequest" element="mr:GetMedicationReviewRequest"/>
+	</wsdl:message>
+	<wsdl:message name="GetMedicationReviewResponse">
+		<wsdl:part name="GetMedicationReviewResponse" element="mr:GetMedicationReviewResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="MedicationReview">
+		<wsdl:operation name="getMedicationReview">
+			<wsdl:input name="GetMedicationReviewRequest" message="svcmp:GetMedicationReviewRequest"/>
+			<wsdl:output name="GetMedicationReviewResponse" message="svcmp:GetMedicationReviewResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="MedicationReview" type="svcmp:MedicationReview">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<wsdl:operation name="getMedicationReview">
+			<soap:operation soapAction="http://shoppersdrugmart.ca/RxHB/DigitalRx/MedicationReview/getMedicationReview" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="MedicationReviewService">
+		<wsdl:port name="MedicationReview" binding="svcmp:MedicationReview">
+			<soap:address location="http://wdp26esb21.hosts.shoppersdrugmart.ca:3202/RxHB/DRx/MedicationReview"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
