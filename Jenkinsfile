@@ -36,7 +36,7 @@ pipeline {
 		////    nexusPublisher nexusInstanceId: 'CDR_Central', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'D:\\Git\\MavenHelloWorldProject\\target\\MavenHelloWorldProject-1.0-SNAPSHOT.jar']], mavenCoordinate: [artifactId: 'Drop_60', groupId: 'CDR_Central', packaging: 'jar', version: '$FILENAME+$VERSION']]]
 		    
 		  //nexusPublisher nexusInstanceId: 'CDR_Central', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'C:\\Work\\Jenkins\\Jenkinshome\\workspace\\CDR_Build-0126\\PatientService\\target\\PatientService-Drop65_20210110.war']], mavenCoordinate: [artifactId: 'Drop65', groupId: 'CDR_central', packaging: 'war', version: '1.0']]]  
-		    nexusPublisher nexusInstanceId: 'CDR_Central', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'C:\\Work\\Jenkins\\Jenkinshome\\workspace\\CDR_Build-0126\\PatientService\\target\\PatientService-Drop65_20210110.war']], mavenCoordinate: [artifactId: 'Drop65', groupId: 'CDR_central', packaging: 'war', version: '$FILENAME+$VERSION']]] 
+		    nexusPublisher nexusInstanceId: 'CDR_Central', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'C:\\Work\\Jenkins\\Jenkinshome\\workspace\\CDR_Build-0126\\PatientService\\target\\PatientService-Drop65_20210110.war']], mavenCoordinate: [artifactId: 'Drop65', groupId: 'CDR_central', packaging: 'war', version: '$FILENAME-$VERSION']]] 
             }
         }
     }
