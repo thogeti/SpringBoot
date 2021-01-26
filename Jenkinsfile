@@ -21,9 +21,9 @@ pipeline {
 		   /// bat "mvn -f SpringBootRestApiExample/pom.xml -Dmaven.test.failure.ignore=true clean package"
 		    //MavenHelloWorldProject
 		   //// bat "mvn -f MavenHelloWorldProject/pom.xml -Dmaven.test.failure.ignore=true clean package"		    
-		    bat "mvn -f CDR_Canonical_Model/pom.xml -Dmaven.test.failure.ignore=true -Drelease=Drop65_20210110 clean compile install"
-		    bat "mvn -f CDR_CommonUtil/pom.xml -Dmaven.test.failure.ignore=true -Drelease=Drop65_20210110 clean compile install"
+		    bat "mvn -f CDR_Canonical_Model/pom.xml -Dmaven.test.failure.ignore=true -Drelease=Drop65_20210110 clean compile install"		    
 		    bat "mvn -f CDR_Exception_Framework/pom.xml -Dmaven.test.failure.ignore=true -Drelease=Drop65_20210110 clean compile install"
+		    bat "mvn -f CDR_CommonUtil/pom.xml -Dmaven.test.failure.ignore=true -Drelease=Drop65_20210110 clean compile install"
 		    bat "mvn -f CDR_API_Service/pom.xml -Dmaven.test.failure.ignore=true -Drelease=Drop65_20210110 clean compile install"
 		    bat "mvn -f PatientService/pom.xml -Dmaven.test.failure.ignore=true -Drelease=Drop65_20210110 clean compile install"
                   echo 'Packaging..'
