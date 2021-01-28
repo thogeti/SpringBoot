@@ -25,7 +25,8 @@ pipeline {
 		    bat "mvn -f CDR_Exception_Framework/pom.xml -Dmaven.test.failure.ignore=true -Drelease=Drop65_20210110 clean compile install"
 		    bat "mvn -f CDR_CommonUtil/pom.xml -Dmaven.test.failure.ignore=true -Drelease=Drop65_20210110 clean compile install"
 		    bat "mvn -f CDR_API_Service/pom.xml -Dmaven.test.failure.ignore=true -Drelease=Drop65_20210110 clean compile install"
-		    bat "mvn -f PatientService/pom.xml -Dmaven.test.failure.ignore=true -Drelease=Drop65_20210110 clean compile install"
+		   // bat "mvn -f PatientService/pom.xml -Dmaven.test.failure.ignore=true -Drelease=Drop65_20210110 clean compile install"
+		     bat "mvn -f $SERVICENAME/pom.xml -Dmaven.test.failure.ignore=true -Drelease=$DROPNAME_$DATE clean compile install"
                   echo 'Packaging..'
             }
         }
