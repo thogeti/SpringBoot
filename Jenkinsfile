@@ -43,7 +43,7 @@ pipeline {
 		    //nexusPublisher nexusInstanceId: 'CDR_Central', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'C:\\Work\\Jenkins\\Jenkinshome\\workspace\\CDR_Build-0126\\PatientService\\target\\PatientService-Drop65_20210110.war']], mavenCoordinate: [artifactId: 'Drop65', groupId: 'CDR_central', packaging: 'war', version: '$FILENAME-$VERSION']]] 
 		    //NTTLaptop
 		    nexusPublisher nexusInstanceId: 'CDR_Central', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'C:\\Users\\011391\\.jenkins\\workspace\\CDR_Build-0210\\PatientService\\target\\PatientService-Drop65_20210110.war']], mavenCoordinate: [artifactId: 'Drop65', groupId: 'CDR_central', packaging: 'war', version: '$FILENAME-$VERSION']]] 
-            }
+            
             }
         }
     }
